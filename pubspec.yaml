@@ -30,6 +30,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   url_launcher: ^6.1.14
   firebase_storage: ^11.2.8
+  video_player: ^2.2.5
 
 dev_dependencies:
   mockito:
