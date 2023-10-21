@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyB5LBjubpG-EF5dxvN9NLyQiK7fomBwIZc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>438086175432</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.emad.beltaje.getxskeleton.getxSkeleton</string>
+	<key>PROJECT_ID</key>
+	<string>swapapp-dad3d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>swapapp-dad3d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:438086175432:ios:cd45c2c52d101a93c273fd</string>
+</dict>
+</plist>
