@@ -62,6 +62,7 @@ class ProfileScreen extends GetView<SettingsController> {
           //
           Get.offAndToNamed(Routes.BASE);
         } else {
+          // ignore: avoid_print
           print(controller.user.value.toJSON());
         }
       },

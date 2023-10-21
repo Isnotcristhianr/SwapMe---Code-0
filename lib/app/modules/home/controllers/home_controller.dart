@@ -29,9 +29,6 @@ class HomeController extends GetxController {
               .toList();
           // User with his favorites
 
-          // TODO: exclude the favorites of user
-          print('Datos de prendas');
-          print(tmp);
           BaseController baseController = Get.find();
           if (baseController.user.value.favorites != null) {
             products.value = tmp
@@ -42,8 +39,6 @@ class HomeController extends GetxController {
         },
       );
     } catch (e) {
-      print('Error in get products');
-      print(e.toString());
       products.value = [];
     }
   }

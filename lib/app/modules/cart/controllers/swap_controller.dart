@@ -23,7 +23,7 @@ class SwapController extends GetxController {
         UserModel product = UserModel.fromFirebase(e, null);
         return product;
       }).toList();
-      print(interested);
+    // ignore: invalid_return_type_for_catch_error, avoid_print
     }).catchError(print);
     update();
   }

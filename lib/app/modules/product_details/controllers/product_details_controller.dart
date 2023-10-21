@@ -28,6 +28,7 @@ class ProductDetailsController extends GetxController {
         .doc(product.ownerId!)
         .get()
         .then((value) => {userOwner.value = UserModel.fromFirebase(value, null)})
+        // ignore: invalid_return_type_for_catch_error, avoid_print
         .catchError(print);
   }
 

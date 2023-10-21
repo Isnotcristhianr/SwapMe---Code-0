@@ -21,8 +21,10 @@ class LoginController extends GetxController {
             FacebookAuthProvider.credential(result.accessToken!.token);
         final UserCredential userCredentials =
             await FirebaseAuth.instance.signInWithCredential(credential);
+        // ignore: avoid_print
         print(userCredentials);
       } catch (e) {
+        // ignore: avoid_print
         print(e);
         return false;
       }
@@ -72,7 +74,7 @@ class LoginController extends GetxController {
 
       return true;
     } on FirebaseAuthException catch (e) {
-      print(e.toString());
+      // ignore: avoid_print
       print(e.code);
       if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
         messageToDisplay = 'Invalid password. Check your password or restore.';
@@ -94,7 +96,6 @@ class LoginController extends GetxController {
           .get();
       return data.docs.isNotEmpty;
     } catch (e) {
-      print(e.toString());
       return false;
     }
   }

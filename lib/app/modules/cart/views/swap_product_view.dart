@@ -15,6 +15,7 @@ class SwapConfirmScreen extends GetView<SwapController> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     var theme = context.theme;
 
     return Scaffold(

@@ -160,6 +160,7 @@ class CartItem extends GetView<CartController> {
                       Constants.cancelIcon,
                       width: 20.w,
                       height: 20.h,
+                      // ignore: deprecated_member_use
                       color: theme.textTheme.bodyMedium!.color,
                     ),
                   ),

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -123,8 +125,9 @@ class ConfirmRestorePassword extends GetView<LoginController> {
                                       ? MyButtonAgree(
                                           text: "Restore Password",
                                           onTap: () async {
-                                            // TODO: send data
+                                            // ignore: avoid_print
                                             print(codeController.text);
+                                            // ignore: avoid_print
                                             print(passwordController.text);
                                           },
                                         )

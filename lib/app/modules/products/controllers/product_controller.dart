@@ -40,7 +40,6 @@ class ProductController extends GetxController {
     } catch (e) {
       title = 'Error Register';
       messageToDisplay = e.toString();
-      print(e.toString());
       return false;
     }
   }

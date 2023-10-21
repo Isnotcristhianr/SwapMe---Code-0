@@ -27,12 +27,15 @@ class SignUpController extends GetxController {
         final userData = await FacebookAuth.i.getUserData(
           fields: "name,email,picture.width(200),birthday,gender,",
         );
+        // ignore: avoid_print
         print(userData);
         return true;
       }
+      // ignore: avoid_print
       print(result);
       return false;
     } catch (e) {
+      // ignore: avoid_print
       print(e);
       messageToDisplay = e.toString();
       return false;
@@ -65,15 +68,18 @@ class SignUpController extends GetxController {
       // Save to Firestore
       FirebaseFirestore.instance.collection("users").add(user.toJSON()).then(
           (documentSnapshot) =>
+              // ignore: avoid_print
               print("Added Data with ID: ${documentSnapshot.id}"));
 
       messageToDisplay = 'User registered sucessfully';
       return true;
     } on FirebaseAuthException catch (e) {
       messageToDisplay = e.message!;
+      // ignore: avoid_print
       print(e);
       return false;
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       messageToDisplay = e.toString();
       return false;

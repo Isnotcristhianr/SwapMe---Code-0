@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:swapme/app/data/local/my_shared_pref.dart';
 import 'package:swapme/app/modules/settings/views/profile_view.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 import 'package:swapme/utils/helpers.dart';

@@ -29,7 +29,10 @@ class BaseController extends GetxController {
         settingsController.user.value = user.value;
         Get.find<HomeController>().getProducts();
       }
-    }).catchError((error) => print('Error in get user ${error.toString()}'));
+    }).catchError((error) {
+      // ignore: invalid_return_type_for_catch_error
+      return Future<void>.value(null);
+    });
 
     super.onReady();
   }
@@ -79,6 +82,7 @@ class BaseController extends GetxController {
         .doc(MySharedPref.getCurrentUserId())
         .set({'favorites': favorites}, SetOptions(merge: true))
         .then((value) {})
+        // ignore: invalid_return_type_for_catch_error, avoid_print
         .catchError(print);
 
     FavoritesController favoritesController = Get.find();

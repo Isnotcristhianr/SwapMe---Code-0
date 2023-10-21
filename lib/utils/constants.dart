@@ -1,7 +1,7 @@
 class Constants {
 
   // assets images
-  static const logo = 'assets/images/logoSwapMe.png';
+  static const logo = 'assets/images/logorenew.png';
 
   static const homeIcon = 'assets/vectors/home.svg';
   static const favoritesIcon = 'assets/vectors/favorites.svg';

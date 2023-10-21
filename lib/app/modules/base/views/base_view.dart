@@ -97,7 +97,9 @@ class BaseView extends GetView<BaseController> {
   _mBottomNavItem({required String label, required String icon}) {
     return BottomNavigationBarItem(
       label: label,
+      // ignore: deprecated_member_use
       icon: SvgPicture.asset(icon, color: Get.theme.iconTheme.color),
+      // ignore: deprecated_member_use
       activeIcon: SvgPicture.asset(icon, color: Get.theme.primaryColor),
     );
   }

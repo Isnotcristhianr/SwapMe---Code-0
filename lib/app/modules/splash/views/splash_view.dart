@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 
-import '../../../../utils/constants.dart';
 import '../controllers/splash_controller.dart';
 
 class SplashView extends GetView<SplashController> {
@@ -13,7 +12,6 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     Get.put(SplashController());
-    var theme = context.theme;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -21,38 +19,25 @@ class SplashView extends GetView<SplashController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                Constants.logo,
-                width: 120.w,
-                height: 90.h,
+                'assets/images/SwapMe Logo Horizontal.png',
               ).animate().fade().slideY(
                   duration: const Duration(milliseconds: 500),
                   begin: 1,
                   curve: Curves.easeInSine),
               20.verticalSpace,
-              Padding(
-                padding: EdgeInsets.only(left: 30.w),
-                child: Text.rich(
-                  TextSpan(children: [
-                    TextSpan(
-                      text: 'Intercambia ',
-                      style: theme.textTheme.displayMedium
-                          ?.copyWith(color: theme.primaryColor),
-                    ),
-                    TextSpan(
-                      text: 'para un mundo mejor',
-                      style: theme.textTheme.displayMedium,
-                    ),
-                  ]),
-                ).animate().fade().slideY(
-                    duration: const Duration(milliseconds: 500),
-                    begin: 5,
-                    curve: Curves.easeInSine),
-              ),
-              SizedBox(height: 80.h),
+             
+              SizedBox(height: 8.h),
               TextButton(
                 onPressed: () {
                   Get.offNamed(Routes.WELCOME);
-                },
+                }, style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  //color rgb #1D853D
+                  backgroundColor: const Color(0xFF1D853D),
+                  padding: const EdgeInsets.only(
+                      top: 10, bottom: 10, left: 20, right: 20),
+                  shape: const StadiumBorder(), // Bordes redondeados
+                ),
                 child: const Text('Iniciar').marginOnly(right: 20, left: 20),
               ),
             ],

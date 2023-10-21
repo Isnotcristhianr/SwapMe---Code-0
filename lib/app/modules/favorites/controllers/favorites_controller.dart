@@ -44,10 +44,12 @@ class FavoritesController extends GetxController {
               .where((element) => !element.interested!
                   .contains(MySharedPref.getCurrentUserId()))
               .toList();
+        // ignore: invalid_return_type_for_catch_error, avoid_print
         }).catchError(print);
         // productsFavorites = userTmp.favorites.map((e) => null);
         // Get all products by id of list
       }
+    // ignore: avoid_print, invalid_return_type_for_catch_error
     }).catchError((error) => print(error));
   }
 

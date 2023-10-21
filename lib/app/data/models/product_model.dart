@@ -41,7 +41,6 @@ class ProductModel {
     SnapshotOptions? options,
   ) {
     final data = snapshot.data();
-    print(data);
     return ProductModel(
       id: data?['id'] ?? snapshot.id,
       name: data?['name'],
@@ -62,7 +61,6 @@ class ProductModel {
     Map<String, dynamic> data,
     SnapshotOptions? options,
   ) {
-    print(data);
     return ProductModel(
       id: data['id'],
       name: data['name'],

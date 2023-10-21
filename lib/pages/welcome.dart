@@ -10,8 +10,7 @@ import 'package:swapme/app/routes/app_pages.dart';
 import 'package:swapme/components/is_loading.dart';
 import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
-import 'package:swapme/components/square_tile.dart';
-import 'package:swapme/pages/login/controllers/login_controller.dart';
+import 'login/controllers/login_controller.dart';
 
 class WelcomeController extends GetxController {
   String email = '';
@@ -72,7 +71,7 @@ class WelcomePage extends GetView<WelcomeController> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.18),
                   const Text(
-                    "Hi !",
+                    "Bienvenido !",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 40,
@@ -138,7 +137,7 @@ class WelcomePage extends GetView<WelcomeController> {
                                                 if (!isRegister) {
                                                   await Get.snackbar(
                                                     'Login incorrect',
-                                                    'Dont have user with email. Maybe your account is not active or go to signup :)',
+                                                    'You do not have a user with an email address. Maybe your account is not active or you are going to register and check your email :)',
                                                     duration:
                                                         Duration(seconds: 2),
                                                     backgroundColor: Colors.red,
@@ -175,7 +174,7 @@ class WelcomePage extends GetView<WelcomeController> {
                                           // ignore: prefer_const_literals_to_create_immutables
                                           children: [
                                             Text(
-                                              'Don\'t have an account?',
+                                              'No tienes una cuenta?',
                                               maxLines: 2,
                                               overflow: TextOverflow.ellipsis,
                                               style: TextStyle(
@@ -189,7 +188,7 @@ class WelcomePage extends GetView<WelcomeController> {
                                                 onTap: () =>
                                                     Get.toNamed(Routes.SIGNUP),
                                                 child: Text(
-                                                  'Sign Up',
+                                                  'Regístrate',
                                                   maxLines: 2,
                                                   overflow:
                                                       TextOverflow.ellipsis,

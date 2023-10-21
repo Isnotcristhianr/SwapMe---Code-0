@@ -1,3 +1,4 @@
+import 'package:swapme/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:swapme/app/data/local/my_shared_pref.dart';
 import 'package:swapme/app/modules/favorites/controllers/favorites_controller.dart';
-import 'package:swapme/app/modules/home/controllers/home_controller.dart';
 import 'package:swapme/utils/helpers.dart';
 
 import '../../utils/constants.dart';
@@ -63,9 +63,8 @@ class ProductItem extends StatelessWidget {
                                 product.isFavorite!
                                     ? Constants.favFilledIcon
                                     : Constants.favOutlinedIcon,
-                                color: product.isFavorite!
-                                    ? null
-                                    : theme.primaryColor,
+                                // ignore: deprecated_member_use
+                                color: context.theme.primaryColor,
                               ),
                             ),
                           ),
