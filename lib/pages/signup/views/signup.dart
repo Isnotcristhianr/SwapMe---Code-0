@@ -10,6 +10,8 @@ import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/pages/signup/controllers/signup_controller.dart';
 import 'package:swapme/pages/welcome.dart';
 
+import 'package:video_player/video_player.dart';
+
 class Signup extends GetView<SignUpController> {
   Signup({super.key});
 
@@ -32,7 +34,7 @@ class Signup extends GetView<SignUpController> {
   @override
   Widget build(BuildContext context) {
     final buttonAgree = MyButtonAgree(
-      text: "Agree and Continue",
+      text: "Aceptar y continuar",
       onTap: () async {
         controller.user.name = nameController.text;
         controller.user.lastName = lastNameController.text;
@@ -44,7 +46,7 @@ class Signup extends GetView<SignUpController> {
         bool isRegister = await controller.registerUser();
 
         await Get.snackbar(
-          isRegister ? 'Register correct' : 'Register incorrect',
+          isRegister ? 'Registro Correcto' : 'Registro Incorrecto',
           controller.messageToDisplay,
           duration: const Duration(seconds: 2),
           backgroundColor: isRegister ? Colors.green : Colors.red,
@@ -84,7 +86,7 @@ class Signup extends GetView<SignUpController> {
                   onPressed: Get.back,
                 ),
                 Text(
-                  "Sign Up",
+                  "Registro",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: MediaQuery.of(context).size.height * 0.05,
@@ -117,23 +119,26 @@ class Signup extends GetView<SignUpController> {
                                 children: [
                                   // const SizedBox(height: 10),
                                   const Text(
-                                    "Look like you don't have an account. Let's create a new account for",
+                                    "Parece que no tienes una cuenta registrada, Regístrate para poder acceder a la aplicación",
                                     // ignore: prefer_const_constructors
                                     style: TextStyle(
-                                        color: Colors.white, fontSize: 18),
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                    ),
                                     textAlign: TextAlign.start,
                                   ),
+                                  const SizedBox(height: 10),
                                   ImageSelector(controller: photoController),
                                   const SizedBox(height: 10),
                                   MyTextField(
                                     controller: nameController,
                                     onChanged: (value) =>
                                         controller.user.name = value,
-                                    hintText: 'Name',
+                                    hintText: 'Nombre',
                                     obscureText: false,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter some text';
+                                        return 'Ingresa un texto';
                                       }
                                       return null;
                                     },
@@ -143,11 +148,11 @@ class Signup extends GetView<SignUpController> {
                                     controller: lastNameController,
                                     onChanged: (value) =>
                                         controller.user.lastName = value,
-                                    hintText: 'Lastname',
+                                    hintText: 'Apellido',
                                     obscureText: false,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter some text';
+                                        return 'Ingresa un texto';
                                       }
                                       return null;
                                     },
@@ -161,10 +166,10 @@ class Signup extends GetView<SignUpController> {
                                     obscureText: false,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter some text';
+                                        return 'Ingresa un texto';
                                       }
                                       if (!value.isEmail) {
-                                        return 'Please enter an email valid';
+                                        return 'Ingresa un Email valido';
                                       }
                                       return null;
                                     },
@@ -172,17 +177,17 @@ class Signup extends GetView<SignUpController> {
                                   const SizedBox(height: 10),
                                   MyTextField(
                                     controller: phoneController,
-                                    hintText: 'Phone',
+                                    hintText: 'Teléfono (codigo no uses +)',
                                     obscureText: false,
                                     maxLength: 13,
                                     onChanged: (value) =>
                                         controller.user.phone = value,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter some text';
+                                        return 'Ingresa un texto';
                                       }
                                       if (!value.isPhoneNumber) {
-                                        return 'Please enter an email valid';
+                                        return 'Ingresa un numero valido';
                                       }
                                       return null;
                                     },
@@ -222,13 +227,13 @@ class Signup extends GetView<SignUpController> {
                                     controller: passwordController,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
-                                        return 'Please enter some text';
+                                        return 'Ingresa un texto';
                                       }
                                       return null;
                                     },
                                     onChanged: (value) =>
                                         controller.user.password = value,
-                                    hintText: 'Password',
+                                    hintText: 'Contraseña',
                                     obscureText: true,
                                   ),
                                   const SizedBox(height: 16),
@@ -244,7 +249,7 @@ class Signup extends GetView<SignUpController> {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text:
-                                                  'By selecting Agree & Continue below, I agree to our ',
+                                                  'Para continuar, aceptas las normas de SwapMe',
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 13,

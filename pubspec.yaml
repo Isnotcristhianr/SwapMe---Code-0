@@ -43,11 +43,12 @@ dev_dependencies:
     sdk: flutter
 
 flutter_icons:
-  android: true
+  android: "launcher_icon"
   ios: true
-  image_path: "assets/images/logorenew.png" # change app icon
+  image_path: "assets/images/logorenew.png"
   adaptive_icon_background: "#FFFFFF"
   adaptive_icon_foreground: "assets/images/logorenew.png"
+
 
 flutter:
   uses-material-design: true
