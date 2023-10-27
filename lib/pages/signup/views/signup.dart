@@ -117,18 +117,10 @@ class Signup extends GetView<SignUpController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  // const SizedBox(height: 10),
-                                  const Text(
-                                    "Parece que no tienes una cuenta registrada, Regístrate para poder acceder a la aplicación",
-                                    // ignore: prefer_const_constructors
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 15,
-                                    ),
-                                    textAlign: TextAlign.start,
-                                  ),
+                                   const SizedBox(height: 10),
+                                 
                                   const SizedBox(height: 15),
-                                  ImageSelector(controller: photoController),
+                                 // ImageSelector(controller: photoController),
                                   const SizedBox(height: 15),
                                   MyTextField(
                                     controller: nameController,
