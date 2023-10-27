@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../../../utils/constants.dart';
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({Key? key}) : super(key: key);
+  const NotificationItem({super.key});
 
   @override
   Widget build(BuildContext context) {

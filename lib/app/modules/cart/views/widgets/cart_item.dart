@@ -13,9 +13,9 @@ import '../../controllers/cart_controller.dart';
 class CartItem extends GetView<CartController> {
   final ProductModel product;
   const CartItem({
-    Key? key,
+    super.key,
     required this.product,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

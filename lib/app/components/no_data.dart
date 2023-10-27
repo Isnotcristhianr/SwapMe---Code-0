@@ -6,7 +6,7 @@ import '../../utils/constants.dart';
 
 class NoData extends StatelessWidget {
   final String? text;
-  const NoData({Key? key, this.text}) : super(key: key);
+  const NoData({super.key, this.text});
 
   @override
   Widget build(BuildContext context) {

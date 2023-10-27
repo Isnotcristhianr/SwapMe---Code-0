@@ -11,7 +11,7 @@ import 'package:swapme/app/modules/product_details/views/widgets/rounded_button.
 import 'package:swapme/utils/constants.dart';
 
 class SwapConfirmScreen extends GetView<SwapController> {
-  const SwapConfirmScreen({Key? key}) : super(key: key);
+  const SwapConfirmScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

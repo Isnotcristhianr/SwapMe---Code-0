@@ -9,7 +9,7 @@ import '../controllers/cart_controller.dart';
 import 'widgets/cart_item.dart';
 
 class CartView extends GetView<CartController> {
-  const CartView({Key? key}) : super(key: key);
+  const CartView({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -15,7 +15,7 @@ import '../routes/app_pages.dart';
 
 class ProductItem extends StatelessWidget {
   final ProductModel product;
-  const ProductItem({Key? key, required this.product}) : super(key: key);
+  const ProductItem({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {

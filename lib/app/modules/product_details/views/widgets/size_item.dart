@@ -7,11 +7,11 @@ class SizeItem extends StatelessWidget {
   final String label;
   final bool selected;
   const SizeItem({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.label,
     this.selected = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

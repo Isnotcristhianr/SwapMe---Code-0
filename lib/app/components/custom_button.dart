@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
   final bool disabled;
 
   const CustomButton({
-    Key? key,
+    super.key,
     this.icon,
     this.spacing,
     required this.text,
@@ -44,7 +44,7 @@ class CustomButton extends StatelessWidget {
     this.width,
     this.verticalPadding,
     this.disabled = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ import '../controllers/notifications_controller.dart';
 import 'widgets/notification_item.dart';
 
 class NotificationsView extends GetView<NotificationsController> {
-  const NotificationsView({Key? key}) : super(key: key);
+  const NotificationsView({super.key});
   
   @override
   Widget build(BuildContext context) {

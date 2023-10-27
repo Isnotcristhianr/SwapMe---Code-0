@@ -10,7 +10,7 @@ import 'package:swapme/utils/helpers.dart';
 
 class UserItem extends StatelessWidget {
   final UserModel user;
-  const UserItem({Key? key, required this.user}) : super(key: key);
+  const UserItem({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

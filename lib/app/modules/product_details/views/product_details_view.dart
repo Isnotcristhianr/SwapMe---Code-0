@@ -17,7 +17,7 @@ import 'widgets/rounded_button.dart';
 //import 'widgets/size_item.dart';
 
 class ProductDetailsView extends GetView<ProductDetailsController> {
-  const ProductDetailsView({Key? key}) : super(key: key);
+  const ProductDetailsView({super.key});
   @override
   Widget build(BuildContext context) {
     final theme = context.theme;

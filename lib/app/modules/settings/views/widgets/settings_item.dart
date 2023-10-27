@@ -16,14 +16,14 @@ class SettingsItem extends StatelessWidget {
   final ImageProvider<Object>? backgroundImage;
 
   const SettingsItem({
-    Key? key,
+    super.key,
     required this.title,
     required this.icon,
     this.isAccount = false,
     this.isDark = false,
     this.numberPhone = 'No registrado',
     this.backgroundImage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -9,7 +9,7 @@ import '../../../components/screen_title.dart';
 import '../controllers/favorites_controller.dart';
 
 class FavoritesView extends GetView<FavoritesController> {
-  const FavoritesView({Key? key}) : super(key: key);
+  const FavoritesView({super.key});
 
   @override
   Widget build(BuildContext context) {

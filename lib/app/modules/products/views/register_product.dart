@@ -15,7 +15,7 @@ import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/utils/constants.dart';
 
 class RegisterProductScreen extends GetView<ProductController> {
-  RegisterProductScreen({Key? key}) : super(key: key);
+  RegisterProductScreen({super.key});
 
   final controllerName = TextEditingController();
   final controllerImage = TextEditingController();

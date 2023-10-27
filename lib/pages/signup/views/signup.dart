@@ -3,14 +3,12 @@ import 'dart:ui';
 import 'package:get/get.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:swapme/components/image_selector.dart';
 import 'package:swapme/components/is_loading.dart';
 import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/pages/signup/controllers/signup_controller.dart';
 import 'package:swapme/pages/welcome.dart';
 
-import 'package:video_player/video_player.dart';
 
 class Signup extends GetView<SignUpController> {
   Signup({super.key});

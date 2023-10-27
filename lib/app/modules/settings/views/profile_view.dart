@@ -12,7 +12,7 @@ import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/utils/constants.dart';
 
 class ProfileScreen extends GetView<SettingsController> {
-  ProfileScreen({Key? key}) : super(key: key);
+  ProfileScreen({super.key});
 
   final emailController = TextEditingController(
       text: Get.find<SettingsController>().user.value.email);
