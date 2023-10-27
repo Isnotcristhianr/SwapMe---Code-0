@@ -12,6 +12,11 @@ class SplashView extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     Get.put(SplashController());
+
+    Future.delayed(const Duration(seconds: 3), () {
+      Get.offNamed(Routes.WELCOME);
+    });
+
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -19,27 +24,13 @@ class SplashView extends GetView<SplashController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/SwapMe Logo Horizontal.png',
+                'assets/images/logoSplashScreen.png',
               ).animate().fade().slideY(
                   duration: const Duration(milliseconds: 500),
                   begin: 1,
                   curve: Curves.easeInSine),
               20.verticalSpace,
-             
               SizedBox(height: 8.h),
-              TextButton(
-                onPressed: () {
-                  Get.offNamed(Routes.WELCOME);
-                }, style: TextButton.styleFrom(
-                  foregroundColor: Colors.white,
-                  //color rgb #1D853D
-                  backgroundColor: const Color(0xFF1D853D),
-                  padding: const EdgeInsets.only(
-                      top: 10, bottom: 10, left: 20, right: 20),
-                  shape: const StadiumBorder(), // Bordes redondeados
-                ),
-                child: const Text('Iniciar').marginOnly(right: 20, left: 20),
-              ),
             ],
           ),
         ),
