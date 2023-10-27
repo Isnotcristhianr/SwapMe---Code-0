@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/gestures.dart';
 import 'package:get/get.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,8 @@ import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/pages/signup/controllers/signup_controller.dart';
 import 'package:swapme/pages/welcome.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Signup extends GetView<SignUpController> {
   Signup({super.key});
@@ -23,7 +25,7 @@ class Signup extends GetView<SignUpController> {
   final photoController = TextEditingController();
 
   final double _sigmaX = 5; // from 0-10
-  final double _sigmaY = 5; // from 0-10
+  final double _sigmaY = 4; // from 0-10
   final double _opacity = 0.2;
 
   final _formKey = GlobalKey<FormState>();
@@ -69,7 +71,7 @@ class Signup extends GetView<SignUpController> {
           alignment: Alignment.center,
           children: [
             Image.asset(
-              'assets/vids/fondo.jpg',
+              'assets/images/welcomev2.png',
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               fit: BoxFit.cover,
@@ -115,10 +117,10 @@ class Signup extends GetView<SignUpController> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                   const SizedBox(height: 10),
-                                 
+                                  const SizedBox(height: 10),
+
                                   const SizedBox(height: 15),
-                                 // ImageSelector(controller: photoController),
+                                  // ImageSelector(controller: photoController),
                                   const SizedBox(height: 15),
                                   MyTextField(
                                     controller: nameController,
@@ -167,7 +169,7 @@ class Signup extends GetView<SignUpController> {
                                   const SizedBox(height: 10),
                                   MyTextField(
                                     controller: phoneController,
-                                    hintText: 'Teléfono (codigo no uses +)',
+                                    hintText: 'Teléfono (codigo sin +)',
                                     obscureText: false,
                                     maxLength: 13,
                                     onChanged: (value) =>
@@ -200,7 +202,11 @@ class Signup extends GetView<SignUpController> {
                                         color: Colors.grey[500],
                                       ),
                                     ),
-                                    items: ['Masculino', 'Femenino', 'Prefiero no decirlo']
+                                    items: [
+                                      'Masculino',
+                                      'Femenino',
+                                      'Prefiero no decirlo'
+                                    ]
                                         .map(
                                           (e) => DropdownMenuItem<String>(
                                             value: e,
@@ -234,18 +240,15 @@ class Signup extends GetView<SignUpController> {
                                         CrossAxisAlignment.stretch,
                                     children: [
                                       RichText(
-                                        text: const TextSpan(
-                                          text: '',
-                                          children: <TextSpan>[
-                                            TextSpan(
-                                              text:
-                                                  'Para continuar, aceptas las normas de SwapMe',
-                                              style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 13,
-                                              ),
-                                            ),
-                                            TextSpan(
+                                        text: TextSpan(
+                                          text:
+                                              'Para continuar, aceptas las normas de SwapMe',
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 13,
+                                          ),
+                                          children: [
+                                            const TextSpan(
                                               text: '\n',
                                               style: TextStyle(
                                                 color: Colors.white,
@@ -255,12 +258,17 @@ class Signup extends GetView<SignUpController> {
                                             TextSpan(
                                               text:
                                                   'Terms of Service and Privacy Policy',
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 71, 233, 133),
                                                 fontWeight: FontWeight.bold,
                                                 fontSize: 20,
                                               ),
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () {
+                                                  //vista de terminos y condiciones
+                                                  Get.toNamed(Routes.TERMS);
+                                                },
                                             ),
                                           ],
                                         ),

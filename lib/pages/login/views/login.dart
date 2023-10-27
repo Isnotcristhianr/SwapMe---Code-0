@@ -41,7 +41,7 @@ class LoginPage extends GetView<LoginController> {
             children: [
               // background image local
               Image.asset(
-                'assets/vids/fondo.jpg',
+                'assets/images/welcomev2.png',
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 fit: BoxFit.cover,
@@ -56,7 +56,7 @@ class LoginPage extends GetView<LoginController> {
                     onPressed: Get.back,
                   ),
                   100.verticalSpace,
-                  const Text("Log in",
+                  const Text("Inicio de sesión",
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 40,
@@ -224,7 +224,7 @@ class LoginPage extends GetView<LoginController> {
                                             controller.isLoading.value = false;
                                           },
                                           child: Text(
-                                            'Forgot Password?',
+                                            'Olvidaste la Contraseña?',
                                             style: TextStyle(
                                                 color: Color.fromARGB(
                                                     255, 71, 233, 133),

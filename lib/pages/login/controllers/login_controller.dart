@@ -4,6 +4,7 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 
 import 'package:swapme/app/data/models/user_model.dart';
+import 'package:video_player/video_player.dart';
 
 class LoginController extends GetxController {
   UserModel user = UserModel();
@@ -11,6 +12,7 @@ class LoginController extends GetxController {
   String titleMessage = ' ';
   bool isRestorePasswprd = false;
   RxBool isLoading = RxBool(false);
+
 
   Future<bool> signInWithFacebook() async {
     final LoginResult result = await FacebookAuth.instance
@@ -99,4 +101,5 @@ class LoginController extends GetxController {
       return false;
     }
   }
+
 }

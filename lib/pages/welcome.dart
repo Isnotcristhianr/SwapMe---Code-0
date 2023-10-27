@@ -11,6 +11,7 @@ import 'package:swapme/components/is_loading.dart';
 import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'login/controllers/login_controller.dart';
+import 'package:video_player/video_player.dart';
 
 class WelcomeController extends GetxController {
   String email = '';
@@ -60,7 +61,7 @@ class WelcomePage extends GetView<WelcomeController> {
             alignment: Alignment.center,
             children: [
               Image.asset(
-                'assets/vids/fondo.jpg',
+                'assets/images/welcomev2.png',
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
                 fit: BoxFit.cover,
@@ -71,7 +72,7 @@ class WelcomePage extends GetView<WelcomeController> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.18),
                   const Text(
-                    "Bienvenido !",
+                    "Bienvenido",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 40,

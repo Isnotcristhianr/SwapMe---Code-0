@@ -37,6 +37,9 @@ abstract class Routes {
 
   // ignore: constant_identifier_names
   static const SWAP_PRODUCT = _Paths.SWAP_PRODUCT;
+
+  // ignore: constant_identifier_names
+  static const TERMS = _Paths.TERMS;
 }
 
 abstract class _Paths {
@@ -75,4 +78,7 @@ abstract class _Paths {
 
   // ignore: constant_identifier_names
   static const SWAP_PRODUCT = '/swapProduct';
+
+  // ignore: constant_identifier_names
+  static const TERMS = '/terms';
 }

@@ -7,6 +7,7 @@ import 'package:swapme/pages/login/bindings/login_binding.dart';
 import 'package:swapme/pages/login/views/confirmPassword.dart';
 import 'package:swapme/pages/signup/bindings/signup_binding.dart';
 
+
 import '../modules/base/bindings/base_binding.dart';
 import '../modules/base/views/base_view.dart';
 import '../modules/cart/bindings/cart_binding.dart';
@@ -23,6 +24,8 @@ import '../modules/settings/bindings/settings_binding.dart';
 import '../modules/settings/views/settings_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../../pages/terms/views/TermsView.dart';
+import '../../pages/terms/bindings/terms_binding.dart';
 
 //login
 import '../../pages/login/views/login.dart';
@@ -31,6 +34,9 @@ import '../../pages/signup/views/signup.dart';
 //signup
 import '../../pages/welcome.dart';
 part 'app_routes.dart';
+
+
+
 
 class AppPages {
   AppPages._();
@@ -66,6 +72,13 @@ class AppPages {
       page: () => Signup(),
       binding: SignUpBinding(),
     ),
+    //terminos y condiciones
+    GetPage(
+      name: _Paths.TERMS,
+      page: () => const TermsView(),
+      binding: TermsBinding(),
+    ),
+
     GetPage(
       name: _Paths.HOME,
       page: () => const HomeView(),
