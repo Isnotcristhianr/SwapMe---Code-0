@@ -9,8 +9,6 @@ import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/pages/signup/controllers/signup_controller.dart';
 import 'package:swapme/pages/welcome.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class Signup extends GetView<SignUpController> {
   Signup({super.key});

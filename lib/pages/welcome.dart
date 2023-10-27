@@ -11,7 +11,6 @@ import 'package:swapme/components/is_loading.dart';
 import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'login/controllers/login_controller.dart';
-import 'package:video_player/video_player.dart';
 
 class WelcomeController extends GetxController {
   String email = '';
