@@ -106,7 +106,7 @@ class Signup extends GetView<SignUpController> {
                             Radius.circular(30),
                           ),
                         ),
-                        width: MediaQuery.of(context).size.width * 0.95,
+                        width: MediaQuery.of(context).size.width * 0.9,
                         height: MediaQuery.of(context).size.height,
                         child: SingleChildScrollView(
                           child: Form(
@@ -123,13 +123,13 @@ class Signup extends GetView<SignUpController> {
                                     // ignore: prefer_const_constructors
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 18,
+                                      fontSize: 15,
                                     ),
                                     textAlign: TextAlign.start,
                                   ),
-                                  const SizedBox(height: 10),
+                                  const SizedBox(height: 15),
                                   ImageSelector(controller: photoController),
-                                  const SizedBox(height: 10),
+                                  const SizedBox(height: 15),
                                   MyTextField(
                                     controller: nameController,
                                     onChanged: (value) =>
@@ -210,7 +210,7 @@ class Signup extends GetView<SignUpController> {
                                         color: Colors.grey[500],
                                       ),
                                     ),
-                                    items: ['Masculino', 'Femenino']
+                                    items: ['Masculino', 'Femenino', 'Prefiero no decirlo']
                                         .map(
                                           (e) => DropdownMenuItem<String>(
                                             value: e,
@@ -250,6 +250,13 @@ class Signup extends GetView<SignUpController> {
                                             TextSpan(
                                               text:
                                                   'Para continuar, aceptas las normas de SwapMe',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 13,
+                                              ),
+                                            ),
+                                            TextSpan(
+                                              text: '\n',
                                               style: TextStyle(
                                                 color: Colors.white,
                                                 fontSize: 13,
