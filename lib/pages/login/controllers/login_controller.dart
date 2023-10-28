@@ -4,7 +4,6 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 
 import 'package:swapme/app/data/models/user_model.dart';
-import 'package:video_player/video_player.dart';
 
 class LoginController extends GetxController {
   UserModel user = UserModel();

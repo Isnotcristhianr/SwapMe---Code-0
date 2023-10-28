@@ -11,7 +11,6 @@ import 'package:swapme/components/is_loading.dart';
 import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'login/controllers/login_controller.dart';
-
 class WelcomeController extends GetxController {
   String email = '';
 
@@ -69,7 +68,7 @@ class WelcomePage extends GetView<WelcomeController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.18),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.15),
                   const Text(
                     "Bienvenido",
                     style: TextStyle(

@@ -10,6 +10,8 @@ import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/pages/signup/controllers/signup_controller.dart';
 import 'package:swapme/pages/welcome.dart';
 
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+
 class Signup extends GetView<SignUpController> {
   Signup({super.key});
 
@@ -22,7 +24,7 @@ class Signup extends GetView<SignUpController> {
   final genere = TextEditingController(text: 'Masculino');
   final photoController = TextEditingController();
 
-  final double _sigmaX = 5; // from 0-10
+  final double _sigmaX = 4; // from 0-10
   final double _sigmaY = 4; // from 0-10
   final double _opacity = 0.2;
 
@@ -37,11 +39,22 @@ class Signup extends GetView<SignUpController> {
         controller.user.name = nameController.text;
         controller.user.lastName = lastNameController.text;
         controller.user.email = emailController.text;
-        controller.user.phone = phoneController.text;
         controller.user.genere = genere.text;
         controller.user.password = passwordController.text;
         controller.user.photo = photoController.text;
         bool isRegister = await controller.registerUser();
+
+        String phoneNumber = phoneController.text;
+        if (phoneNumber.isNotEmpty) {
+            //eliminar el + del numero de telefono
+          phoneNumber = phoneNumber.replaceAll('+', '');
+          // Asigna el número de teléfono al usuario
+          controller.user.phone = phoneNumber;
+        } else {
+          // Si el número de teléfono está vacío, puedes manejarlo como desees.
+          // En este ejemplo, se asigna un valor predeterminado (por ejemplo, "N/A").
+          controller.user.phone = "N/A";
+        }
 
         await Get.snackbar(
           isRegister ? 'Registro Correcto' : 'Registro Incorrecto',
@@ -165,23 +178,66 @@ class Signup extends GetView<SignUpController> {
                                     },
                                   ),
                                   const SizedBox(height: 10),
-                                  MyTextField(
-                                    controller: phoneController,
-                                    hintText: 'Teléfono (codigo sin +)',
-                                    obscureText: false,
-                                    maxLength: 13,
-                                    onChanged: (value) =>
-                                        controller.user.phone = value,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return 'Ingresa un texto';
+                                  InternationalPhoneNumberInput(
+                                    onInputChanged: (PhoneNumber number) {
+                                      var num = number.phoneNumber ?? '';
+                                      //eliminar el + del numero de telefono
+                                      num = num.replaceAll('+', '');
+                                      controller.user.phone = num;
+                                    },
+                                    selectorConfig: const SelectorConfig(
+                                      selectorType:
+                                          PhoneInputSelectorType.DIALOG,
+                                    ),
+                                    ignoreBlank: false,
+                                    autoValidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    selectorTextStyle:
+                                        const TextStyle(color: Colors.grey),
+                                    formatInput: false,
+                                    keyboardType: TextInputType.phone,
+                                    inputDecoration: InputDecoration(
+                                      hintText: 'Ingrese su número',
+                                      filled: true,
+                                      fillColor: Colors.grey[200],
+                                      contentPadding:
+                                          const EdgeInsets.symmetric(
+                                              horizontal: 16, vertical: 12),
+                                      enabledBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.white),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: Colors.grey.shade400),
+                                      ),
+                                    ),
+                                    onFieldSubmitted: (String value) {
+                                      if (value.isEmpty) {
+                                      } else {
+                                        // Realiza la validación personalizada aquí si es necesario
+                                        if (!value.isPhoneNumber) {
+                                          // El número de teléfono no es válido
+                                          // Muestra un mensaje de error al usuario
+                                          Get.snackbar(
+                                            'Número de teléfono inválido',
+                                            'Por favor, ingresa un número de teléfono válido.',
+                                            backgroundColor: Colors.red,
+                                            colorText: Colors.white,
+                                            snackPosition: SnackPosition.BOTTOM,
+                                          );
+                                        } else {
+                                          //envio numero de telefono, codigo sin + y numero
+                                          // ignore: avoid_print
+                                          print('Número de teléfono válido');
+                                          //ver num
+                                          // ignore: avoid_print
+                                          print(controller.user.phone);
+                                        }
                                       }
-                                      if (!value.isPhoneNumber) {
-                                        return 'Ingresa un numero valido';
-                                      }
-                                      return null;
                                     },
                                   ),
+
                                   const SizedBox(height: 10),
                                   DropdownButtonFormField<String>(
                                     value: genere.text,
