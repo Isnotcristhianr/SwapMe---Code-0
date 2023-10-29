@@ -19,7 +19,7 @@ class RegisterProductScreen extends GetView<ProductController> {
 
   final controllerName = TextEditingController();
   final controllerImage = TextEditingController();
-  final controllerReview = TextEditingController(text: 'Sin review');
+  final controllerReview = TextEditingController();
   final controllerPrice = TextEditingController();
   final controllerQuantity = TextEditingController();
   final controllerRaiting = TextEditingController(text: '1.0');
@@ -39,8 +39,9 @@ class RegisterProductScreen extends GetView<ProductController> {
           physics: const ClampingScrollPhysics(),
           child: Column(
             children: [
+              const SizedBox(height: 15),
               const ScreenTitle(
-                title: 'Register product',
+                title: 'Registrar Prenda',
                 dividerEndIndent: 1,
               ),
               Form(
@@ -63,11 +64,11 @@ class RegisterProductScreen extends GetView<ProductController> {
                     SizedBox(height: 15.h),
                     MyTextField(
                       controller: controllerName,
-                      hintText: 'Name product',
+                      hintText: 'Nombre de la prenda',
                       obscureText: false,
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return 'Enter some any text';
+                          return 'Ingrese un nombre de prenda';
                         }
                         return null;
                       },
@@ -75,11 +76,11 @@ class RegisterProductScreen extends GetView<ProductController> {
                     SizedBox(height: 15.h),
                     MyTextField(
                       controller: controllerReview,
-                      hintText: 'Review product',
+                      hintText: 'Review de la prenda',
                       obscureText: false,
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return 'Enter some any text';
+                          return 'Ingrese un review de la prenda';
                         }
                         return null;
                       },
@@ -87,28 +88,28 @@ class RegisterProductScreen extends GetView<ProductController> {
                     SizedBox(height: 15.h),
                     MyTextField(
                       controller: controllerPrice,
-                      hintText: 'Price product',
+                      hintText: 'Valor Referencial de la prenda',
                       obscureText: false,
                       maxLength: 6,
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return 'Enter some any text';
+                          return 'Ingrese un valor referencial de la prenda';
                         }
-                        if (!p0.isNumericOnly) return 'Enter only numbers';
+                        if (!p0.isNumericOnly) return 'Ingrese solo numeros';
                         return null;
                       },
                     ),
                     SizedBox(height: 15.h),
                     MyTextField(
                       controller: controllerQuantity,
-                      hintText: 'Quantity product',
+                      hintText: 'Cantidad de prendas',
                       obscureText: false,
                       maxLength: 3,
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return 'Enter some any text';
+                          return 'Ingrese una cantidad de prendas';
                         }
-                        if (!p0.isNumericOnly) return 'Enter only numbers';
+                        if (!p0.isNumericOnly) return 'Ingrese solo numeros';
                         return null;
                       },
                     ),
@@ -116,7 +117,7 @@ class RegisterProductScreen extends GetView<ProductController> {
                     DropdownButtonFormField<String>(
                       value: controllerSize.text,
                       decoration: InputDecoration(
-                        labelText: 'Size',
+                        labelText: 'Talla',
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -145,7 +146,7 @@ class RegisterProductScreen extends GetView<ProductController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Raiting'),
+                        const Text('Evaluación de la prenda'),
                         Center(
                           child: RatingBar.builder(
                             initialRating: double.parse(controllerRaiting.text),
@@ -208,7 +209,7 @@ class RegisterProductScreen extends GetView<ProductController> {
                                 Get.offAndToNamed(Routes.BASE);
                               }
                             },
-                            text: 'Register Swap',
+                            text: 'Intercambiar',
                           )
                     : const SizedBox(),
               )

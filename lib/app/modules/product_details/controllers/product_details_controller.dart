@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings, prefer_adjacent_string_concatenation
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -63,10 +65,11 @@ class ProductDetailsController extends GetxController {
       UserModel owner = UserModel.fromFirebase(value, null);
       phone = owner.phone;
       if (phone == null) {
-        messageToDisplay = 'The owner dont have phone';
+        messageToDisplay = 'El dueño no tiene telefono registrado';
         return false;
       }
-      message = '$message ${owner.name} ${owner.lastName}';
+      // ignore: 
+      message = '$message ${owner.name} ${owner.lastName}'  + ' me interesa tu producto ${product.name}.' + ' ¿Podemos acordar un intercambio? 🤔';
       Uri url = getUrl(phone: phone, message: message);
       if (await canLaunchUrl(url)) {
         await launchUrl(url);
