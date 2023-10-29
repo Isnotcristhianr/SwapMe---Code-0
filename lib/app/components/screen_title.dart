@@ -18,7 +18,7 @@ class ScreenTitle extends StatelessWidget {
       children: [
         Text(title,
             style: context.theme.textTheme.displayLarge?.copyWith(
-              fontSize: 38.sp,
+              fontSize: 28.sp,
             )),
         Divider(
           thickness: 3,

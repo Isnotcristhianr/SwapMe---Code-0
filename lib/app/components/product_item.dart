@@ -100,7 +100,7 @@ class ProductItem extends StatelessWidget {
                                       if (deleted) {
                                         Get.back();
                                         await Get.snackbar(
-                                          'Product deleted',
+                                          'Prenda eliminada correctamente',
                                           controller.messageToDisplay,
                                           colorText: Colors.white,
                                           backgroundColor: Colors.green,

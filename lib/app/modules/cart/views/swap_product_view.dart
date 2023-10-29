@@ -26,12 +26,14 @@ class SwapConfirmScreen extends GetView<SwapController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 15),
               RoundedButton(
                 onPressed: () => Get.back(),
                 child:
                     SvgPicture.asset(Constants.backArrowIcon, fit: BoxFit.none),
               ),
               // SizedBox(height: .h),
+              const SizedBox(height: 15),
               ScreenTitle(
                 title: 'Users',
                 dividerEndIndent: 1.w,

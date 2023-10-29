@@ -18,10 +18,11 @@ class CartView extends GetView<CartController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
           children: [
+            const SizedBox(height: 15),
             5.verticalSpace,
             const ScreenTitle(
-              title: 'Para intercambiar',
-              dividerEndIndent: 280,
+              title: 'Intercambios Activos',
+              dividerEndIndent: 10,
             ),
             10.verticalSpace,
             Obx(
@@ -42,6 +43,7 @@ class CartView extends GetView<CartController> {
                     ),
             ),
             5.verticalSpace,
+            const SizedBox(height: 15),
             const ScreenTitle(title: 'Intercambios completados'),
             Obx(
               () => controller.productsSwapped.isEmpty

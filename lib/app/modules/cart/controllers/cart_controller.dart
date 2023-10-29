@@ -75,7 +75,7 @@ class CartController extends GetxController {
     bool result = false;
     try {
       await FirebaseFirestore.instance.collection('products').doc(id).delete();
-      messageToDisplay = 'Produc deleted successfully';
+      messageToDisplay = 'Prenda eliminada correctamente';
       result = true;
     } catch (e) {
       messageToDisplay = e.toString();
