@@ -60,7 +60,7 @@ class UserItem extends StatelessWidget {
                     )),
                 onPressed: () {
                   Get.defaultDialog(
-                      title: 'Confirm Swap',
+                      title: 'Confirmar Swap',
                       titleStyle: context.textTheme.titleLarge!.copyWith(
                         color: Colors.black,
                       ),

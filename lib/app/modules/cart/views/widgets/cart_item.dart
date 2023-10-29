@@ -72,16 +72,29 @@ class CartItem extends GetView<CartController> {
                 product.available
                     ? TextButton(
                         style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            )),
-                        onPressed: () => Get.toNamed(
-                          Routes.SWAP_PRODUCT,
-                          arguments: product,
+                          padding: EdgeInsets.zero,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          backgroundColor: Colors
+                              .blue, // Personaliza el color de fondo del botón según tus necesidades
                         ),
-                        child:
-                            Text('Confirmar - ${product.interested?.length}'),
+                        onPressed: () {
+                          Get.toNamed(
+                            Routes.SWAP_PRODUCT,
+                            arguments: product,
+                          );
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Confirmar - ${product.interested?.length}',
+                            style: const TextStyle(
+                              color: Colors
+                                  .white, // Personaliza el color del texto del botón según tus necesidades
+                            ),
+                          ),
+                        ),
                       )
                     : const SizedBox(),
                 product.available
