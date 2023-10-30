@@ -11,6 +11,8 @@ import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/utils/constants.dart';
 
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+
 class ProfileScreen extends GetView<SettingsController> {
   ProfileScreen({super.key});
 
@@ -57,7 +59,7 @@ class ProfileScreen extends GetView<SettingsController> {
           colorText: Colors.white,
           snackPosition: SnackPosition.BOTTOM,
         ).future;
-        controller.isLoading.value = false; 
+        controller.isLoading.value = false;
         if (isUpdated) {
           //
           Get.offAndToNamed(Routes.BASE);
@@ -76,6 +78,7 @@ class ProfileScreen extends GetView<SettingsController> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                const SizedBox(height: 15),
                 RoundedButton(
                   onPressed: () => Get.back(),
                   child: SvgPicture.asset(
@@ -83,6 +86,7 @@ class ProfileScreen extends GetView<SettingsController> {
                     fit: BoxFit.none,
                   ),
                 ),
+                const SizedBox(height: 15),
                 const ScreenTitle(
                   title: 'Perfil',
                   dividerEndIndent: 1,
@@ -132,6 +136,62 @@ class ProfileScreen extends GetView<SettingsController> {
                             },
                           ),
                           const SizedBox(height: 10),
+                          InternationalPhoneNumberInput(
+                            onInputChanged: (PhoneNumber number) {
+                              var num = number.phoneNumber ?? '';
+                              //eliminar el + del numero de telefono
+                              num = num.replaceAll('+', '');
+                              controller.user.value.phone = num;
+                            },
+                            selectorConfig: const SelectorConfig(
+                              selectorType: PhoneInputSelectorType.DIALOG,
+                            ),
+                            ignoreBlank: false,
+                            autoValidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            selectorTextStyle:
+                                const TextStyle(color: Colors.grey),
+                            formatInput: false,
+                            keyboardType: TextInputType.phone,
+                            inputDecoration: InputDecoration(
+                              hintText: 'Ingrese su número',
+                              filled: true,
+                              fillColor: Colors.grey[200],
+                              contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16, vertical: 12),
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade400),
+                              ),
+                            ),
+                            onFieldSubmitted: (String value) {
+                              if (value.isEmpty) {
+                              } else {
+                                // Realiza la validación personalizada aquí si es necesario
+                                if (!value.isPhoneNumber) {
+                                  // El número de teléfono no es válido
+                                  // Muestra un mensaje de error al usuario
+                                  Get.snackbar(
+                                    'Número de teléfono inválido',
+                                    'Por favor, ingresa un número de teléfono válido.',
+                                    backgroundColor: Colors.red,
+                                    colorText: Colors.white,
+                                    snackPosition: SnackPosition.BOTTOM,
+                                  );
+                                } else {
+                                  //envio numero de telefono, codigo sin + y numero
+                                  // ignore: avoid_print
+                                  print('Número de teléfono válido');
+                                  //ver num
+                                  // ignore: avoid_print
+                                  print(controller.user.value.phone);
+                                }
+                              }
+                            },
+                          ),
                           MyTextField(
                             controller: phoneController,
                             hintText: 'Phone',
@@ -166,16 +226,17 @@ class ProfileScreen extends GetView<SettingsController> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            items: ['Masculino', 'Femenino']
-                                .map(
-                                  (e) => DropdownMenuItem<String>(
-                                    value: e,
-                                    child: Text(
-                                      e.toString(),
-                                    ),
-                                  ),
-                                )
-                                .toList(),
+                            items:
+                                ['Masculino', 'Femenino', 'Prefiero no decirlo']
+                                    .map(
+                                      (e) => DropdownMenuItem<String>(
+                                        value: e,
+                                        child: Text(
+                                          e.toString(),
+                                        ),
+                                      ),
+                                    )
+                                    .toList(),
                             onChanged: (value) => genere.text = value!,
                           ),
                           10.verticalSpace,
