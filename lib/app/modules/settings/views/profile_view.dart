@@ -136,7 +136,7 @@ class ProfileScreen extends GetView<SettingsController> {
                             },
                           ),
                           const SizedBox(height: 10),
-                          InternationalPhoneNumberInput(
+                        /*   InternationalPhoneNumberInput(
                             onInputChanged: (PhoneNumber number) {
                               var num = number.phoneNumber ?? '';
                               //eliminar el + del numero de telefono
@@ -191,7 +191,7 @@ class ProfileScreen extends GetView<SettingsController> {
                                 }
                               }
                             },
-                          ),
+                          ), */
                           MyTextField(
                             controller: phoneController,
                             hintText: 'Phone',
