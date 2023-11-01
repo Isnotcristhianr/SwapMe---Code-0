@@ -11,7 +11,6 @@ import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/utils/constants.dart';
 
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 class ProfileScreen extends GetView<SettingsController> {
   ProfileScreen({super.key});

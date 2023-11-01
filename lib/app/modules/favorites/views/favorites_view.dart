@@ -18,6 +18,7 @@ class FavoritesView extends GetView<FavoritesController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
           children: [
+      const SizedBox(height: 20),
             30.verticalSpace,
             const ScreenTitle(
               title: 'Deseados',
@@ -44,12 +45,12 @@ class FavoritesView extends GetView<FavoritesController> {
             ),
             20.verticalSpace,
             const ScreenTitle(
-              title: 'En negociación',
+              title: 'Negociación',
               dividerEndIndent: 200,
             ),
             Obx(
               () => controller.productsInNegotiation.isEmpty
-                  ? const NoData(text: 'Aun no tienes productos negociando')
+                  ? const NoData(text: 'Aun no tienes productos negociados')
                   : GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,

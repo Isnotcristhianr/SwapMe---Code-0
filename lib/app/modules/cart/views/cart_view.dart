@@ -21,8 +21,8 @@ class CartView extends GetView<CartController> {
             const SizedBox(height: 15),
             5.verticalSpace,
             const ScreenTitle(
-              title: 'Intercambios Activos',
-              dividerEndIndent: 70,
+              title: 'Activos',
+              dividerEndIndent: 250,
             ),
             10.verticalSpace,
             Obx(

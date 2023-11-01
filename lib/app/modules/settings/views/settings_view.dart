@@ -12,6 +12,9 @@ import '../../../components/screen_title.dart';
 import '../controllers/settings_controller.dart';
 import 'widgets/settings_item.dart';
 
+import 'package:url_launcher/url_launcher.dart';
+
+
 class SettingsView extends GetView<SettingsController> {
   const SettingsView({super.key});
   @override
@@ -67,7 +70,7 @@ class SettingsView extends GetView<SettingsController> {
             Text('Configuraciones Generales',
                 style: theme.textTheme.displayMedium?.copyWith(
                   fontSize: 20.sp,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.bold,
                 )),
             20.verticalSpace,
             const SettingsItem(
@@ -126,6 +129,23 @@ class SettingsView extends GetView<SettingsController> {
               child: const SettingsItem(
                 title: 'Ayuda',
                 icon: Constants.helpIcon,
+              ),
+            ),
+            25.verticalSpace,
+            GestureDetector(
+              onTap: () {
+               //url
+               const url = 'https://beacons.ai/webcats';
+
+               if (canLaunch(url) != null) {
+                 launch(url);
+               } else {
+                 throw 'Could not launch $url';
+               }
+              },
+              child: const SettingsItem(
+                title: 'Créditos',
+                icon: Constants.developerIcon,
               ),
             ),
             25.verticalSpace,
