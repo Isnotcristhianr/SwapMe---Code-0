@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -137,6 +139,7 @@ class SettingsView extends GetView<SettingsController> {
                //url
                const url = 'https://beacons.ai/webcats';
 
+               // ignore: unnecessary_null_comparison
                if (canLaunch(url) != null) {
                  launch(url);
                } else {
