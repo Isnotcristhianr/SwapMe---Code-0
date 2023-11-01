@@ -76,14 +76,57 @@ class SettingsView extends GetView<SettingsController> {
               isDark: true,
             ),
             25.verticalSpace,
-            const SettingsItem(
-              title: 'Lenguaje',
-              icon: Constants.languageIcon,
+            //tap
+            GestureDetector(
+              onTap: () {
+                // Get.toNamed(Routes.LANGUAGE);
+                Get.defaultDialog(
+                  title: 'Swapme',
+                  backgroundColor: Colors.white,
+                  content: const Text(
+                      'Esta funcionalidad no esta disponible de momento'),
+                  confirm: TextButton(
+                    onPressed: Get.back,
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text(
+                      'Aceptar',
+                    ),
+                  ),
+                );
+              },
+              child: const SettingsItem(
+                title: 'Lenguaje',
+                icon: Constants.languageIcon,
+              ),
             ),
             25.verticalSpace,
-            const SettingsItem(
-              title: 'Ayuda',
-              icon: Constants.helpIcon,
+            GestureDetector(
+              onTap: () {
+                // Get.toNamed(Routes.LANGUAGE);
+                Get.defaultDialog(
+                  title: 'Swapme',
+                  backgroundColor: Colors.white,
+                  content: const Text(
+                      'Esta funcionalidad no esta disponible de momento'),
+                  confirm: TextButton(
+                    onPressed: Get.back,
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                      foregroundColor: Colors.white,
+                    ),
+                    child: const Text(
+                      'Aceptar',
+                    ),
+                  ),
+                );
+              },
+              child: const SettingsItem(
+                title: 'Ayuda',
+                icon: Constants.helpIcon,
+              ),
             ),
             25.verticalSpace,
             GestureDetector(
