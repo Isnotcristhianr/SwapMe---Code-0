@@ -10,6 +10,7 @@ class MyTextField extends StatelessWidget {
   final void Function(String?)? onChanged;
   final int? maxLength;
   final String? initalValue;
+  final String? label;
 
   const MyTextField({
     super.key,
@@ -20,33 +21,48 @@ class MyTextField extends StatelessWidget {
     this.validator,
     this.maxLength,
     this.initalValue,
+    this.label,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      initialValue: initalValue,
-      validator: validator,
-      controller: controller,
-      obscureText: obscureText,
-      onChanged: onChanged,
-      maxLength: maxLength,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      decoration: InputDecoration(
-          counterStyle: null,
-          counterText: '',
-          counter: null,
-          semanticCounterText: null,
-          enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.white),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (label != null)
+          Text(
+            label!,
+            style: const TextStyle(
+              color: Colors.black,
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey.shade400),
-          ),
-          fillColor: Colors.grey.shade200,
-          filled: true,
-          hintText: hintText,
-          hintStyle: TextStyle(color: Colors.grey[500])),
+        TextFormField(
+          initialValue: initalValue,
+          validator: validator,
+          controller: controller,
+          obscureText: obscureText,
+          onChanged: onChanged,
+          maxLength: maxLength,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          decoration: InputDecoration(
+              counterStyle: null,
+              counterText: '',
+              counter: null,
+              semanticCounterText: null,
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.white),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey.shade400),
+              ),
+              fillColor: Colors.grey.shade200,
+              filled: true,
+              hintText: hintText,
+              hintStyle: TextStyle(color: Colors.grey[500])),
+        ),
+      ],
     );
   }
 }

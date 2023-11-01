@@ -113,6 +113,7 @@ class ProfileScreen extends GetView<SettingsController> {
                             onChanged: (value) =>
                                 controller.user.value.name = value,
                             hintText: 'Name',
+                            label: 'Nombre',
                             obscureText: false,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -127,84 +128,11 @@ class ProfileScreen extends GetView<SettingsController> {
                             onChanged: (value) =>
                                 controller.user.value.lastName = value,
                             hintText: 'Lastname',
+                            label: 'Apellido',
                             obscureText: false,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter some text';
-                              }
-                              return null;
-                            },
-                          ),
-                          const SizedBox(height: 10),
-                        /*   InternationalPhoneNumberInput(
-                            onInputChanged: (PhoneNumber number) {
-                              var num = number.phoneNumber ?? '';
-                              //eliminar el + del numero de telefono
-                              num = num.replaceAll('+', '');
-                              controller.user.value.phone = num;
-                            },
-                            selectorConfig: const SelectorConfig(
-                              selectorType: PhoneInputSelectorType.DIALOG,
-                            ),
-                            ignoreBlank: false,
-                            autoValidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            selectorTextStyle:
-                                const TextStyle(color: Colors.grey),
-                            formatInput: false,
-                            keyboardType: TextInputType.phone,
-                            inputDecoration: InputDecoration(
-                              hintText: 'Ingrese su número',
-                              filled: true,
-                              fillColor: Colors.grey[200],
-                              contentPadding: const EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 12),
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
-                              ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.grey.shade400),
-                              ),
-                            ),
-                            onFieldSubmitted: (String value) {
-                              if (value.isEmpty) {
-                              } else {
-                                // Realiza la validación personalizada aquí si es necesario
-                                if (!value.isPhoneNumber) {
-                                  // El número de teléfono no es válido
-                                  // Muestra un mensaje de error al usuario
-                                  Get.snackbar(
-                                    'Número de teléfono inválido',
-                                    'Por favor, ingresa un número de teléfono válido.',
-                                    backgroundColor: Colors.red,
-                                    colorText: Colors.white,
-                                    snackPosition: SnackPosition.BOTTOM,
-                                  );
-                                } else {
-                                  //envio numero de telefono, codigo sin + y numero
-                                  // ignore: avoid_print
-                                  print('Número de teléfono válido');
-                                  //ver num
-                                  // ignore: avoid_print
-                                  print(controller.user.value.phone);
-                                }
-                              }
-                            },
-                          ), */
-                          MyTextField(
-                            controller: phoneController,
-                            hintText: 'Phone',
-                            obscureText: false,
-                            maxLength: 10,
-                            onChanged: (value) =>
-                                controller.user.value.phone = value,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              if (!value.isPhoneNumber) {
-                                return 'Please enter an email valid';
                               }
                               return null;
                             },
@@ -214,17 +142,18 @@ class ProfileScreen extends GetView<SettingsController> {
                             value: genere.text,
                             decoration: InputDecoration(
                               enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.white),
+                                borderSide: BorderSide(color: Colors.green),
                               ),
                               focusedBorder: OutlineInputBorder(
                                 borderSide:
-                                    BorderSide(color: Colors.grey.shade400),
+                                    BorderSide(color: Colors.green.shade400),
                               ),
                               fillColor: Colors.grey.shade200,
                               filled: true,
                               hintStyle: TextStyle(
                                 color: Colors.grey[500],
                               ),
+                              hintText: 'Genero',
                             ),
                             items:
                                 ['Masculino', 'Femenino', 'Prefiero no decirlo']
