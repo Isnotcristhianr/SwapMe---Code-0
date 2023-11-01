@@ -32,7 +32,7 @@ class HomeView extends GetView<HomeController> {
             0.verticalSpace,
             // Contenedor que contiene el carrusel
             SizedBox(
-              height: 125.h, // Ajusta la altura según tus necesidades
+              height: 150.h, // Ajusta la altura según tus necesidades
               child: CarouselSlider(
                 options: CarouselOptions(
                   enableInfiniteScroll: true,
@@ -68,6 +68,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
 
+            const SizedBox(height: 20),
             // Cuadrícula de productos
             Obx(
               () => controller.products.isEmpty
@@ -116,8 +117,8 @@ class CustomSlider extends StatelessWidget {
       children: [
         Image.asset(
           thumbImage,
-          width: 200.0, // Ajusta el ancho de la imagen del carrusel
-          height: 100.0, // Ajusta la altura de la imagen del carrusel
+          width: 350.0, // Ajusta el ancho de la imagen del carrusel
+          height: 150.0, // Ajusta la altura de la imagen del carrusel
           fit: BoxFit.cover,
         ),
       ],
