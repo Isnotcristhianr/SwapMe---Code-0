@@ -114,7 +114,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Obx(
                   () => Text(
-                    'Owner - ${controller.userOwner.value.name!} ${controller.userOwner.value.lastName!}',
+                    'Propietario - ${controller.userOwner.value.name!} ${controller.userOwner.value.lastName!}',
                     style: theme.textTheme.bodyMedium,
                   ).animate().fade().slideX(
                         duration: const Duration(milliseconds: 300),
@@ -129,8 +129,9 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                 child: Row(
                   children: [
                     Text(
-                      '\$${controller.product.price}',
-                      style: theme.textTheme.displayMedium,
+                      'Simbólico: \$${controller.product.price}',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                          fontSize: 18.sp, fontWeight: FontWeight.bold),
                     ),
                     30.horizontalSpace,
                     const Icon(Icons.star_rounded, color: Color(0xFFFFC542)),
@@ -141,17 +142,20 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                           fontSize: 18.sp, fontWeight: FontWeight.bold),
                     ),
                     5.horizontalSpace,
-                    Text(
-                      '(${controller.product.reviews!})',
-                      style:
-                          theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp),
-                    ),
                   ],
                 ).animate().fade().slideX(
                       duration: const Duration(milliseconds: 300),
                       begin: -1,
                       curve: Curves.easeInSine,
                     ),
+              ),
+              20.verticalSpace,
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Text(
+                  controller.product.reviews!,
+                  style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp),
+                ),
               ),
               20.verticalSpace,
               Padding(
