@@ -1,3 +1,4 @@
+// ignore_for_file: non_constant_identifier_names
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -25,14 +26,15 @@ class HomeView extends GetView<HomeController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
           children: [
-            40.verticalSpace,
+            50.verticalSpace,
             const ScreenTitle(
               title: 'SwapMe',
             ),
             0.verticalSpace,
             // Contenedor que contiene el carrusel
             SizedBox(
-              height: 150.h, // Ajusta la altura según tus necesidades
+              height: 175.h, // Ajusta la altura según tus necesidades
+              width: double.infinity,
               child: CarouselSlider(
                 options: CarouselOptions(
                   enableInfiniteScroll: true,
@@ -47,7 +49,7 @@ class HomeView extends GetView<HomeController> {
                     onChanged: (value) {
                       // Manejar el cambio en el valor del carrusel
                     },
-                    thumbImage: 'assets/images/b1.png',
+                    thumbImage: 'assets/images/banner/1.jpg',
                   ),
                   // Diapositiva 2
                   CustomSlider(
@@ -55,14 +57,35 @@ class HomeView extends GetView<HomeController> {
                     onChanged: (value) {
                       // Manejar el cambio en el valor del carrusel
                     },
-                    thumbImage: 'assets/images/b2.png',
+                    thumbImage: 'assets/images/banner/2.jpg',
                   ),
                   CustomSlider(
                     value: 0.5,
                     onChanged: (value) {
                       // Manejar el cambio en el valor del carrusel
                     },
-                    thumbImage: 'assets/images/b3.png',
+                    thumbImage: 'assets/images/banner/3.jpg',
+                  ),
+                  CustomSlider(
+                    value: 0.5,
+                    onChanged: (value) {
+                      // Manejar el cambio en el valor del carrusel
+                    },
+                    thumbImage: 'assets/images/banner/4.jpg',
+                  ),
+                  CustomSlider(
+                    value: 0.5,
+                    onChanged: (value) {
+                      // Manejar el cambio en el valor del carrusel
+                    },
+                    thumbImage: 'assets/images/banner/5.jpg',
+                  ),
+                  CustomSlider(
+                    value: 0.5,
+                    onChanged: (value) {
+                      // Manejar el cambio en el valor del carrusel
+                    },
+                    thumbImage: 'assets/images/banner/6.jpg',
                   ),
                 ],
               ),
@@ -112,16 +135,51 @@ class CustomSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        Image.asset(
-          thumbImage,
-          width: 350.0, // Ajusta el ancho de la imagen del carrusel
-          height: 150.0, // Ajusta la altura de la imagen del carrusel
-          fit: BoxFit.cover,
-        ),
-      ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ExpandedImageView(imageUrl: thumbImage),
+          ),
+        );
+      },
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Hero(
+            tag: thumbImage,
+            child: Image.asset(
+              thumbImage,
+              fit: BoxFit.cover,
+              width: double.infinity,
+            ),
+          ),
+        ],
+      ),
     );
   }
+
+  // Widget personalizado para la vista ampliada de la imagen, tipo zoom para ver mejor, no ocupa toda la pantalla
+  Widget ExpandedImageView({required String imageUrl}) {
+    return Scaffold(
+      //fondo transparente
+      backgroundColor: Colors.transparent,
+      body: Center(
+        child: GestureDetector(
+          onTap: () => Get.back(),
+          child: Hero(
+            tag: imageUrl,
+            child: Image.asset(
+              imageUrl,
+              fit: BoxFit.cover,
+              width: double.infinity,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
 }
+
