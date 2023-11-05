@@ -62,6 +62,12 @@ class RegisterProductScreen extends GetView<ProductController> {
                     SizedBox(height: 15.h),
                     ImageSelector(controller: controllerImage),
                     SizedBox(height: 15.h),
+                    Text(
+                      'Nombre de la prenda',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                      ),
+                    ),
                     MyTextField(
                       controller: controllerName,
                       hintText: 'Nombre de la prenda',
@@ -74,6 +80,12 @@ class RegisterProductScreen extends GetView<ProductController> {
                       },
                     ),
                     SizedBox(height: 15.h),
+                    Text(
+                      'Review de la prenda',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                      ),
+                    ),
                     MyTextField(
                       controller: controllerReview,
                       hintText: 'Review de la prenda',
@@ -86,6 +98,12 @@ class RegisterProductScreen extends GetView<ProductController> {
                       },
                     ),
                     SizedBox(height: 15.h),
+                    Text(
+                      'Precio Referencial',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                      ),
+                    ),
                     MyTextField(
                       controller: controllerPrice,
                       hintText: 'Valor Referencial de la prenda',
@@ -100,6 +118,12 @@ class RegisterProductScreen extends GetView<ProductController> {
                       },
                     ),
                     SizedBox(height: 15.h),
+                    Text(
+                      'Cantidad de prendas',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                      ),
+                    ),
                     MyTextField(
                       controller: controllerQuantity,
                       hintText: 'Cantidad de prendas',
@@ -114,10 +138,15 @@ class RegisterProductScreen extends GetView<ProductController> {
                       },
                     ),
                     SizedBox(height: 15.h),
+                    Text(
+                      'Talla',
+                      style: TextStyle(
+                        color: Colors.grey[500],
+                      ),
+                    ),
                     DropdownButtonFormField<String>(
                       value: controllerSize.text,
                       decoration: InputDecoration(
-                        labelText: 'Talla',
                         enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white),
                         ),
@@ -146,7 +175,7 @@ class RegisterProductScreen extends GetView<ProductController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Evaluación de la prenda'),
+                        const Text('Estado de la prenda'),
                         Center(
                           child: RatingBar.builder(
                             initialRating: double.parse(controllerRaiting.text),

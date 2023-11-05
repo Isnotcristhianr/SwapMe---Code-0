@@ -6,6 +6,7 @@ class Constants {
   static const homeIcon = 'assets/vectors/home.svg';
   static const favoritesIcon = 'assets/vectors/favorites.svg';
   static const cartIcon = 'assets/vectors/cart.svg';
+  static const swap = 'assets/vectors/intercambio.svg';
   static const notificationsIcon = 'assets/vectors/notifications.svg';
   static const settingsIcon = 'assets/vectors/settings.svg';
 
