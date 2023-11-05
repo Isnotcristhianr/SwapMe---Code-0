@@ -82,7 +82,7 @@ class BaseView extends GetView<BaseController> {
                   icon: Constants.notificationsIcon,
                 ),
                 _mBottomNavItem(
-                  label: 'Configuraciones',
+                  label: 'Cuenta',
                   icon: Constants.settingsIcon,
                 ),
               ],
