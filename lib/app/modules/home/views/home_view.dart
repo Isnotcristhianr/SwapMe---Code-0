@@ -97,6 +97,12 @@ class HomeView extends GetView<HomeController> {
             ),
             const SizedBox(height: 20),
             // Cuadrícula de productos
+            10.verticalSpace,
+            // Título de la sección
+            const ScreenTitle(
+              title: 'Intercambia',
+            ),
+            0.verticalSpace,
             Obx(
               () => controller.products.isEmpty
                   ? const NoData(text: 'No hay registros de prendas')
@@ -154,7 +160,8 @@ class CustomSlider extends StatelessWidget {
           Hero(
             tag: thumbImage,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.0), // Ajusta el radio según tus necesidades
+              borderRadius: BorderRadius.circular(
+                  15.0), // Ajusta el radio según tus necesidades
               child: Image.asset(
                 thumbImage,
                 fit: BoxFit.cover,
@@ -181,7 +188,6 @@ class CustomSlider extends StatelessWidget {
               imageUrl,
               fit: BoxFit.cover,
               width: double.infinity,
-
             ),
           ),
         ),
