@@ -90,6 +90,9 @@ class ConfirmRestorePassword extends GetView<LoginController> {
                                 MyTextField(
                                   controller: codeController,
                                   hintText: 'Code',
+                                  TextStyle: TextStyle(
+                                    color: Colors.grey[500],
+                                  ),
                                   obscureText: false,
                                   validator: (val) {
                                     if (val == null || val.isEmpty) {
@@ -108,6 +111,9 @@ class ConfirmRestorePassword extends GetView<LoginController> {
                                 MyTextField(
                                   controller: passwordController,
                                   hintText: 'Password',
+                                  TextStyle: TextStyle(
+                                    color: Colors.grey[500],
+                                  ),
                                   obscureText: true,
                                   validator: (val) {
                                     if (val == null || val.isEmpty) {

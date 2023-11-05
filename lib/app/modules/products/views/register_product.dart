@@ -71,6 +71,9 @@ class RegisterProductScreen extends GetView<ProductController> {
                     MyTextField(
                       controller: controllerName,
                       hintText: 'Nombre de la prenda',
+                      TextStyle: TextStyle(
+                        color: Colors.grey[500],
+                      ),
                       obscureText: false,
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
@@ -89,6 +92,9 @@ class RegisterProductScreen extends GetView<ProductController> {
                     MyTextField(
                       controller: controllerReview,
                       hintText: 'Review de la prenda',
+                      TextStyle: TextStyle(
+                        color: Colors.grey[500],
+                      ),
                       obscureText: false,
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
@@ -107,6 +113,9 @@ class RegisterProductScreen extends GetView<ProductController> {
                     MyTextField(
                       controller: controllerPrice,
                       hintText: 'Valor Referencial de la prenda',
+                      TextStyle: TextStyle(
+                        color: Colors.grey[500],
+                      ),
                       obscureText: false,
                       maxLength: 6,
                       validator: (p0) {
@@ -127,6 +136,9 @@ class RegisterProductScreen extends GetView<ProductController> {
                     MyTextField(
                       controller: controllerQuantity,
                       hintText: 'Cantidad de prendas',
+                      TextStyle: TextStyle(
+                        color: Colors.grey[500],
+                      ),
                       obscureText: false,
                       maxLength: 3,
                       validator: (p0) {

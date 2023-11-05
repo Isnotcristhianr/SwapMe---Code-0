@@ -21,7 +21,7 @@ class MyTextField extends StatelessWidget {
     this.validator,
     this.maxLength,
     this.initalValue,
-    this.label,
+    this.label, required TextStyle TextStyle,
   });
 
   @override

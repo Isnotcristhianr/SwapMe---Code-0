@@ -11,6 +11,7 @@ import 'package:swapme/components/is_loading.dart';
 import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'login/controllers/login_controller.dart';
+
 class WelcomeController extends GetxController {
   String email = '';
 
@@ -104,6 +105,9 @@ class WelcomePage extends GetView<WelcomeController> {
                                 MyTextField(
                                   controller: usernameController,
                                   hintText: 'Email',
+                                  TextStyle: TextStyle(
+                                    color: Colors.grey[500],
+                                  ),
                                   obscureText: false,
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {

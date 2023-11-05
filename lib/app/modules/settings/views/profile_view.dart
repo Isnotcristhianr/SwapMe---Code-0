@@ -113,6 +113,9 @@ class ProfileScreen extends GetView<SettingsController> {
                                 controller.user.value.name = value,
                             hintText: 'Name',
                             label: 'Nombre',
+                            TextStyle: TextStyle(
+                              color: Colors.grey[500],
+                            ),
                             obscureText: false,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
@@ -128,6 +131,9 @@ class ProfileScreen extends GetView<SettingsController> {
                                 controller.user.value.lastName = value,
                             hintText: 'Lastname',
                             label: 'Apellido',
+                            TextStyle: TextStyle(
+                              color: Colors.grey[500],
+                            ),
                             obscureText: false,
                             validator: (value) {
                               if (value == null || value.isEmpty) {

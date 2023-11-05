@@ -46,7 +46,7 @@ class Signup extends GetView<SignUpController> {
 
         String phoneNumber = phoneController.text;
         if (phoneNumber.isNotEmpty) {
-            //eliminar el + del numero de telefono
+          //eliminar el + del numero de telefono
           phoneNumber = phoneNumber.replaceAll('+', '');
           // Asigna el número de teléfono al usuario
           controller.user.phone = phoneNumber;
@@ -138,6 +138,9 @@ class Signup extends GetView<SignUpController> {
                                     onChanged: (value) =>
                                         controller.user.name = value,
                                     hintText: 'Nombre',
+                                    TextStyle: TextStyle(
+                                      color: Colors.grey[500],
+                                    ),
                                     obscureText: false,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
@@ -152,6 +155,9 @@ class Signup extends GetView<SignUpController> {
                                     onChanged: (value) =>
                                         controller.user.lastName = value,
                                     hintText: 'Apellido',
+                                    TextStyle: TextStyle(
+                                      color: Colors.grey[500],
+                                    ),
                                     obscureText: false,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
@@ -166,6 +172,9 @@ class Signup extends GetView<SignUpController> {
                                     onChanged: (value) =>
                                         controller.user.email = value,
                                     hintText: 'Email',
+                                    TextStyle: TextStyle(
+                                      color: Colors.grey[500],
+                                    ),
                                     obscureText: false,
                                     validator: (value) {
                                       if (value == null || value.isEmpty) {
