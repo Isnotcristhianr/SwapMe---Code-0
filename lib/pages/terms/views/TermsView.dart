@@ -71,6 +71,25 @@ class TermsView extends GetView<TermsController> {
                   fontSize: 14.sp,
                 ),
               ),
+              //actualizacion de datos
+              Text(
+                'Actualización de Datos',
+                style: TextStyle(
+                  fontSize: 16.sp,
+                ),
+              ),
+              Text(
+                '- Los usuarios pueden actualizar sus datos personales en cualquier momento a través de la plataforma.',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
+              ),
+               Text(
+                '- Los unicos datos actualizables son la foto de perfil, nombre de usuario, apellido de usuario; ya que los demas datos son usados en otras funciones internas que garantizan el funcionamiento de la plataforma.',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                ),
+              ),
               Text(
                 '- También se pueden recopilar datos sobre las prendas, preferencias de moda y otra información relacionada con la plataforma.',
                 style: TextStyle(

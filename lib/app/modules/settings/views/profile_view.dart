@@ -7,10 +7,12 @@ import 'package:swapme/app/modules/product_details/views/widgets/rounded_button.
 import 'package:swapme/app/modules/settings/controllers/settings_controller.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 import 'package:swapme/components/image_selector.dart';
+import 'package:swapme/components/is_loading.dart';
 import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/utils/constants.dart';
 
+import 'package:flutter/gestures.dart';
 
 class ProfileScreen extends GetView<SettingsController> {
   ProfileScreen({super.key});
@@ -95,98 +97,122 @@ class ProfileScreen extends GetView<SettingsController> {
                   key: _formKey,
                   onChanged: () => isValidForm.value =
                       (_formKey.currentState?.validate() ?? false),
-                  child: Center(
-                    child: SingleChildScrollView(
-                      physics: const ClampingScrollPhysics(),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          ImageSelector(
-                            controller: photoController,
-                            onChange: () => isValidForm.value =
-                                phoneController.text.isNotEmpty,
+                  child: SingleChildScrollView(
+                    physics: const ClampingScrollPhysics(),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ImageSelector(
+                          controller: photoController,
+                          onChange: () => isValidForm.value =
+                              phoneController.text.isNotEmpty,
+                        ),
+                        5.verticalSpace,
+                       
+                        const SizedBox(height: 10),
+                        Text(
+                          'Nombre',
+                          style: TextStyle(
+                            fontSize: 14.sp,
                           ),
-                          5.verticalSpace,
-                          MyTextField(
-                            controller: nameController,
-                            onChanged: (value) =>
-                                controller.user.value.name = value,
-                            hintText: 'Name',
-                            label: 'Nombre',
-                            TextStyle: TextStyle(
-                              color: Colors.grey[500],
-                            ),
-                            obscureText: false,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
+                          textAlign:
+                              TextAlign.left, // Alinea el texto a la izquierda
+                        ),
+                        MyTextField(
+                          controller: nameController,
+                          onChanged: (value) =>
+                              controller.user.value.name = value,
+                          hintText: 'Name',
+                          //label: 'Nombre',
+                          TextStyle: TextStyle(
+                            color: Colors.grey[500],
                           ),
-                          const SizedBox(height: 10),
-                          MyTextField(
-                            controller: lastNameController,
-                            onChanged: (value) =>
-                                controller.user.value.lastName = value,
-                            hintText: 'Lastname',
-                            label: 'Apellido',
-                            TextStyle: TextStyle(
-                              color: Colors.grey[500],
-                            ),
-                            obscureText: false,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some text';
-                              }
-                              return null;
-                            },
+                          obscureText: false,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          'Apellido',
+                          style: TextStyle(
+                            fontSize: 14.sp,
                           ),
-                          const SizedBox(height: 10),
-                          DropdownButtonFormField<String>(
-                            value: genere.text,
-                            decoration: InputDecoration(
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide: BorderSide(color: Colors.green),
+                        ),
+                        MyTextField(
+                          controller: lastNameController,
+                          onChanged: (value) =>
+                              controller.user.value.lastName = value,
+                          hintText: 'Lastname',
+                          //label: 'Apellido',
+                          TextStyle: TextStyle(
+                            color: Colors.grey[500],
+                          ),
+                          obscureText: false,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                            return null;
+                          },
+                        ),
+                        const SizedBox(height: 10),
+                        //
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                text:
+                                    'Para actualizar tus datos, aceptas las normas de SwapMe',
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 13,
+                                ),
+                                children: [
+                                  const TextSpan(
+                                    text: '\n',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: 'Terms of Service and Privacy Policy',
+                                    style: const TextStyle(
+                                      color: Color.fromARGB(255, 71, 233, 133),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        //vista de terminos y condiciones
+                                        Get.toNamed(Routes.TERMS);
+                                      },
+                                  ),
+                                ],
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.green.shade400),
-                              ),
-                              fillColor: Colors.grey.shade200,
-                              filled: true,
-                              hintStyle: TextStyle(
-                                color: Colors.grey[500],
-                              ),
-                              hintText: 'Genero',
                             ),
-                            items:
-                                ['Masculino', 'Femenino', 'Prefiero no decirlo']
-                                    .map(
-                                      (e) => DropdownMenuItem<String>(
-                                        value: e,
-                                        child: Text(
-                                          e.toString(),
-                                        ),
-                                      ),
+                          ],
+                        ),
+                        10.verticalSpace,
+                        Obx(
+                          () => isValidForm.value
+                              ? controller.isLoading.value
+                                  ? const MyButton(
+                                      onTap: null,
+                                      text: 'Loading...',
                                     )
-                                    .toList(),
-                            onChanged: (value) => genere.text = value!,
-                          ),
-                          10.verticalSpace,
-                          Obx(
-                            () => isValidForm.value
-                                ? controller.isLoading.value
-                                    ? const MyButton(
-                                        onTap: null,
-                                        text: 'Loading...',
-                                      )
-                                    : buttonAgree
-                                : const SizedBox(),
-                          ),
-                          const SizedBox(height: 20),
-                        ],
-                      ),
+                                  : buttonAgree
+                              : const SizedBox(),
+                        ),
+                        const SizedBox(height: 20),
+                      ],
                     ),
                   ),
                 ),
