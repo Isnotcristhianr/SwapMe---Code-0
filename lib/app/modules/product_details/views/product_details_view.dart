@@ -109,31 +109,11 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                       curve: Curves.easeInSine,
                     ),
               ),
-              5.verticalSpace,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Obx(
-                  () => Text(
-                    'Propietario - ${controller.userOwner.value.name!} ${controller.userOwner.value.lastName!}',
-                    style: theme.textTheme.bodyMedium,
-                  ).animate().fade().slideX(
-                        duration: const Duration(milliseconds: 300),
-                        begin: -1,
-                        curve: Curves.easeInSine,
-                      ),
-                ),
-              ),
               10.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Row(
                   children: [
-                    Text(
-                      'Simbólico: \$${controller.product.price}',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 18.sp, fontWeight: FontWeight.bold),
-                    ),
-                    30.horizontalSpace,
                     const Icon(Icons.star_rounded, color: Color(0xFFFFC542)),
                     5.horizontalSpace,
                     Text(
@@ -157,90 +137,42 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                   style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp),
                 ),
               ),
-              20.verticalSpace,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Text(
-                  'Talla Disponible: ',
-                  style: theme.textTheme.bodyMedium
-                      ?.copyWith(fontSize: 18.sp, fontWeight: FontWeight.bold),
-                ).animate().fade().slideX(
-                      duration: const Duration(milliseconds: 300),
-                      begin: -1,
-                      curve: Curves.easeInSine,
-                    ),
-              ),
               10.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Row(
                   children: [
                     Text(
-                      ' S ',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: controller.product.size == 'S'
-                            ? const Color.fromRGBO(32, 127, 69, 1.0)
-                            : Colors.black,
+                      'Talla Disponible: ',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    ).animate().fade().slideX(
+                          duration: const Duration(milliseconds: 300),
+                          begin: -1,
+                          curve: Curves.easeInSine,
+                        ),
+                    SizedBox(width: 10.w),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Acción al hacer clic en la talla (si es necesario)
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary:  const Color(0xFF0FDA89),
+                        onPrimary: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8.r),
+                        ),
                       ),
-                    ),
-                    Text(
-                      ' M ',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: controller.product.size == 'M'
-                            ? const Color.fromRGBO(32, 127, 69, 1.0)
-                            : Colors.black,
-                      ),
-                    ),
-                    Text(
-                      ' L ',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: controller.product.size == 'L'
-                            ? const Color.fromRGBO(32, 127, 69, 1.0)
-                            : Colors.black,
-                      ),
-                    ),
-                    Text(
-                      ' X',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: controller.product.size == 'X'
-                            ? const Color.fromRGBO(32, 127, 69, 1.0)
-                            : Colors.black,
-                      ),
-                    ),
-                    Text(
-                      ' XL',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: controller.product.size == 'XL'
-                            ? const Color.fromRGBO(32, 127, 69, 1.0)
-                            : Colors.black,
-                      ),
-                    ),
-                    Text(
-                      ' XXL',
-                      style: TextStyle(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.bold,
-                        color: controller.product.size == 'XXL'
-                            ? const Color.fromRGBO(32, 127, 69, 1.0)
-                            : Colors.black,
+                      child: Text(
+                        ' ${controller.product.size} ',
+                        style: TextStyle(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
-                ).animate().fade().slideX(
-                      duration: const Duration(milliseconds: 300),
-                      begin: -1,
-                      curve: Curves.easeInSine,
-                    ),
+                ),
               ),
               20.verticalSpace,
               Padding(

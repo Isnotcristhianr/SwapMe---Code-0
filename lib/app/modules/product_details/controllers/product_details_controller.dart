@@ -95,4 +95,8 @@ class ProductDetailsController extends GetxController {
 
     return result;
   }
+
+  //talla seleccionada
+  var selectedSize = 'S'.obs;
+  
 }
