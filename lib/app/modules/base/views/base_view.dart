@@ -99,8 +99,9 @@ class BaseView extends GetView<BaseController> {
       label: label,
       icon: Column(
         children: [
+          // ignore: deprecated_member_use
           SvgPicture.asset(icon, color: Get.theme.iconTheme.color),
-          SizedBox(height: 4), // Espaciado entre el ícono y el texto
+          const SizedBox(height: 4), // Espaciado entre el ícono y el texto
           Text(
             label,
             style: TextStyle(
@@ -113,8 +114,9 @@ class BaseView extends GetView<BaseController> {
       ),
       activeIcon: Column(
         children: [
+          // ignore: deprecated_member_use
           SvgPicture.asset(icon, color: Get.theme.primaryColor),
-          SizedBox(height: 4), // Espaciado entre el ícono y el texto
+          const SizedBox(height: 4), // Espaciado entre el ícono y el texto
           Text(
             label,
             style: TextStyle(
