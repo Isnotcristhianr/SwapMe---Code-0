@@ -74,7 +74,7 @@ class BaseView extends GetView<BaseController> {
                   icon: Constants.favoritesIcon,
                 ),
                 _mBottomNavItem(
-                  label: 'Intercambios',
+                  label: 'SwapMe',
                   icon: Constants.cartIcon,
                 ),
                 _mBottomNavItem(
@@ -97,10 +97,34 @@ class BaseView extends GetView<BaseController> {
   _mBottomNavItem({required String label, required String icon}) {
     return BottomNavigationBarItem(
       label: label,
-      // ignore: deprecated_member_use
-      icon: SvgPicture.asset(icon, color: Get.theme.iconTheme.color),
-      // ignore: deprecated_member_use
-      activeIcon: SvgPicture.asset(icon, color: Get.theme.primaryColor),
+      icon: Column(
+        children: [
+          SvgPicture.asset(icon, color: Get.theme.iconTheme.color),
+          SizedBox(height: 4), // Espaciado entre el ícono y el texto
+          Text(
+            label,
+            style: TextStyle(
+              color: Get.theme.iconTheme
+                  .color, // Color del texto cuando no está activo
+              fontSize: 10.0, // Tamaño del texto
+            ),
+          ),
+        ],
+      ),
+      activeIcon: Column(
+        children: [
+          SvgPicture.asset(icon, color: Get.theme.primaryColor),
+          SizedBox(height: 4), // Espaciado entre el ícono y el texto
+          Text(
+            label,
+            style: TextStyle(
+              color:
+                  Get.theme.primaryColor, // Color del texto cuando está activo
+              fontSize: 12.0, // Tamaño del texto
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

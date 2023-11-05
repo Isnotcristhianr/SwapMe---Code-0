@@ -137,11 +137,11 @@ class CustomSlider extends StatelessWidget {
   final String thumbImage;
 
   const CustomSlider({
-    Key? key,
+    super.key,
     required this.value,
     required this.onChanged,
     required this.thumbImage,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
