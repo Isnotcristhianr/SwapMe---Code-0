@@ -7,7 +7,6 @@ import 'package:swapme/app/modules/product_details/views/widgets/rounded_button.
 import 'package:swapme/app/modules/settings/controllers/settings_controller.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 import 'package:swapme/components/image_selector.dart';
-import 'package:swapme/components/is_loading.dart';
 import 'package:swapme/components/my_button.dart';
 import 'package:swapme/components/my_textfield.dart';
 import 'package:swapme/utils/constants.dart';
