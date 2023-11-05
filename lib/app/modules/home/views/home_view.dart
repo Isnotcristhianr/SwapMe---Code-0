@@ -41,6 +41,11 @@ class HomeView extends GetView<HomeController> {
                   autoPlay: true, // Reproducción automática
                   autoPlayInterval: const Duration(
                       seconds: 5), // Intervalo de cambio de diapositivas
+                  aspectRatio: 16 / 9,
+                  viewportFraction: 1.0, // Tamaño de la diapositiva
+                  onPageChanged: (index, reason) {
+                    // Manejar el cambio de diapositiva
+                  },
                 ),
                 items: [
                   // Diapositiva 1
@@ -90,7 +95,6 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
             ),
-
             const SizedBox(height: 20),
             // Cuadrícula de productos
             Obx(
@@ -127,11 +131,11 @@ class CustomSlider extends StatelessWidget {
   final String thumbImage;
 
   const CustomSlider({
-    super.key,
+    Key? key,
     required this.value,
     required this.onChanged,
     required this.thumbImage,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -149,10 +153,13 @@ class CustomSlider extends StatelessWidget {
         children: [
           Hero(
             tag: thumbImage,
-            child: Image.asset(
-              thumbImage,
-              fit: BoxFit.cover,
-              width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.0), // Ajusta el radio según tus necesidades
+              child: Image.asset(
+                thumbImage,
+                fit: BoxFit.cover,
+                width: double.infinity,
+              ),
             ),
           ),
         ],
@@ -174,12 +181,11 @@ class CustomSlider extends StatelessWidget {
               imageUrl,
               fit: BoxFit.cover,
               width: double.infinity,
+
             ),
           ),
         ),
       ),
     );
   }
-
 }
-

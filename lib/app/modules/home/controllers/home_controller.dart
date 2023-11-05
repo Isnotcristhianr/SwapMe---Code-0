@@ -42,4 +42,5 @@ class HomeController extends GetxController {
       products.value = [];
     }
   }
+
 }
