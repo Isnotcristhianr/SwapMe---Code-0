@@ -26,10 +26,8 @@ class HomeView extends GetView<HomeController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
           children: [
-            50.verticalSpace,
-            const ScreenTitle(
-              title: 'SwapMe',
-            ),
+            
+           const SizedBox(height: 30),
             0.verticalSpace,
             // Contenedor que contiene el carrusel
             SizedBox(
@@ -100,7 +98,7 @@ class HomeView extends GetView<HomeController> {
             10.verticalSpace,
             // Título de la sección
             const ScreenTitle(
-              title: 'Intercambia',
+              title: 'SwapMe',
             ),
             0.verticalSpace,
             Obx(
