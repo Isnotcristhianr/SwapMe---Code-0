@@ -21,6 +21,7 @@ class MyTextField extends StatelessWidget {
     this.validator,
     this.maxLength,
     this.initalValue,
+    // ignore: non_constant_identifier_names
     this.label, required TextStyle TextStyle,
   });
 
