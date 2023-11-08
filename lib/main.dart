@@ -1,31 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
-
 import 'app/data/local/my_shared_pref.dart';
 import 'app/routes/app_pages.dart';
 import 'config/theme/my_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:connectivity/connectivity.dart';
 
-// ...
-
-Future<void> main() async {
-  // wait for bindings
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // init shared preference
-  await MySharedPref.init();
-
-  // Initialize firebase
   await Firebase.initializeApp(
     name: 'SwapApp',
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(
-    ScreenUtilInit(
+  // Verificar la conectividad antes de iniciar la aplicación
+  var connectivityResult = await Connectivity().checkConnectivity();
+  bool isConnected = (connectivityResult != ConnectivityResult.none);
+
+  // Iniciar la aplicación solo si hay conexión a Internet
+  if (isConnected) {
+    await MySharedPref.init();
+    runApp(const MyApp());
+  } else {
+    // Mostrar una pantalla de error cuando no hay conexión
+    runApp(
+      const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.wifi_off,
+                  size: 100,
+                  color: Color.fromARGB(255, 155, 244, 54),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'Swapme App',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  'No internet connection',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  // ignore: use_key_in_widget_constructors
+  const MyApp({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
@@ -51,6 +96,6 @@ Future<void> main() async {
           getPages: AppPages.routes, // app screens
         );
       },
-    ),
-  );
+    );
+  }
 }
