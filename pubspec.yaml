@@ -1,5 +1,6 @@
 name: swapme # change app name
 version: 1.0.0+1
+buildNumber: 1
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 description: SwapMe es una appp de intercambio de prendas de vestir como ropa, zapatos, accesorios, etc. como solucion a la moda rapida y el consumo desmedido de ropa. # change app description
 environment:
