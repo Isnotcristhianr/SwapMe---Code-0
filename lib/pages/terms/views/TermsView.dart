@@ -181,7 +181,19 @@ class TermsView extends GetView<TermsController> {
                 style: TextStyle(
                   fontSize: 14.sp,
                 ),
-              ),             
+              ),
+              const SizedBox(height: 20),
+              //ir html
+              ElevatedButton(
+                onPressed: () => Get.toNamed('/terms'),
+                child: Text(
+                  'Ir a la página web',
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )  
             ],
           ),
         ),
