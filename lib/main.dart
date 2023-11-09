@@ -8,6 +8,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:connectivity/connectivity.dart';
 
+//permiso
+import 'package:permission_handler/permission_handler.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -22,8 +25,15 @@ void main() async {
 
   // Iniciar la aplicación solo si hay conexión a Internet
   if (isConnected) {
-    await MySharedPref.init();
-    runApp(const MyApp());
+    //solictar permiso
+    var status = await Permission.camera.request();
+    if (status.isGranted) {
+      await MySharedPref.init();
+      runApp(const MyApp());
+    } else {
+      // ignore: avoid_print
+      print('permiso denegado');
+    }
   } else {
     // Mostrar una pantalla de error cuando no hay conexión
     runApp(
