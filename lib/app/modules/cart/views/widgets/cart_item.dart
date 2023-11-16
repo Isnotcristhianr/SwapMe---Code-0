@@ -101,8 +101,8 @@ class CartItem extends GetView<CartController> {
                     ? const SizedBox()
                     : Text(
                         isMyPurchase
-                            ? 'Comprado a ${product.owner?.name} ${product.owner?.lastName}'
-                            : 'Vendido a ${product.newOwner?.name} ${product.newOwner?.lastName}',
+                            ? 'Intercambio: ${product.owner?.name} ${product.owner?.lastName}'
+                            : 'Intercambio: ${product.newOwner?.name} ${product.newOwner?.lastName}',
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                         style: theme.textTheme.labelSmall?.copyWith(

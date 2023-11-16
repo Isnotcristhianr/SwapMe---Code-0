@@ -35,7 +35,7 @@ class SwapConfirmScreen extends GetView<SwapController> {
               // SizedBox(height: .h),
               const SizedBox(height: 15),
               ScreenTitle(
-                title: 'Usarios interesados',
+                title: 'Usuarios interesados',
                 dividerEndIndent: 1.w,
               ),
               SingleChildScrollView(
