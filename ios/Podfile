@@ -1,8 +1,10 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '12.0'
+platform :ios, '12.0'
 
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
+
+install! 'cocoapods', :disable_input_output_paths => true
 
 project 'Runner', {
   'Debug' => :debug,
@@ -31,7 +33,20 @@ target 'Runner' do
   use_frameworks!
   use_modular_headers!
 
-  flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
+  source 'https://github.com/CocoaPods/Specs.git'
+source 'https://github.com/flutter/flutter.git'
+
+  pod 'camera', '~> 0.10.0'
+  pod 'cloud_firestore', '~> 4.9.3'
+  pod 'connectivity', '~> 3.0.6'
+  pod 'firebase_auth', '~> 4.10.0'
+  pod 'firebase_core', '~> 2.16.0'
+  pod 'firebase_storage', '~> 11.2.8'
+  pod 'flutter_facebook_auth', '~> 6.0.2'
+  pod 'flutter_secure_storage', '~> 6.0.0'
+  pod 'image_picker_ios', '~> 1.0.4'
+
+
   target 'RunnerTests' do
     inherit! :search_paths
   end
