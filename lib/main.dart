@@ -9,8 +9,8 @@ import 'firebase_options.dart';
 import 'package:connectivity/connectivity.dart';
 
 //permiso
-import 'package:permission_handler/permission_handler.dart';
-
+/* import 'package:permission_handler/permission_handler.dart';
+ */
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
