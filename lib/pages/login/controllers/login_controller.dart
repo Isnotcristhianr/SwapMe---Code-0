@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 
 import 'package:swapme/app/data/models/user_model.dart';
@@ -13,26 +12,7 @@ class LoginController extends GetxController {
   RxBool isLoading = RxBool(false);
 
 
-  Future<bool> signInWithFacebook() async {
-    final LoginResult result = await FacebookAuth.instance
-        .login(permissions: ['public_profile', 'email']);
-    if (result.status == LoginStatus.success) {
-      try {
-        final OAuthCredential credential =
-            FacebookAuthProvider.credential(result.accessToken!.token);
-        final UserCredential userCredentials =
-            await FirebaseAuth.instance.signInWithCredential(credential);
-        // ignore: avoid_print
-        print(userCredentials);
-      } catch (e) {
-        // ignore: avoid_print
-        print(e);
-        return false;
-      }
-    }
-    return false;
-  }
-
+ 
   Future<bool> restorePassword() async {
     try {
       isLoading.value = true;

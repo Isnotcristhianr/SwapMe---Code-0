@@ -30,7 +30,6 @@ dependencies:
   firebase_core: ^2.16.0
   uuid: ^4.0.0
   firebase_auth: ^4.10.0
-  flutter_facebook_auth: ^6.0.2
   cloud_firestore: ^4.9.3
   flutter_rating_bar: ^4.0.1
   url_launcher: ^6.1.14

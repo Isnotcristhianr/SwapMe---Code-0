@@ -15,8 +15,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    name: 'SwapApp',
-    options: DefaultFirebaseOptions.currentPlatform,
+/*     name: 'SwapApp',
+ */    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   // Verificar la conectividad antes de iniciar la aplicación
@@ -26,14 +26,16 @@ void main() async {
   // Iniciar la aplicación solo si hay conexión a Internet
   if (isConnected) {
     //solictar permiso
-    var status = await Permission.camera.request();
+    /* var status = await Permission.camera.request();
     if (status.isGranted) {
       await MySharedPref.init();
       runApp(const MyApp());
     } else {
       // ignore: avoid_print
       print('permiso denegado');
-    }
+    } */
+    await MySharedPref.init();
+    runApp(const MyApp());
   } else {
     // Mostrar una pantalla de error cuando no hay conexión
     runApp(
