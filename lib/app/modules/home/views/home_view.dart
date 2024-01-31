@@ -99,6 +99,7 @@ class HomeView extends GetView<HomeController> {
             // Título de la sección
             const ScreenTitle(
               title: 'SwapMe',
+              subtitle: 'Prendas disponibles',
             ),
             0.verticalSpace,
             Obx(

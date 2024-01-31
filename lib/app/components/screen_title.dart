@@ -4,10 +4,13 @@ import 'package:get/get.dart';
 
 class ScreenTitle extends StatelessWidget {
   final String title;
+  final String subtitle;
   final double? dividerEndIndent;
+
   const ScreenTitle({
     super.key,
     required this.title,
+    this.subtitle = '',
     this.dividerEndIndent,
   });
 
@@ -16,11 +19,22 @@ class ScreenTitle extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title,
-            style: context.theme.textTheme.displayLarge?.copyWith(
-              fontSize: 30.sp,
-              fontWeight: FontWeight.bold,
-            )),
+        Text(
+          title,
+          style: context.theme.textTheme.headline1?.copyWith(
+            fontSize: 35.sp, // Tamaño de fuente más grande para el título
+            fontWeight: FontWeight.bold,
+            color: Colors.black, // Color del título
+          ),
+        ),
+        Text(
+          subtitle,
+          style: context.theme.textTheme.headline2?.copyWith(
+            fontSize: 18.sp, // Tamaño de fuente más pequeño para el subtítulo
+            fontWeight: FontWeight.bold,
+            color: Colors.grey, // Color del subtítulo
+          ),
+        ),
         Divider(
           thickness: 3,
           endIndent: dividerEndIndent ?? 250,
