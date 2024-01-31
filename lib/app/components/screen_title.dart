@@ -21,7 +21,7 @@ class ScreenTitle extends StatelessWidget {
       children: [
         Text(
           title,
-          style: context.theme.textTheme.headline1?.copyWith(
+          style: context.theme.textTheme.displayLarge?.copyWith(
             fontSize: 35.sp, // Tamaño de fuente más grande para el título
             fontWeight: FontWeight.bold,
             color: Colors.black, // Color del título
@@ -29,7 +29,7 @@ class ScreenTitle extends StatelessWidget {
         ),
         Text(
           subtitle,
-          style: context.theme.textTheme.headline2?.copyWith(
+          style: context.theme.textTheme.displayMedium?.copyWith(
             fontSize: 18.sp, // Tamaño de fuente más pequeño para el subtítulo
             fontWeight: FontWeight.bold,
             color: Colors.grey, // Color del subtítulo
