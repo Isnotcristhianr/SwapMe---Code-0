@@ -157,8 +157,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                         // Acción al hacer clic en la talla (si es necesario)
                       },
                       style: ElevatedButton.styleFrom(
-                        primary:  const Color(0xFF0FDA89),
-                        onPrimary: Colors.white,
+                        foregroundColor: Colors.white, backgroundColor: const Color(0xFF0FDA89),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.r),
                         ),
