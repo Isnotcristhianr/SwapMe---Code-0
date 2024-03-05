@@ -11,6 +11,7 @@ import '../../home/views/home_view.dart';
 import '../../notifications/views/notifications_view.dart';
 import '../../settings/views/settings_view.dart';
 
+
 class BaseView extends GetView<BaseController> {
   const BaseView({super.key});
 

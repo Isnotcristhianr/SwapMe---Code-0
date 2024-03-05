@@ -22,6 +22,7 @@ class CartView extends GetView<CartController> {
             5.verticalSpace,
             const ScreenTitle(
               title: 'Activos',
+              subtitle: 'Intercambios Creados',
               dividerEndIndent: 250,
             ),
             10.verticalSpace,
@@ -44,7 +45,9 @@ class CartView extends GetView<CartController> {
             ),
             5.verticalSpace,
             const SizedBox(height: 15),
-            const ScreenTitle(title: 'Completados'),
+            const ScreenTitle(
+              title: 'Completados',
+              subtitle: 'Historial Intercambios'),
             Obx(
               () => controller.productsSwapped.isEmpty
                   ? const NoData(text: 'No hay intercambios completados')

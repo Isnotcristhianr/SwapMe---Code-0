@@ -58,13 +58,13 @@ class CartItem extends GetView<CartController> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 5.verticalSpace,
-                Text('Size: ${product.size}',
+                Text('Talla: ${product.size}',
                     style:
                         theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp)),
                 5.verticalSpace,
                 Text(
                   '\$${product.price}',
-                  style: theme.textTheme.displayLarge?.copyWith(
+                  style: theme.textTheme.displayMedium?.copyWith(
                     fontSize: 18.sp,
                   ),
                 ),
@@ -77,7 +77,7 @@ class CartItem extends GetView<CartController> {
                             borderRadius: BorderRadius.circular(5),
                           ),
                           backgroundColor: Colors
-                              .blue, // Personaliza el color de fondo del botón según tus necesidades
+                              .green, // Personaliza el color de fondo del botón según tus necesidades
                         ),
                         onPressed: () {
                           Get.toNamed(

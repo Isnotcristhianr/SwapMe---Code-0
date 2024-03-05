@@ -16,7 +16,8 @@ void main() async {
 
   await Firebase.initializeApp(
 /*     name: 'SwapApp',
- */    options: DefaultFirebaseOptions.currentPlatform,
+ */
+    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   // Verificar la conectividad antes de iniciar la aplicación
@@ -98,7 +99,8 @@ class MyApp extends StatelessWidget {
             return Theme(
               data: MyTheme.getThemeData(isLight: themeIsLight),
               child: MediaQuery(
-                data: MediaQuery.of(context).copyWith(textScaler: const TextScaler.linear(1.0)),
+                data: MediaQuery.of(context)
+                    .copyWith(textScaler: const TextScaler.linear(1.0)),
                 child: widget!,
               ),
             );
