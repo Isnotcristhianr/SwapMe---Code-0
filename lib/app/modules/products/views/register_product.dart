@@ -105,7 +105,7 @@ class RegisterProductScreen extends GetView<ProductController> {
                     ),
                     SizedBox(height: 15.h),
                     Text(
-                      'Precio Referencial',
+                      'Valor Referencial',
                       style: TextStyle(
                         color: Colors.grey[500],
                       ),
