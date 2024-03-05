@@ -107,7 +107,7 @@ class CartItem extends GetView<CartController> {
                         maxLines: 2,
                         style: theme.textTheme.labelSmall?.copyWith(
                           fontSize: 14.sp,
-                          color: !isMyPurchase ? Colors.green : Colors.blue,
+                          color: !isMyPurchase ? Colors.green : Colors.green,
                         ),
                       ),
               ],
@@ -170,11 +170,11 @@ class CartItem extends GetView<CartController> {
                   child: Container(
                     padding: EdgeInsets.all(10.r),
                     child: SvgPicture.asset(
-                      Constants.cancelIcon,
+                      Constants.deleteIcon,
                       width: 20.w,
                       height: 20.h,
                       // ignore: deprecated_member_use
-                      color: theme.textTheme.bodyMedium!.color,
+                    
                     ),
                   ),
                 )

@@ -26,15 +26,6 @@ void main() async {
 
   // Iniciar la aplicación solo si hay conexión a Internet
   if (isConnected) {
-    //solictar permiso
-    /* var status = await Permission.camera.request();
-    if (status.isGranted) {
-      await MySharedPref.init();
-      runApp(const MyApp());
-    } else {
-      // ignore: avoid_print
-      print('permiso denegado');
-    } */
     await MySharedPref.init();
     runApp(const MyApp());
   } else {
