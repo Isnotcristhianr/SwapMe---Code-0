@@ -36,9 +36,10 @@ class ScreenTitle extends StatelessWidget {
           ),
         ),
         Divider(
-          thickness: 3,
-          endIndent: dividerEndIndent ?? 250,
+          thickness: 4,
+          endIndent: dividerEndIndent ?? 10,
         ),
+        SizedBox(height: 20.h)
       ],
     );
   }

@@ -22,7 +22,7 @@ class FavoritesView extends GetView<FavoritesController> {
             30.verticalSpace,
             const ScreenTitle(
               title: 'Deseados',
-              dividerEndIndent: 200,
+              subtitle: 'Prendas deseadas',
             ),
             20.verticalSpace,
             Obx(
@@ -46,7 +46,7 @@ class FavoritesView extends GetView<FavoritesController> {
             20.verticalSpace,
             const ScreenTitle(
               title: 'Negociación',
-              dividerEndIndent: 200,
+              subtitle: 'Prendas en negociación', 
             ),
             Obx(
               () => controller.productsInNegotiation.isEmpty

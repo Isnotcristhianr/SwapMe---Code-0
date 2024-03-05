@@ -22,8 +22,7 @@ class CartView extends GetView<CartController> {
             5.verticalSpace,
             const ScreenTitle(
               title: 'Activos',
-              subtitle: 'Intercambios Creados',
-              dividerEndIndent: 250,
+              subtitle: 'Intercambios',
             ),
             10.verticalSpace,
             Obx(

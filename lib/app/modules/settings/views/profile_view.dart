@@ -89,6 +89,7 @@ class ProfileScreen extends GetView<SettingsController> {
                 const SizedBox(height: 15),
                 const ScreenTitle(
                   title: 'Perfil',
+                  subtitle: 'Actualiza tus datos',
                   dividerEndIndent: 1,
                 ),
                 5.verticalSpace,

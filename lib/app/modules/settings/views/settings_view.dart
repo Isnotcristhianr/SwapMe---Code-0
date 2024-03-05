@@ -16,7 +16,6 @@ import 'widgets/settings_item.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
-
 class SettingsView extends GetView<SettingsController> {
   const SettingsView({super.key});
   @override
@@ -32,41 +31,58 @@ class SettingsView extends GetView<SettingsController> {
             30.verticalSpace,
             const ScreenTitle(
               title: 'Configuraciones',
-              dividerEndIndent: 230,
             ),
             20.verticalSpace,
-            Text(
-              'Cuenta',
-              style: theme.textTheme.displayMedium?.copyWith(
-                fontSize: 20.sp,
-                fontWeight: FontWeight.normal,
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15), 
+                color: theme.backgroundColor,
               ),
-            ),
-            20.verticalSpace,
-            Obx(
-              () => controller.user.value.phone != null
-                  ? InkWell(
-                      onTap: () => Get.to(ProfileScreen()),
-                      splashColor: Colors.white,
-                      hoverColor: Colors.white,
-                      highlightColor: Colors.white,
-                      child: SettingsItem(
-                        title:
-                            '${controller.user.value.name} ${controller.user.value.lastName}',
-                        numberPhone: controller.user.value.phone!,
-                        backgroundImage: (getImage(controller.user.value.photo,
-                                onlyImage: false) as Image)
-                            .image,
-                        icon: Constants.userIcon,
-                        isAccount: true,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    //margen y pading
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.w),
+                      child: Text(
+                        'Perfil',
+                        style: theme.textTheme.displayMedium?.copyWith(
+                          fontSize: 20.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    )
-                  : SettingsItem(
-                      title: controller.user.value.name ?? 'Sin nombre',
-                      numberPhone: 'Sin numero',
-                      icon: Constants.userIcon,
-                      isAccount: true,
                     ),
+                  ),
+                  Obx(
+                    () => controller.user.value.phone != null
+                        ? InkWell(
+                            onTap: () => Get.to(ProfileScreen()),
+                            splashColor: Colors.white,
+                            hoverColor: Colors.white,
+                            highlightColor: Colors.white,
+                            child: SettingsItem(
+                              title:
+                                  '${controller.user.value.name} ${controller.user.value.lastName}',
+                              numberPhone: '+${controller.user.value.phone!}',
+                              backgroundImage: (getImage(
+                                      controller.user.value.photo,
+                                      onlyImage: false) as Image)
+                                  .image,
+                              icon: Constants.userIcon,
+                              isAccount: true,
+                            ),
+                          )
+                        : SettingsItem(
+                            title: controller.user.value.name ?? 'Sin nombre registrado',
+                            numberPhone: 'Sin numero registrado',
+                            icon: Constants.userIcon,
+                            isAccount: true,
+                          ),
+                  ),
+                20.verticalSpace,
+                ],
+              ),
             ),
             30.verticalSpace,
             Text('Configuraciones Generales',
@@ -136,15 +152,15 @@ class SettingsView extends GetView<SettingsController> {
             25.verticalSpace,
             GestureDetector(
               onTap: () {
-               //url
-               const url = 'https://beacons.ai/webcats';
+                //url
+                const url = 'https://beacons.ai/webcats';
 
-               // ignore: unnecessary_null_comparison
-               if (canLaunch(url) != null) {
-                 launch(url);
-               } else {
-                 throw 'Could not launch $url';
-               }
+                // ignore: unnecessary_null_comparison
+                if (canLaunch(url) != null) {
+                  launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
               },
               child: const SettingsItem(
                 title: 'Créditos',
