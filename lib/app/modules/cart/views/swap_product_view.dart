@@ -36,6 +36,7 @@ class SwapConfirmScreen extends GetView<SwapController> {
               const SizedBox(height: 15),
               ScreenTitle(
                 title: 'Usuarios interesados',
+                subtitle: 'Confirma el usuario interesado',
                 dividerEndIndent: 1.w,
               ),
               SingleChildScrollView(

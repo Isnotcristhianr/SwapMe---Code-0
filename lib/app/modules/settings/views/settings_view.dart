@@ -31,6 +31,7 @@ class SettingsView extends GetView<SettingsController> {
             30.verticalSpace,
             const ScreenTitle(
               title: 'Configuraciones',
+              subtitle: 'Ajustes de la aplicación',
             ),
             20.verticalSpace,
             Container(
@@ -40,6 +41,7 @@ class SettingsView extends GetView<SettingsController> {
               ),
               child: Column(
                 children: [
+                  15.verticalSpace,
                   Align(
                     alignment: Alignment.centerLeft,
                     //margen y pading
