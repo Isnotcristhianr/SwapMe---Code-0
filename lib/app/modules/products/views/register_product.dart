@@ -21,7 +21,7 @@ class RegisterProductScreen extends GetView<ProductController> {
   final controllerReview = TextEditingController();
   final controllerPrice = TextEditingController();
   final controllerQuantity = TextEditingController();
-  final controllerRaiting = TextEditingController(text: '1.0');
+  final controllerRaiting = TextEditingController(text: '0');
 
   final GlobalKey<FormState> myKeyForm = GlobalKey();
   final RxBool isValidForm = RxBool(false);
@@ -207,9 +207,20 @@ class RegisterProductScreen extends GetView<ProductController> {
                                     ))
                                 .toList(),
                             onChanged: (value) {
+                              /* controller rating acorde a los tiems asignar numero */
                               controllerState.text = value!;
-                              // Luego puedes imprimir el valor seleccionado para asegurarte de que se está actualizando correctamente
-                              print('Estado seleccionado: $value');
+                              if (controllerState.text == 'Malo') {
+                                controllerRaiting.text = '1.0';
+                              } else if (controllerState.text == 'Regular') {
+                                controllerRaiting.text = '2.0';
+                              } else if (controllerState.text == 'Bueno') {
+                                controllerRaiting.text = '3.0';
+                              } else if (controllerState.text == 'Muy bueno') {
+                                controllerRaiting.text = '4.0';
+                              } else if (controllerState.text == 'Excelente') {
+                                controllerRaiting.text = '5.0';
+                              }
+                              
                             },
                           ),
                         ),
