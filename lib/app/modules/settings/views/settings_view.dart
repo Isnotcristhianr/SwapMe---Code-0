@@ -155,7 +155,7 @@ class SettingsView extends GetView<SettingsController> {
             GestureDetector(
               onTap: () {
                 //url
-                const url = 'https://beacons.ai/webcats';
+                const url = 'https://bento.me/isnotcristhiar';
 
                 // ignore: unnecessary_null_comparison
                 if (canLaunch(url) != null) {
