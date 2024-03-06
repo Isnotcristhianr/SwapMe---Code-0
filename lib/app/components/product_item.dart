@@ -159,15 +159,6 @@ class ProductItem extends StatelessWidget {
                   begin: 1,
                   curve: Curves.easeInSine,
                 ),
-            5.verticalSpace,
-            Text('\$${product.price}', style: theme.textTheme.displaySmall)
-                .animate()
-                .fade()
-                .slideY(
-                  duration: const Duration(milliseconds: 200),
-                  begin: 2,
-                  curve: Curves.easeInSine,
-                ),
           ],
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -23,10 +22,12 @@ class RegisterProductScreen extends GetView<ProductController> {
   final controllerPrice = TextEditingController();
   final controllerQuantity = TextEditingController();
   final controllerRaiting = TextEditingController(text: '1.0');
-  final controllerSize = TextEditingController(text: 'S');
 
   final GlobalKey<FormState> myKeyForm = GlobalKey();
   final RxBool isValidForm = RxBool(false);
+
+  final controllerSize = TextEditingController(text: 'S');
+  final controllerState = TextEditingController(text: 'Excelente');
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +43,7 @@ class RegisterProductScreen extends GetView<ProductController> {
               const SizedBox(height: 15),
               const ScreenTitle(
                 title: 'Registrar Prenda',
+                subtitle: 'Registra una prenda para intercambiar',
                 dividerEndIndent: 1,
               ),
               Form(
@@ -187,22 +189,27 @@ class RegisterProductScreen extends GetView<ProductController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Estado de la prenda'),
+                        const Text('Condición de la prenda'),
                         Center(
-                          child: RatingBar.builder(
-                            initialRating: double.parse(controllerRaiting.text),
-                            minRating: 1,
-                            direction: Axis.horizontal,
-                            allowHalfRating: true,
-                            itemCount: 5,
-                            itemPadding:
-                                const EdgeInsets.symmetric(horizontal: 4.0),
-                            itemBuilder: (context, _) => const Icon(
-                              Icons.star,
-                              color: Colors.amber,
-                            ),
-                            onRatingUpdate: (rating) {
-                              controllerRaiting.text = rating.toString();
+                          child: DropdownButtonFormField<String>(
+                            value: controllerState.text,
+                            decoration: const InputDecoration(),
+                            items: [
+                              'Malo',
+                              'Regular',
+                              'Bueno',
+                              'Muy bueno',
+                              'Excelente'
+                            ]
+                                .map((e) => DropdownMenuItem<String>(
+                                      value: e,
+                                      child: Text(e),
+                                    ))
+                                .toList(),
+                            onChanged: (value) {
+                              controllerState.text = value!;
+                              // Luego puedes imprimir el valor seleccionado para asegurarte de que se está actualizando correctamente
+                              print('Estado seleccionado: $value');
                             },
                           ),
                         ),
