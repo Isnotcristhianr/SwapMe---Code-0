@@ -9,6 +9,7 @@ class Constants {
   static const swap = 'assets/vectors/intercambio.svg';
   static const notificationsIcon = 'assets/vectors/notifications.svg';
   static const settingsIcon = 'assets/vectors/settings.svg';
+  static const medalIcon = 'assets/vectors/medal.svg';
 
   static const favFilledIcon = 'assets/vectors/fav_filled.svg';
   static const favOutlinedIcon = 'assets/vectors/fav_outlined.svg';

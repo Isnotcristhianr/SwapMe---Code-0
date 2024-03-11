@@ -20,21 +20,15 @@ class NotificationsView extends GetView<NotificationsController> {
           children: [
             30.verticalSpace,
             const ScreenTitle(
-              title: 'Notificaciones',
+              title: 'Ranking',
+              subtitle: 'Top Usuarios',
               dividerEndIndent: 150,
             ),
             10.verticalSpace,
-            ListView.builder(
-              itemCount: 1,
-              itemBuilder: (context, index) => NotificationItem()
-                .animate().fade().slideY(
-                  duration: const Duration(milliseconds: 300),
-                  begin: 1,
-                  curve: Curves.easeInSine,
-                ),
-              shrinkWrap: true,
-              primary: false,
-            ),
+            //top 3 usuarios intercambiantes front
+            //usar fetch top users
+            
+            40.verticalSpace,
           ],
         ),
       ),

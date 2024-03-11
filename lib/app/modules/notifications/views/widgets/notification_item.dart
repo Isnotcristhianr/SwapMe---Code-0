@@ -9,72 +9,61 @@ import '../../../../../utils/constants.dart';
 
 // ignore: must_be_immutable
 class NotificationItem extends StatelessWidget {
-  NotificationItem({super.key});
+  NotificationItem({super.key, Object? name, Object? points, Object? image});
 
   //fecha de hoy capturar
   DateTime date = DateTime.now();
   //hora de hoy capturar
   TimeOfDay time = TimeOfDay.now();
 
+   Color kGreyColor = Color(0xFFA1A4B2);
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
-    return GestureDetector(
-      onTap: () {
-        Get.snackbar(
-          'Notificación',
-          'Bienvenido a SWAPME, esta funcionalidad estará disponible pronto',
-          snackPosition: SnackPosition.BOTTOM,
-          backgroundColor: theme.primaryColor,
-          colorText: Colors.white,
-          margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 15.h),
-          borderRadius: 15.r,
-          duration: const Duration(seconds: 3),
-          icon: SvgPicture.asset(
-            Constants.notificationsIcon,
-            color: Colors.white,
+    //NotificationItem(
+      //vacio
+    //);
+    return Padding(
+      padding: EdgeInsets.only(bottom: 20.h),
+      child: Row(
+        children: [
+          SvgPicture.asset(
+            '/assets/vectors/user.svg',
+            height: 50.h,
+            width: 50.w,
           ),
-        );
-      },
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 5.h),
-        margin: EdgeInsets.only(bottom: 15.h),
-        decoration: BoxDecoration(
-          color: theme.primaryColor.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(15.r),
-        ),
-        child: ListTile(
-          title: Text(
-            'Bienvenido a SWAPME, esta funcionalidad estará disponible pronto',
-            style: theme.textTheme.displaySmall?.copyWith(
-              fontWeight: FontWeight.normal,
-            ),
-          ),
-          subtitle: Padding(
-            padding: EdgeInsets.only(top: 5.h),
-            child: Text(
-              '${date.day}/${date.month}/${date.year}'
-              ' ${time.hour}:${time.minute}',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                fontSize: 12.sp,
+          20.horizontalSpace,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'John Doe',
+                style: TextStyle(
+                  color: kGreyColor,
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
-            ),
-          ),
-          leading: Container(
-            width: 60.w,
-            height: 60.h,
-            decoration: BoxDecoration(
-              color: theme.primaryColor,
-              borderRadius: BorderRadius.circular(12.r),
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                Constants.notificationsIcon,
-                color: Colors.white,
+              5.verticalSpace,
+              Text(
+                'Ha intercambiado 100 puntos',
+                style: TextStyle(
+                  color: kGreyColor,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
-            ),
+              5.verticalSpace,
+              Text(
+                '${date.day}/${date.month}/${date.year} ${time.hour}:${time.minute}',
+                style: TextStyle(
+                  color: kGreyColor,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
           ),
-        ),
+        ],
       ),
     );
   }

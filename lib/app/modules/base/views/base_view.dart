@@ -79,8 +79,8 @@ class BaseView extends GetView<BaseController> {
                   icon: Constants.cartIcon,
                 ),
                 _mBottomNavItem(
-                  label: 'Notificaciones',
-                  icon: Constants.notificationsIcon,
+                  label: 'Ranking',
+                  icon: Constants.medalIcon,
                 ),
                 _mBottomNavItem(
                   label: 'Cuenta',
