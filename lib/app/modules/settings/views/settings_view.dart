@@ -38,6 +38,15 @@ class SettingsView extends GetView<SettingsController> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15), 
                 color: theme.backgroundColor,
+                //sombra 
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 2,
+                    blurRadius: 4,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
               child: Column(
                 children: [
@@ -68,8 +77,7 @@ class SettingsView extends GetView<SettingsController> {
                                   '${controller.user.value.name} ${controller.user.value.lastName}',
                               numberPhone: '+${controller.user.value.phone!}',
                               //puntos del usuario
-                              rank: 4.5,
-                              
+                              rank: 3.5,
                               backgroundImage: (getImage(
                                       controller.user.value.photo,
                                       onlyImage: false) as Image)
