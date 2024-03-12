@@ -67,6 +67,9 @@ class SettingsView extends GetView<SettingsController> {
                               title:
                                   '${controller.user.value.name} ${controller.user.value.lastName}',
                               numberPhone: '+${controller.user.value.phone!}',
+                              //puntos del usuario
+                              rank: 4.5,
+                              
                               backgroundImage: (getImage(
                                       controller.user.value.photo,
                                       onlyImage: false) as Image)
