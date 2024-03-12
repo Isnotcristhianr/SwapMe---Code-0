@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+// ignore: unused_import
 import 'package:get/get.dart';
 
+// ignore: unused_import
 import '../../../../../utils/constants.dart';
 
 // ignore: must_be_immutable
@@ -16,7 +18,7 @@ class NotificationItem extends StatelessWidget {
   //hora de hoy capturar
   TimeOfDay time = TimeOfDay.now();
 
-   Color kGreyColor = Color(0xFFA1A4B2);
+   Color kGreyColor = const Color(0xFFA1A4B2);
   @override
   Widget build(BuildContext context) {
     //NotificationItem(
