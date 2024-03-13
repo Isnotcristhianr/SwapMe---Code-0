@@ -98,6 +98,10 @@ class SettingsController extends GetxController {
       var document = querySnapshot.docs.first;
       ranking.value = RankingModel.fromFirebase(
           document as DocumentSnapshot<Map<String, dynamic>>, null);
+    }else {
+      ranking.value = RankingModel();
+      // ignore: avoid_print
+      print( 'No se encontró el ranking del usuario: ${user.value.authId}');
     }
   });
 }

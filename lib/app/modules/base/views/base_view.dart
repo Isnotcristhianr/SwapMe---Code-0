@@ -18,7 +18,7 @@ class BaseView extends GetView<BaseController> {
   @override
   Widget build(BuildContext context) {
     var theme = context.theme;
-//    Get.put(BaseController());
+    Get.put(BaseController());
 
     return GetBuilder<BaseController>(
       builder: (_) => Scaffold(
