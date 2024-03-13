@@ -1,9 +1,14 @@
+// ignore: unused_import
+import 'dart:ffi';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
+//user model
 import 'package:swapme/app/data/models/user_model.dart';
+//ranking model
+import 'package:swapme/app/data/models/ranking_model.dart';
 
 import '../../../../config/theme/my_theme.dart';
 import '../../../data/local/my_shared_pref.dart';
@@ -13,6 +18,9 @@ class SettingsController extends GetxController {
   String newImage = '';
   String messageToDisplay = '';
   RxBool isLoading = RxBool(false);
+
+  //ranking model
+  Rx<RankingModel> ranking = RankingModel().obs;
 
   // get is light theme from shared pref
   var isLightTheme = MySharedPref.getThemeIsLight();
@@ -42,7 +50,7 @@ class SettingsController extends GetxController {
       }
 
       await FirebaseFirestore.instance
-          .collection('users')
+          .collection('users')  
           .doc(user.value.id)
           .set({
         'name': user.value.name,
@@ -50,7 +58,7 @@ class SettingsController extends GetxController {
         'phone': user.value.phone,
         'photo': user.value.photo,
       }, SetOptions(merge: true));
-      messageToDisplay = 'Information updated successfully';
+      messageToDisplay = 'Información actualizada correctamente';
       result = true;
     } catch (e) {
       messageToDisplay = e.toString();
@@ -58,4 +66,43 @@ class SettingsController extends GetxController {
     }
     return result;
   }
+
+
+  Stream<UserModel> getUser() {
+    return FirebaseFirestore.instance
+        .collection('user')
+        .doc(user.value.id)
+        .snapshots()
+        .map((event) => UserModel.fromFirebase(event, null));
+  }
+  
+  //get Ranking, obtener double valor del usuario
+  getRanking() {
+    FirebaseFirestore.instance
+        .collection('ranking')
+        .doc(user.value.id)
+        .get()
+        .then((value) {
+      ranking.value = RankingModel.fromFirebase(value, null);
+    });
+  }
+
+  // Obtener el rating del usuario
+  // Obtener el rating del usuario
+void getRating() {
+  FirebaseFirestore.instance
+      .collection('ranking')
+      .where('auth_id', isEqualTo: user.value.authId)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    if (querySnapshot.docs.isNotEmpty) {
+      // Solo estamos obteniendo el primer documento ya que supongo que solo hay un rating por usuario
+      var document = querySnapshot.docs.first;
+      ranking.value = RankingModel.fromFirebase(document as DocumentSnapshot<Map<String, dynamic>>, null);
+    }
+  });
+}
+
+
+
 }
