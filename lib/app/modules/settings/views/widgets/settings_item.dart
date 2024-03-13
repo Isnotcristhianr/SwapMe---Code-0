@@ -61,6 +61,7 @@ class SettingsItem extends StatelessWidget {
               ),
               onRatingUpdate: (rating) {
               },
+              ignoreGestures: true, // Add this line
             ),
           ],
         ),

@@ -50,7 +50,7 @@ class SettingsController extends GetxController {
       }
 
       await FirebaseFirestore.instance
-          .collection('users')  
+          .collection('users')
           .doc(user.value.id)
           .set({
         'name': user.value.name,
@@ -67,7 +67,6 @@ class SettingsController extends GetxController {
     return result;
   }
 
-
   Stream<UserModel> getUser() {
     return FirebaseFirestore.instance
         .collection('user')
@@ -75,7 +74,7 @@ class SettingsController extends GetxController {
         .snapshots()
         .map((event) => UserModel.fromFirebase(event, null));
   }
-  
+
   //get Ranking, obtener double valor del usuario
   getRanking() {
     FirebaseFirestore.instance
@@ -89,20 +88,38 @@ class SettingsController extends GetxController {
 
   // Obtener el rating del usuario
   // Obtener el rating del usuario
-void getRating() {
+ void getRating() {
   FirebaseFirestore.instance
       .collection('ranking')
-      .where('auth_id', isEqualTo: user.value.authId)
+      .where('authId', isEqualTo: user.value.authId) // Usa user.value.id en lugar de user.value.authId
       .get()
       .then((QuerySnapshot querySnapshot) {
     if (querySnapshot.docs.isNotEmpty) {
-      // Solo estamos obteniendo el primer documento ya que supongo que solo hay un rating por usuario
       var document = querySnapshot.docs.first;
-      ranking.value = RankingModel.fromFirebase(document as DocumentSnapshot<Map<String, dynamic>>, null);
+      ranking.value = RankingModel.fromFirebase(
+          document as DocumentSnapshot<Map<String, dynamic>>, null);
+    }else {
+      ranking.value = RankingModel();
+      // ignore: avoid_print
+      print( 'No se encontró el ranking del usuario: ${user.value.authId}');
     }
   });
 }
 
 
+  // Escuchar los cambios en el usuario y obtener su rating
+  void listenToUserChanges() {
+    // Escucha los cambios en el usuario actual
+    ever(user, (_) {
+      // Cuando cambie el usuario, obtenemos su rating
+      getRating();
+    });
+  }
 
+  @override
+  void onInit() {
+    super.onInit();
+    // Llama al método para escuchar los cambios en el usuario
+    listenToUserChanges();
+  }
 }

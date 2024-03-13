@@ -92,7 +92,7 @@ class LoginPage extends GetView<LoginController> {
                                       const CircleAvatar(
                                         radius: 30,
                                         backgroundImage: NetworkImage(
-                                            'https://cdn-icons-png.flaticon.com/512/3641/3641963.png'),
+                                            'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png'),
                                       ),
                                       SizedBox(
                                           width: MediaQuery.of(context)
@@ -143,7 +143,7 @@ class LoginPage extends GetView<LoginController> {
                                   obscureText: true,
                                   validator: (val) {
                                     if (val == null || val.isEmpty) {
-                                      return 'Please enter some text';
+                                      return 'Ingresa la contraseña';
                                     }
                                     return null;
                                   },
