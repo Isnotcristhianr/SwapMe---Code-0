@@ -14,7 +14,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class UserItem extends StatelessWidget {
   final UserModel user;
   // ignore: use_key_in_widget_constructors
-   UserItem({Key? key, required this.user});
+  UserItem({Key? key, required this.user});
 
 // Obtener la calificación del usuario rating
   double rating = 0;
