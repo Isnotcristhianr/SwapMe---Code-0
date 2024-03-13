@@ -65,34 +65,38 @@ class SettingsView extends GetView<SettingsController> {
                       ),
                     ),
                   ),
-                  Obx(
-                    () => controller.user.value.phone != null
-                        ? InkWell(
-                            onTap: () => Get.to(ProfileScreen()),
-                            splashColor: Colors.white,
-                            hoverColor: Colors.white,
-                            highlightColor: Colors.white,
-                            child: SettingsItem(
-                              title:
-                                  '${controller.user.value.name} ${controller.user.value.lastName}',
-                              numberPhone: '+${controller.user.value.phone!}',
-                              //puntos del usuario
-                              rank: 3.5,
-                              backgroundImage: (getImage(
-                                      controller.user.value.photo,
-                                      onlyImage: false) as Image)
-                                  .image,
-                              icon: Constants.userIcon,
-                              isAccount: true,
-                            ),
-                          )
-                        : SettingsItem(
-                            title: controller.user.value.name ?? 'Sin nombre registrado',
-                            numberPhone: 'Sin numero registrado',
-                            icon: Constants.userIcon,
-                            isAccount: true,
-                          ),
-                  ),
+                 Obx(
+  () => controller.user.value.phone != null
+      ? InkWell(
+          onTap: () {
+            Get.to(ProfileScreen());
+            controller.getRating(); // Obtener el rating al navegar al perfil
+          },
+          splashColor: Colors.white,
+          hoverColor: Colors.white,
+          highlightColor: Colors.white,
+          child: SettingsItem(
+            title: '${controller.user.value.name} ${controller.user.value.lastName}',
+            numberPhone: '+${controller.user.value.phone!}',
+            // Mostrar el rating del usuario
+            rank: controller.ranking.value.punt != null
+              ?  double.parse(controller.ranking.value.punt.toString()) : 0.0,
+            backgroundImage: (getImage(
+                    controller.user.value.photo,
+                    onlyImage: false) as Image)
+                .image,
+            icon: Constants.userIcon,
+            isAccount: true,
+          ),
+        )
+      : SettingsItem(
+          title: controller.user.value.name ?? 'Sin nombre registrado',
+          numberPhone: 'Sin numero registrado',
+          icon: Constants.userIcon,
+          isAccount: true,
+        ),
+),
+
                 20.verticalSpace,
                 ],
               ),

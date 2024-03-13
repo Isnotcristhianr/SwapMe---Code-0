@@ -50,7 +50,7 @@ class SettingsController extends GetxController {
       }
 
       await FirebaseFirestore.instance
-          .collection('users')
+          .collection('users')  
           .doc(user.value.id)
           .set({
         'name': user.value.name,
@@ -86,6 +86,23 @@ class SettingsController extends GetxController {
       ranking.value = RankingModel.fromFirebase(value, null);
     });
   }
+
+  // Obtener el rating del usuario
+  // Obtener el rating del usuario
+void getRating() {
+  FirebaseFirestore.instance
+      .collection('ranking')
+      .where('auth_id', isEqualTo: user.value.authId)
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    if (querySnapshot.docs.isNotEmpty) {
+      // Solo estamos obteniendo el primer documento ya que supongo que solo hay un rating por usuario
+      var document = querySnapshot.docs.first;
+      ranking.value = RankingModel.fromFirebase(document as DocumentSnapshot<Map<String, dynamic>>, null);
+    }
+  });
+}
+
 
 
 }

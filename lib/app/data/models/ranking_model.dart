@@ -1,3 +1,4 @@
+// ignore: unused_import
 import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -6,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class RankingModel{
   String? id;
   Timestamp? date;
-  Double? punt;
+  double? punt;
 
   RankingModel({
     this.id = '',
