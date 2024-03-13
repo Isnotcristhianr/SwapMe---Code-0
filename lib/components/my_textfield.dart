@@ -75,7 +75,7 @@ class MyPasswordTextField extends StatelessWidget {
   final bool obscureText;
   final String? Function(String?)? validator;
   final void Function(String?)? onChanged;
-  final RxBool show = RxBool(false);
+  final RxBool show = RxBool(true); // Changed this line
 
   MyPasswordTextField({
     super.key,
@@ -92,7 +92,7 @@ class MyPasswordTextField extends StatelessWidget {
       () => TextFormField(
         validator: validator,
         controller: controller,
-        obscureText: show.value,
+        obscureText: show.value, // Changed this line
         onChanged: onChanged,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         decoration: InputDecoration(
