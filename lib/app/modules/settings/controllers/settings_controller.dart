@@ -87,7 +87,6 @@ class SettingsController extends GetxController {
   }
 
   // Obtener el rating del usuario
-  // Obtener el rating del usuario
  void getRating() {
   FirebaseFirestore.instance
       .collection('ranking')

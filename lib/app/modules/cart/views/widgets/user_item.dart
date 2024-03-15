@@ -10,17 +10,22 @@ import 'package:swapme/app/routes/app_pages.dart';
 import 'package:swapme/utils/helpers.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
+//ranking controller
+import 'package:swapme/app/modules/cart/controllers/ranking_controller.dart';
+
 // ignore: must_be_immutable
 class UserItem extends StatelessWidget {
   final UserModel user;
   // ignore: use_key_in_widget_constructors
-  UserItem({Key? key, required this.user});
-
-// Obtener la calificación del usuario rating
-  double rating = 0;
+  const UserItem({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
+    //inicializar la variable rating actual
+    double rating = 0;
+    // Inicializa RankingController utilizando Get.put()
+    final rankingController = Get.put(RankingController());
+
     var theme = context.theme;
 
     return Container(
@@ -112,15 +117,41 @@ class UserItem extends StatelessWidget {
                           .getProductsInNegotiation();
 
                       // Actualizar el rating del usuario en la base de datos
-                      await FirebaseFirestore.instance
+                      var rankingSnapshot = await FirebaseFirestore.instance
                           .collection('ranking')
                           .doc(user.authId)
-                          .set({
-                        //auth id del usuario a calificar
-                        'authId': user.authId,
-                        'date': DateTime.now(),
-                        'punt': rating
-                      }, SetOptions(merge: true));
+                          .get();
+
+                      if (rankingSnapshot.exists) {
+                        var rankingData = rankingSnapshot.data()!;
+                        double currentRating =
+                            (rankingData['punt'] ?? 0).toDouble();
+                        int totalSwaps = rankingData['totalSwaps'] ?? 0;
+                        double newRating = rankingController.calculateNewRating(
+                          currentRating,
+                          rating,
+                          totalSwaps,
+                        );
+                        int updatedTotalSwaps = totalSwaps + 1;
+
+                        await FirebaseFirestore.instance
+                            .collection('ranking')
+                            .doc(user.authId)
+                            .update({
+                          'punt': newRating,
+                          'totalSwaps': updatedTotalSwaps,
+                        });
+                      } else {
+                        await FirebaseFirestore.instance
+                            .collection('ranking')
+                            .doc(user.authId)
+                            .set({
+                          'authId': user.authId,
+                          'date': DateTime.now(),
+                          'punt': rating.toDouble(), // Convertir a double
+                          'totalSwaps': 1,
+                        });
+                      }
 
                       // Volver a la pantalla base
                       Get.offAndToNamed(Routes.BASE);
