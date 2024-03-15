@@ -12,8 +12,14 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
+
+
   @override
   Widget build(BuildContext context) {
+    
+    //home controller
+    Get.put(HomeController());
+    
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
