@@ -13,6 +13,9 @@ class FavoritesView extends GetView<FavoritesController> {
 
   @override
   Widget build(BuildContext context) {
+    //get put de controller
+    final controller = Get.put(FavoritesController());
+    
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),

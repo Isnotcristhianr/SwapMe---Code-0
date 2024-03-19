@@ -13,6 +13,10 @@ class CartView extends GetView<CartController> {
 
   @override
   Widget build(BuildContext context) {
+
+    //get put de controller
+    final controller = Get.put(CartController());
+    
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),

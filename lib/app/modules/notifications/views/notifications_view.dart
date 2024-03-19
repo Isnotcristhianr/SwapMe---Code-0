@@ -27,8 +27,12 @@ class NotificationsView extends GetView<NotificationsController> {
               dividerEndIndent: 150,
             ),
             10.verticalSpace,
-            //top 3 usuarios intercambiantes front
-            //usar fetch top users
+            
+            //prximamente se implementara el ranking
+
+              
+            
+
             
             40.verticalSpace,
           ],

@@ -23,6 +23,8 @@ class SettingsView extends GetView<SettingsController> {
     // Get controller settings
     final theme = context.theme;
 
+    //get put 
+    final controller = Get.put(SettingsController());
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
