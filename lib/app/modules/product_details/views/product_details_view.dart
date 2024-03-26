@@ -100,26 +100,56 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               10.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Text(
-                  controller.product.name!,
-                  style: theme.textTheme.bodyLarge,
-                ).animate().fade().slideX(
-                      duration: const Duration(milliseconds: 300),
-                      begin: -1,
-                      curve: Curves.easeInSine,
-                    ),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        controller.product.name!,
+                        style: theme.textTheme.bodyLarge,
+                      ).animate().fade().slideX(
+                            duration: const Duration(milliseconds: 300),
+                            begin: -1,
+                            curve: Curves.easeInSine,
+                          ),
+                      Text(
+                        //dueño del producto
+                          "${controller.userOwner.value.name} ${controller.userOwner.value.lastName}",
+                        style: theme.textTheme.bodySmall,
+                      ),
+                    ],
+                  ),
+                ),
               ),
               10.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
                 child: Row(
                   children: [
-                    const Icon(Icons.star_rounded, color: Color(0xFFFFC542)),
-                    5.horizontalSpace,
-                    Text(
-                      controller.product.rating!.toString(),
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    Row(
+                      children: [
+                        Text(
+                          "Condición: ",
+                          style: theme.textTheme.bodySmall?.copyWith(
+                              fontSize: 15.sp, fontWeight: FontWeight.bold),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {}, // Add your onPressed function here
+                          style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: const Color(0xFF0FDA89),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.r),
+                            ),
+                          ),
+                          child: Text(
+                            ' ${getRatingString(controller.product.rating ?? 0.0)} ',
+                            style: TextStyle(
+                              fontSize: 15.sp,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     5.horizontalSpace,
                   ],
@@ -132,9 +162,20 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               20.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Text(
-                  controller.product.reviews!,
-                  style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp),
+                child: Row(
+                  children: [
+                    Text(
+                      'Descripcion: ',
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                          fontSize: 15.sp, fontWeight: FontWeight.bold),
+                    ),
+                    Expanded(
+                      child: Text(
+                        controller.product.reviews!,
+                        style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp),
+                      ),
+                    ),
+                  ],
                 ),
               ),
               10.verticalSpace,
@@ -143,32 +184,9 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                 child: Row(
                   children: [
                     Text(
-                      'Talla Disponible: ',
+                      'Talla Disponible: ' ' ${controller.product.size} ',
                       style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 18.sp, fontWeight: FontWeight.bold),
-                    ).animate().fade().slideX(
-                          duration: const Duration(milliseconds: 300),
-                          begin: -1,
-                          curve: Curves.easeInSine,
-                        ),
-                    SizedBox(width: 10.w),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Acción al hacer clic en la talla (si es necesario)
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white, backgroundColor: const Color(0xFF0FDA89),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
-                        ),
-                      ),
-                      child: Text(
-                        ' ${controller.product.size} ',
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                          fontSize: 15.sp, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
@@ -215,5 +233,23 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
         ),
       ),
     );
+  }
+
+  String getRatingString(double rating) {
+    if (rating == 0) {
+      return 'Sin calificación';
+    } else if (rating == 1) {
+      return 'Muy malo';
+    } else if (rating == 2) {
+      return 'Malo';
+    } else if (rating == 3) {
+      return 'Regular';
+    } else if (rating == 4) {
+      return 'Bueno';
+    } else if (rating == 5) {
+      return 'Excelente';
+    } else {
+      return '';
+    }
   }
 }

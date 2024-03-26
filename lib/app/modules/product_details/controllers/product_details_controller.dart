@@ -16,6 +16,7 @@ class ProductDetailsController extends GetxController {
   ProductModel product = Get.arguments;
   Rx<UserModel> userOwner = Rx<UserModel>(UserModel(name: '', lastName: ''));
 
+
   String messageToDisplay = '';
 
   @override
@@ -98,5 +99,4 @@ class ProductDetailsController extends GetxController {
 
   //talla seleccionada
   var selectedSize = 'S'.obs;
-  
-}
+  }
