@@ -42,6 +42,23 @@ class ProductDetailsController extends GetxController {
     }
   }
 
+  void fetchOwnerDetails(String ownerId) {
+    FirebaseFirestore.instance
+        .collection('users')
+        .doc(ownerId)
+        .get()
+        .then((DocumentSnapshot<Map<String, dynamic>> snapshot) {
+      if (snapshot.exists) {
+        userOwner.value = UserModel.fromFirebase(snapshot, null);
+      } else {
+        // El propietario no se encontró en Firestore
+        // Puedes manejar esta situación según tus requisitos
+      }
+    }).catchError((error) {
+      // Manejar el error si ocurre algún problema al obtener los detalles del propietario
+    });
+  }
+
   /// when the user press on the favorite button
   onFavoriteButtonPressed() {
     Get.find<BaseController>().onFavoriteButtonPressed(product: product);

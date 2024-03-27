@@ -111,11 +111,19 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             begin: -1,
                             curve: Curves.easeInSine,
                           ),
-                      Text(
-                        // dueño del producto
-                        "Propietario: ${controller.userOwner.value.name} ${controller.userOwner.value.lastName}",
-                        style: theme.textTheme.bodyMedium,
-                      ),
+                      Obx(() {
+                        // Use Obx to listen for changes in userOwner
+                        // and update the UI accordingly
+                        return Text(
+                          // dueño del producto
+                          'Propietario: ${controller.userOwner.value.name} ${controller.userOwner.value.lastName}',
+                        );
+                      }).animate().fade().slideX(
+                            duration: const Duration(milliseconds: 300),
+                            begin: -1,
+                            curve: Curves.easeInSine,
+                          ),
+                          
                     ],
                   ),
                 ),
