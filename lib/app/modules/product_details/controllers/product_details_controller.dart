@@ -11,11 +11,12 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../data/models/product_model.dart';
 import '../../base/controllers/base_controller.dart';
 
+import 'dart:async';
+
 class ProductDetailsController extends GetxController {
   // get product details from arguments
   ProductModel product = Get.arguments;
   Rx<UserModel> userOwner = Rx<UserModel>(UserModel(name: '', lastName: ''));
-
 
   String messageToDisplay = '';
 
@@ -25,14 +26,20 @@ class ProductDetailsController extends GetxController {
     super.onReady();
   }
 
-  getOwnerData() {
-    FirebaseFirestore.instance
-        .collection('users')
-        .doc(product.ownerId!)
-        .get()
-        .then((value) => {userOwner.value = UserModel.fromFirebase(value, null)})
-        // ignore: invalid_return_type_for_catch_error, avoid_print
-        .catchError(print);
+  Future<void> getOwnerData() async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(product.ownerId!)
+          .get();
+      
+      if (snapshot.exists) {
+        userOwner.value = UserModel.fromFirebase(snapshot, null);
+        update(); // Actualiza la vista después de obtener los datos del usuario propietario
+      }
+    // ignore: empty_catches
+    } catch (e) {
+    }
   }
 
   /// when the user press on the favorite button
@@ -69,8 +76,10 @@ class ProductDetailsController extends GetxController {
         messageToDisplay = 'El dueño no tiene telefono registrado';
         return false;
       }
-      // ignore: 
-      message = '$message ${owner.name} ${owner.lastName}'  + ' me interesa tu producto ${product.name}.' + ' ¿Podemos acordar un intercambio? 🤔';
+      // ignore:
+      message = '$message ${owner.name} ${owner.lastName}' +
+          ' me interesa tu producto ${product.name}.' +
+          ' ¿Podemos acordar un intercambio? 🤔';
       Uri url = getUrl(phone: phone, message: message);
       if (await canLaunchUrl(url)) {
         await launchUrl(url);
@@ -99,4 +108,4 @@ class ProductDetailsController extends GetxController {
 
   //talla seleccionada
   var selectedSize = 'S'.obs;
-  }
+}

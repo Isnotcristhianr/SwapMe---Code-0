@@ -112,9 +112,9 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             curve: Curves.easeInSine,
                           ),
                       Text(
-                        //dueño del producto
-                          "${controller.userOwner.value.name} ${controller.userOwner.value.lastName}",
-                        style: theme.textTheme.bodySmall,
+                        // dueño del producto
+                        "Propietario: ${controller.userOwner.value.name} ${controller.userOwner.value.lastName}",
+                        style: theme.textTheme.bodyMedium,
                       ),
                     ],
                   ),
@@ -123,7 +123,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               10.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Row(
+                child: Column(
                   children: [
                     Row(
                       children: [
@@ -151,47 +151,52 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                         ),
                       ],
                     ),
-                    5.horizontalSpace,
-                  ],
-                ).animate().fade().slideX(
-                      duration: const Duration(milliseconds: 300),
-                      begin: -1,
-                      curve: Curves.easeInSine,
+                    5.verticalSpace,
+                    Row(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Talla Disponible: ',
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                    fontSize: 15.sp, fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: '${controller.product.size}',
+                                style: theme.textTheme.bodyMedium?.copyWith(fontSize: 15.sp),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
-              ),
-              20.verticalSpace,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Row(
-                  children: [
-                    Text(
-                      'Descripcion: ',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 15.sp, fontWeight: FontWeight.bold),
-                    ),
-                    Expanded(
-                      child: Text(
-                        controller.product.reviews!,
-                        style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp),
-                      ),
+                    5.verticalSpace,
+                    Row(
+                      children: [
+                        Text(
+                          'Descripcion: ',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                              fontSize: 15.sp, fontWeight: FontWeight.bold),
+                        ),
+                        Expanded(
+                          child: Text(
+                            controller.product.reviews!,
+                            style: theme.textTheme.bodyMedium
+                                ?.copyWith(fontSize: 16.sp),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-              10.verticalSpace,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Row(
-                  children: [
-                    Text(
-                      'Talla Disponible: ' ' ${controller.product.size} ',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 15.sp, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
+              ).animate().fade().slideX(
+                duration: const Duration(milliseconds: 300),
+                begin: -1,
+                curve: Curves.easeInSine,
               ),
               20.verticalSpace,
+              
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.w),
                 child: CustomButton(
