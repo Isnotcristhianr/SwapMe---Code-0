@@ -13,10 +13,16 @@ import '../../base/controllers/base_controller.dart';
 
 import 'dart:async';
 
+import 'package:swapme/app/data/models/ranking_model.dart';
+
 class ProductDetailsController extends GetxController {
   // get product details from arguments
   ProductModel product = Get.arguments;
   Rx<UserModel> userOwner = Rx<UserModel>(UserModel(name: '', lastName: ''));
+
+  //calificacion estrellas
+    Rx<RankingModel> ranking = Rx<RankingModel>(RankingModel(punt: 0));
+
 
   String messageToDisplay = '';
 
@@ -126,3 +132,4 @@ class ProductDetailsController extends GetxController {
   //talla seleccionada
   var selectedSize = 'S'.obs;
 }
+

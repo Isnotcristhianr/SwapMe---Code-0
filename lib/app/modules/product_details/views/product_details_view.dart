@@ -123,7 +123,20 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             begin: -1,
                             curve: Curves.easeInSine,
                           ),
-                          
+                          //calificacion del usuario estrellas
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (int i = 0; i < 5; i++)
+                            Icon(
+                              Icons.star,
+                              color: i < controller.ranking.value.punt!.toInt()
+                                  ? Colors.yellow
+                                  : Colors.grey,
+                            ),
+                        ],
+                      ),
+                        
                     ],
                   ),
                 ),
