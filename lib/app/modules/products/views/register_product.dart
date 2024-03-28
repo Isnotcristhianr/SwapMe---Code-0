@@ -220,7 +220,6 @@ class RegisterProductScreen extends GetView<ProductController> {
                               } else if (controllerState.text == 'Excelente') {
                                 controllerRaiting.text = '5.0';
                               }
-                              
                             },
                           ),
                         ),

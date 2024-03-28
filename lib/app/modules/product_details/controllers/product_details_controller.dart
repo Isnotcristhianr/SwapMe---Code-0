@@ -11,6 +11,8 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../data/models/product_model.dart';
 import '../../base/controllers/base_controller.dart';
 
+import 'dart:async';
+
 class ProductDetailsController extends GetxController {
   // get product details from arguments
   ProductModel product = Get.arguments;
@@ -24,14 +26,37 @@ class ProductDetailsController extends GetxController {
     super.onReady();
   }
 
-  getOwnerData() {
+  Future<void> getOwnerData() async {
+    try {
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+          .instance
+          .collection('users')
+          .doc(product.ownerId!)
+          .get();
+
+      if (snapshot.exists) {
+        userOwner.value = UserModel.fromFirebase(snapshot, null);
+        update(); // Actualiza la vista después de obtener los datos del usuario propietario
+      }
+      // ignore: empty_catches
+    } catch (e) {}
+  }
+
+  void fetchOwnerDetails(String ownerId) {
     FirebaseFirestore.instance
         .collection('users')
-        .doc(product.ownerId!)
+        .doc(ownerId)
         .get()
-        .then((value) => {userOwner.value = UserModel.fromFirebase(value, null)})
-        // ignore: invalid_return_type_for_catch_error, avoid_print
-        .catchError(print);
+        .then((DocumentSnapshot<Map<String, dynamic>> snapshot) {
+      if (snapshot.exists) {
+        userOwner.value = UserModel.fromFirebase(snapshot, null);
+      } else {
+        // El propietario no se encontró en Firestore
+        // Puedes manejar esta situación según tus requisitos
+      }
+    }).catchError((error) {
+      // Manejar el error si ocurre algún problema al obtener los detalles del propietario
+    });
   }
 
   /// when the user press on the favorite button
@@ -68,8 +93,10 @@ class ProductDetailsController extends GetxController {
         messageToDisplay = 'El dueño no tiene telefono registrado';
         return false;
       }
-      // ignore: 
-      message = '$message ${owner.name} ${owner.lastName}'  + ' me interesa tu producto ${product.name}.' + ' ¿Podemos acordar un intercambio? 🤔';
+      // ignore:
+      message = '$message ${owner.name} ${owner.lastName}' +
+          ' me interesa tu producto ${product.name}.' +
+          ' ¿Podemos acordar un intercambio? 🤔';
       Uri url = getUrl(phone: phone, message: message);
       if (await canLaunchUrl(url)) {
         await launchUrl(url);
@@ -98,5 +125,23 @@ class ProductDetailsController extends GetxController {
 
   //talla seleccionada
   var selectedSize = 'S'.obs;
-  
 }
+
+//getratingString
+String getRatingString(double rating) {
+    if (rating == 0.0) {
+      return 'Sin calificación';
+    } else if (rating == 1.0) {
+      return 'Muy malo';
+    } else if (rating == 2.0) {
+      return 'Malo';
+    } else if (rating == 3.0) {
+      return 'Regular';
+    } else if (rating == 4.0) {
+      return 'Bueno';
+    } else if (rating == 5.0) {
+      return 'Excelente';
+    } else {
+      return '';
+    }
+  }

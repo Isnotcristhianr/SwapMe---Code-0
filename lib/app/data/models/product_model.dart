@@ -7,11 +7,11 @@ class ProductModel {
   String? name;
   int? quantity;
   double? price;
-  double? rating;
+  double? rating; // Cambiado a double
   String? reviews;
   String? size;
   bool? isFavorite;
-  String? ownerId; // The owner principal
+  String? ownerId;
   String? newOwnerId;
   bool available;
   List<String>? interested;
@@ -44,11 +44,11 @@ class ProductModel {
     return ProductModel(
       id: data?['id'] ?? snapshot.id,
       name: data?['name'],
-      image: data?['image'], //data?['image'],
+      image: data?['image'],
       quantity: data?['quantity'],
       price: double.tryParse(data?['price'].toString() ?? '0'),
       size: data?['size'],
-      rating: data?['rating'] ?? 0,
+      rating: double.tryParse(data?['rating'].toString() ?? '0'), // Parse a double
       reviews: data?['reviews'] ?? 'Sin review',
       isFavorite: data?['is_favorite'],
       ownerId: data?['owner_id'],
@@ -57,6 +57,7 @@ class ProductModel {
       interested: List<String>.from(data?['interested'] ?? []),
     );
   }
+
   factory ProductModel.fromMap(
     Map<String, dynamic> data,
     SnapshotOptions? options,
@@ -64,11 +65,11 @@ class ProductModel {
     return ProductModel(
       id: data['id'],
       name: data['name'],
-      image: data['image'], //data?['image'],
+      image: data['image'],
       quantity: data['quantity'],
       price: double.tryParse(data['price'].toString()),
       size: data['size'],
-      rating: data['rating'].toDouble() ?? 0.0,
+      rating: double.tryParse(data['rating'].toString()), // Parse a double
       reviews: data['reviews'] ?? 'Sin review',
       isFavorite: data['is_favorite'],
       ownerId: data['owner_id'],

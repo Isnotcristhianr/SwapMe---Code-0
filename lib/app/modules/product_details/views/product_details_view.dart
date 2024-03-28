@@ -100,79 +100,122 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
               10.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Text(
-                  controller.product.name!,
-                  style: theme.textTheme.bodyLarge,
-                ).animate().fade().slideX(
-                      duration: const Duration(milliseconds: 300),
-                      begin: -1,
-                      curve: Curves.easeInSine,
-                    ),
-              ),
-              10.verticalSpace,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Row(
-                  children: [
-                    const Icon(Icons.star_rounded, color: Color(0xFFFFC542)),
-                    5.horizontalSpace,
-                    Text(
-                      controller.product.rating!.toString(),
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 18.sp, fontWeight: FontWeight.bold),
-                    ),
-                    5.horizontalSpace,
-                  ],
-                ).animate().fade().slideX(
-                      duration: const Duration(milliseconds: 300),
-                      begin: -1,
-                      curve: Curves.easeInSine,
-                    ),
-              ),
-              20.verticalSpace,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Text(
-                  controller.product.reviews!,
-                  style: theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp),
+                child: Center(
+                  child: Column(
+                    children: [
+                      Text(
+                        controller.product.name!,
+                        style: theme.textTheme.bodyLarge,
+                      ).animate().fade().slideX(
+                            duration: const Duration(milliseconds: 300),
+                            begin: -1,
+                            curve: Curves.easeInSine,
+                          ),
+                      Obx(() {
+                        // Use Obx to listen for changes in userOwner
+                        // and update the UI accordingly
+                        return Text(
+                          // dueño del producto
+                          'Propietario: ${controller.userOwner.value.name} ${controller.userOwner.value.lastName}',
+                        );
+                      }).animate().fade().slideX(
+                            duration: const Duration(milliseconds: 300),
+                            begin: -1,
+                            curve: Curves.easeInSine,
+                          ),
+                      //calificacion del usuario estrellas
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          for (int i = 0; i < 5; i++)
+                            Icon(
+                              Icons.star,
+                              //estatico
+                              color: i < 3.5 ? Colors.amber : Colors.grey,
+                            ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               10.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Row(
+                child: Column(
                   children: [
-                    Text(
-                      'Talla Disponible: ',
-                      style: theme.textTheme.bodyMedium?.copyWith(
-                          fontSize: 18.sp, fontWeight: FontWeight.bold),
-                    ).animate().fade().slideX(
-                          duration: const Duration(milliseconds: 300),
-                          begin: -1,
-                          curve: Curves.easeInSine,
+                    Row(
+                      children: [
+                        Text(
+                          "Condición: ",
+                          style: theme.textTheme.bodySmall?.copyWith(
+                              fontSize: 15.sp, fontWeight: FontWeight.bold),
                         ),
-                    SizedBox(width: 10.w),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Acción al hacer clic en la talla (si es necesario)
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white, backgroundColor: const Color(0xFF0FDA89),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.r),
+                        ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.white,
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.r),
+                            ),
+                          ),
+                          child: Text(
+                            controller.product.rating != null
+                                ? getRatingString(controller.product.rating!)
+                                : 'No disponible',
+                            style: theme.textTheme.bodySmall
+                                ?.copyWith(fontSize: 15.sp),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        ' ${controller.product.size} ',
-                        style: TextStyle(
-                          fontSize: 18.sp,
-                          fontWeight: FontWeight.bold,
+                      ],
+                    ),
+                    5.verticalSpace,
+                    Row(
+                      children: [
+                        RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: 'Talla Disponible: ',
+                                style: theme.textTheme.bodyMedium?.copyWith(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: '${controller.product.size}',
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(fontSize: 15.sp),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      ],
+                    ),
+                    5.verticalSpace,
+                    Row(
+                      children: [
+                        Text(
+                          'Descripcion: ',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                              fontSize: 15.sp, fontWeight: FontWeight.bold),
+                        ),
+                        Expanded(
+                          child: Text(
+                            controller.product.reviews!,
+                            style: theme.textTheme.bodyMedium
+                                ?.copyWith(fontSize: 16.sp),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
+              ).animate().fade().slideX(
+                    duration: const Duration(milliseconds: 300),
+                    begin: -1,
+                    curve: Curves.easeInSine,
+                  ),
               20.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.w),

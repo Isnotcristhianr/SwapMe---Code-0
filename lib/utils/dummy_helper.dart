@@ -11,7 +11,7 @@ class DummyHelper {
       name: 'Blusa Basica',
       quantity: 1,
       price: 15.50,
-      rating: 4.5,
+      rating: 4,
       reviews: '12 reviews',
       size: 'M',
       isFavorite: false,
@@ -22,7 +22,7 @@ class DummyHelper {
       name: 'Blusa Shein',
       quantity: 1,
       price: 14.99,
-      rating: 4.0,
+      rating: 4,
       reviews: '10 reviews',
       size: 'M',
       isFavorite: false
@@ -33,7 +33,7 @@ class DummyHelper {
       name: 'Buso Tigers Original',
       quantity: 1,
       price: 29.99,
-      rating: 4.8,
+      rating: 4,
       reviews: '22 reviews',
       size: 'L',
       isFavorite: false
@@ -44,7 +44,7 @@ class DummyHelper {
       name: 'Sudadera Verano',
       quantity: 1,
       price: 20.99,
-      rating: 3.9,
+      rating: 3,
       reviews: '14 reviews',
       size: 'L',
       isFavorite: false
@@ -55,7 +55,7 @@ class DummyHelper {
       name: 'Pamtalon Zara',
       quantity: 1,
       price: 10.99,
-      rating: 4.1,
+      rating: 4,
       reviews: '26 reviews',
       size: 'M',
       isFavorite: false
@@ -66,7 +66,7 @@ class DummyHelper {
       name: 'Chamarra Piloto',
       quantity: 1,
       price: 24.99,
-      rating: 4.0,
+      rating: 4,
       reviews: '58 reviews',
       size: 'S',
       isFavorite: false
