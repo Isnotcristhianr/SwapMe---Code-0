@@ -13,7 +13,6 @@ class RankingModel {
     this.authId,
     this.date,
     this.punt,
-    this.totalRating,
     this.totalSwaps,
   });
 
@@ -23,19 +22,37 @@ class RankingModel {
       authId: map['authId'],
       date: map['date'],
       punt: map['punt'],
-      totalRating: map['totalRating']?.toDouble(),  // Convertir a double
-      totalSwaps: map['totalSwaps'],  // No necesita conversión
+      totalSwaps: map['totalSwaps'], // No necesita conversión
     );
   }
 
-  factory RankingModel.fromFirebase(DocumentSnapshot<Map<String, dynamic>> snapshot, String? id) {
+  factory RankingModel.fromFirebase(
+      DocumentSnapshot<Map<String, dynamic>> snapshot, String? id) {
     return RankingModel(
       id: id,
       authId: snapshot.data()?['authId'],
       date: snapshot.data()?['date'],
-      punt: (snapshot.data()?['punt'] ?? 0).toDouble(),  // Convertir a double
-      totalRating: (snapshot.data()?['totalRating'] ?? 0).toDouble(),  // Convertir a double
-      totalSwaps: snapshot.data()?['totalSwaps'] ?? 0,  // No necesita conversión
+      punt: (snapshot.data()?['punt'] ?? 0).toDouble(), // Convertir a double
+      totalSwaps: snapshot.data()?['totalSwaps'] ?? 0, // No necesita conversión
     );
+  }
+
+  //buscar el puntaje de un usuario en especifico
+  static Future<double?> findUserPunt(String userId) async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('ranking')
+          .where('authId', isEqualTo: userId)
+          .get();
+      if (snapshot.docs.isNotEmpty) {
+        return RankingModel.fromFirebase(
+                snapshot.docs.first, snapshot.docs.first.id)
+            .punt;
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error finding user punt: $e');
+    }
+    return 0;
   }
 }

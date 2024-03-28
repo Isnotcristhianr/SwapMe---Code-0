@@ -127,12 +127,21 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          for (int i = 0; i < 5; i++)
-                            Icon(
-                              Icons.star,
-                              //estatico
-                              color: i < 3.5 ? Colors.amber : Colors.grey,
-                            ),
+                          Obx(() {
+                            double ownerRating =
+                                controller.ownerRanking.value.punt ?? 0.0;
+                            return Row(
+                              children: List.generate(
+                                5,
+                                (index) => Icon(
+                                  Icons.star,
+                                  color: index < ownerRating
+                                      ? Colors.amber
+                                      : Colors.grey,
+                                ),
+                              ),
+                            );
+                          }),
                         ],
                       ),
                     ],
