@@ -7,7 +7,7 @@ class ProductModel {
   String? name;
   int? quantity;
   double? price;
-  double? rating;
+  int? rating;
   String? reviews;
   String? size;
   bool? isFavorite;

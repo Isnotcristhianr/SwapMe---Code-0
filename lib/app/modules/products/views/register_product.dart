@@ -220,7 +220,6 @@ class RegisterProductScreen extends GetView<ProductController> {
                               } else if (controllerState.text == 'Excelente') {
                                 controllerRaiting.text = '5.0';
                               }
-                              
                             },
                           ),
                         ),
@@ -248,7 +247,7 @@ class RegisterProductScreen extends GetView<ProductController> {
                                   int.parse(controllerQuantity.text);
                               controller.product.size = controllerSize.text;
                               controller.product.rating =
-                                  double.parse(controllerRaiting.text);
+                                  int.parse(controllerRaiting.text);
 
                               bool isRegistered =
                                   await controller.registerProduct();

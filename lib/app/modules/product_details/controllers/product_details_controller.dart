@@ -13,16 +13,10 @@ import '../../base/controllers/base_controller.dart';
 
 import 'dart:async';
 
-import 'package:swapme/app/data/models/ranking_model.dart';
-
 class ProductDetailsController extends GetxController {
   // get product details from arguments
   ProductModel product = Get.arguments;
   Rx<UserModel> userOwner = Rx<UserModel>(UserModel(name: '', lastName: ''));
-
-  //calificacion estrellas
-    Rx<RankingModel> ranking = Rx<RankingModel>(RankingModel(punt: 0));
-
 
   String messageToDisplay = '';
 
@@ -34,18 +28,18 @@ class ProductDetailsController extends GetxController {
 
   Future<void> getOwnerData() async {
     try {
-      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore
+          .instance
           .collection('users')
           .doc(product.ownerId!)
           .get();
-      
+
       if (snapshot.exists) {
         userOwner.value = UserModel.fromFirebase(snapshot, null);
         update(); // Actualiza la vista después de obtener los datos del usuario propietario
       }
-    // ignore: empty_catches
-    } catch (e) {
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 
   void fetchOwnerDetails(String ownerId) {
@@ -133,3 +127,21 @@ class ProductDetailsController extends GetxController {
   var selectedSize = 'S'.obs;
 }
 
+//getratingString
+String getRatingString(int rating) {
+    if (rating == 0.0) {
+      return 'Sin calificación';
+    } else if (rating == 1.0) {
+      return 'Muy malo';
+    } else if (rating == 2.0) {
+      return 'Malo';
+    } else if (rating == 3.0) {
+      return 'Regular';
+    } else if (rating == 4.0) {
+      return 'Bueno';
+    } else if (rating == 5.0) {
+      return 'Excelente';
+    } else {
+      return '';
+    }
+  }

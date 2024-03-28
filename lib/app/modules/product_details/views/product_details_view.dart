@@ -123,20 +123,17 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             begin: -1,
                             curve: Curves.easeInSine,
                           ),
-                          //calificacion del usuario estrellas
+                      //calificacion del usuario estrellas
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           for (int i = 0; i < 5; i++)
                             Icon(
                               Icons.star,
-                              color: i < controller.ranking.value.punt!.toInt()
-                                  ? Colors.yellow
-                                  : Colors.grey,
+                              color: i < 3 ? Colors.yellow : Colors.grey,
                             ),
                         ],
                       ),
-                        
                     ],
                   ),
                 ),
@@ -154,21 +151,23 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                               fontSize: 15.sp, fontWeight: FontWeight.bold),
                         ),
                         ElevatedButton(
-                          onPressed: () {}, // Add your onPressed function here
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: const Color(0xFF0FDA89),
+                            backgroundColor: Colors.white,
+                            elevation: 0,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.r),
+                              borderRadius: BorderRadius.circular(10.r),
                             ),
                           ),
                           child: Text(
-                            ' ${getRatingString(controller.product.rating ?? 0.0)} ',
-                            style: TextStyle(
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            controller.product.rating != null
+                                ? getRatingString(controller.product.rating!)
+                                : 'No disponible',
+                                
+                            style: theme.textTheme.bodySmall
+                                ?.copyWith(fontSize: 15.sp),
                           ),
+                          
                         ),
                       ],
                     ),
@@ -181,11 +180,13 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                               TextSpan(
                                 text: 'Talla Disponible: ',
                                 style: theme.textTheme.bodyMedium?.copyWith(
-                                    fontSize: 15.sp, fontWeight: FontWeight.bold),
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.bold),
                               ),
                               TextSpan(
                                 text: '${controller.product.size}',
-                                style: theme.textTheme.bodyMedium?.copyWith(fontSize: 15.sp),
+                                style: theme.textTheme.bodyMedium
+                                    ?.copyWith(fontSize: 15.sp),
                               ),
                             ],
                           ),
@@ -212,12 +213,11 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                   ],
                 ),
               ).animate().fade().slideX(
-                duration: const Duration(milliseconds: 300),
-                begin: -1,
-                curve: Curves.easeInSine,
-              ),
+                    duration: const Duration(milliseconds: 300),
+                    begin: -1,
+                    curve: Curves.easeInSine,
+                  ),
               20.verticalSpace,
-              
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 30.w),
                 child: CustomButton(
@@ -261,21 +261,5 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
     );
   }
 
-  String getRatingString(double rating) {
-    if (rating == 0) {
-      return 'Sin calificación';
-    } else if (rating == 1) {
-      return 'Muy malo';
-    } else if (rating == 2) {
-      return 'Malo';
-    } else if (rating == 3) {
-      return 'Regular';
-    } else if (rating == 4) {
-      return 'Bueno';
-    } else if (rating == 5) {
-      return 'Excelente';
-    } else {
-      return '';
-    }
-  }
+ 
 }
