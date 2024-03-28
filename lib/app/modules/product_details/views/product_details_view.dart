@@ -130,7 +130,8 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                           for (int i = 0; i < 5; i++)
                             Icon(
                               Icons.star,
-                              color: i < 3 ? Colors.yellow : Colors.grey,
+                              //estatico
+                              color: i < 3.5 ? Colors.amber : Colors.grey,
                             ),
                         ],
                       ),
@@ -163,11 +164,9 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                             controller.product.rating != null
                                 ? getRatingString(controller.product.rating!)
                                 : 'No disponible',
-                                
                             style: theme.textTheme.bodySmall
                                 ?.copyWith(fontSize: 15.sp),
                           ),
-                          
                         ),
                       ],
                     ),
@@ -260,6 +259,4 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
       ),
     );
   }
-
- 
 }

@@ -247,7 +247,7 @@ class RegisterProductScreen extends GetView<ProductController> {
                                   int.parse(controllerQuantity.text);
                               controller.product.size = controllerSize.text;
                               controller.product.rating =
-                                  int.parse(controllerRaiting.text);
+                                  double.parse(controllerRaiting.text);
 
                               bool isRegistered =
                                   await controller.registerProduct();

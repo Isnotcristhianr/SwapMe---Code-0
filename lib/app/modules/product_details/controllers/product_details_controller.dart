@@ -128,7 +128,7 @@ class ProductDetailsController extends GetxController {
 }
 
 //getratingString
-String getRatingString(int rating) {
+String getRatingString(double rating) {
     if (rating == 0.0) {
       return 'Sin calificación';
     } else if (rating == 1.0) {
