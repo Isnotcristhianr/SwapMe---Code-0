@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:swapme/app/data/local/my_shared_pref.dart';
-import 'package:swapme/app/data/models/user_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../data/models/product_model.dart';
@@ -13,17 +12,54 @@ import '../../base/controllers/base_controller.dart';
 
 import 'dart:async';
 
+//modelos
+import 'package:swapme/app/data/models/user_model.dart';
+//ranking model
+import 'package:swapme/app/data/models/ranking_model.dart';
+
 class ProductDetailsController extends GetxController {
+  String messageToDisplay = '';
+
   // get product details from arguments
   ProductModel product = Get.arguments;
-  Rx<UserModel> userOwner = Rx<UserModel>(UserModel(name: '', lastName: ''));
+  Rx<UserModel> userOwner =
+      Rx<UserModel>(UserModel(name: '', lastName: '', id: ''));
 
-  String messageToDisplay = '';
+  //obtener punt de ranking model de un usuario
+  Rx<RankingModel> rankingModel = Rx<RankingModel>(RankingModel(punt: 0.0));
+
+  Rx<RankingModel> ownerRanking = Rx<RankingModel>(RankingModel(punt: 0.0));
 
   @override
   onReady() {
     getOwnerData();
+    getOwnerRanking();
     super.onReady();
+  }
+
+ Future<void> getOwnerRanking() async {
+    try {
+      final ownerData = await FirebaseFirestore.instance
+          .collection('users')
+          .doc(product.ownerId)
+          .get();
+
+      if (ownerData.exists) {
+        final authId = ownerData.data()?['auth_id'];
+        if (authId != null) {
+          final rankingData = await FirebaseFirestore.instance
+              .collection('ranking')
+              .doc(authId)
+              .get();
+
+          if (rankingData.exists) {
+            ownerRanking.value = RankingModel.fromFirebase(rankingData, authId);
+            update(); // Actualiza la vista después de obtener la puntuación del propietario
+          }
+        }
+      }
+    } catch (e) {
+    }
   }
 
   Future<void> getOwnerData() async {
@@ -129,19 +165,19 @@ class ProductDetailsController extends GetxController {
 
 //getratingString
 String getRatingString(double rating) {
-    if (rating == 0.0) {
-      return 'Sin calificación';
-    } else if (rating == 1.0) {
-      return 'Muy malo';
-    } else if (rating == 2.0) {
-      return 'Malo';
-    } else if (rating == 3.0) {
-      return 'Regular';
-    } else if (rating == 4.0) {
-      return 'Bueno';
-    } else if (rating == 5.0) {
-      return 'Excelente';
-    } else {
-      return '';
-    }
+  if (rating == 0.0) {
+    return 'Sin calificación';
+  } else if (rating == 1.0) {
+    return 'Muy malo';
+  } else if (rating == 2.0) {
+    return 'Malo';
+  } else if (rating == 3.0) {
+    return 'Regular';
+  } else if (rating == 4.0) {
+    return 'Bueno';
+  } else if (rating == 5.0) {
+    return 'Excelente';
+  } else {
+    return '';
   }
+}
