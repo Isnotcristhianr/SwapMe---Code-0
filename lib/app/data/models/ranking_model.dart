@@ -33,9 +33,11 @@ class RankingModel {
       authId: snapshot.data()?['authId'],
       date: snapshot.data()?['date'],
       punt: (snapshot.data()?['punt'] ?? 0).toDouble(), // Convertir a double
-      totalSwaps: snapshot.data()?['totalSwaps'] ?? 0, // No necesita conversión
+      totalSwaps: (snapshot.data()?['totalSwaps'] ?? 0).toInt(), // Convert to int
     );
   }
+
+  get name => null;
 
   //buscar el puntaje de un usuario en especifico
   static Future<double?> findUserPunt(String userId) async {
@@ -55,4 +57,5 @@ class RankingModel {
     }
     return 0;
   }
+  
 }

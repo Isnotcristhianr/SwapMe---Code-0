@@ -58,6 +58,7 @@ class ProductDetailsController extends GetxController {
           }
         }
       }
+    // ignore: empty_catches
     } catch (e) {
     }
   }
