@@ -5,13 +5,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 // ignore: unused_import
 import 'package:get/get.dart';
+import 'package:swapme/app/data/models/ranking_model.dart';
 
 // ignore: unused_import
 import '../../../../../utils/constants.dart';
 
 // ignore: must_be_immutable
 class NotificationItem extends StatelessWidget {
-  NotificationItem({super.key, Object? name, Object? points, Object? image});
+  NotificationItem({super.key, Object? name, Object? points, Object? image, required RankingModel rankModel});
 
   //fecha de hoy capturar
   DateTime date = DateTime.now();
