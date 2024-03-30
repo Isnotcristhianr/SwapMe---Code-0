@@ -4,7 +4,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
-import 'package:swapme/app/modules/base/controllers/base_controller.dart';
 
 import '../../../components/screen_title.dart';
 import '../controllers/notifications_controller.dart';
@@ -45,13 +44,29 @@ class NotificationsView extends GetView<NotificationsController> {
                   children: [
                     // Mostrar los tres mejores usuarios
                     for (int i = 0; i < controller.topUsers.length; i++)
-                      buildUserRankingItem(i + 1, controller.topUsers[i],
-                          controller.topUsers[i].authId.toString()),
+                      FutureBuilder(
+                        future: controller.getUserById(
+                            controller.topUsers[i].authId.toString()),
+                        builder: (context, snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.done) {
+                            return buildUserRankingItem(
+                              i + 1,
+                              controller.topUsers[i],
+                              snapshot.data
+                                  .toString(), // Pasa el nombre del usuario como parámetro
+                            );
+                          } else {
+                            return const CircularProgressIndicator();
+                          }
+                        },
+                      ),
                     // Aquí puedes mostrar la lista completa de usuarios si es necesario
                   ],
                 );
               }
             }),
+
             40.verticalSpace,
           ],
         ),
@@ -62,12 +77,11 @@ class NotificationsView extends GetView<NotificationsController> {
   Widget buildUserRankingItem(
     int position,
     RankingModel rank,
-    String authId,
+    String userName,
   ) {
     return ListTile(
       leading: Text('$position'), // Muestra la posición en el ranking
-      //nombre del usuario en el ranking
-      title: Text("Usuario: $authId "),
+      title: Text("Usuario: $userName "), // Mostrar el nombre del usuario
 
       subtitle: Text(
           'Intercambios: ${rank.totalSwaps}, Puntuación: ${rank.punt}'), // Muestra más detalles del usuario

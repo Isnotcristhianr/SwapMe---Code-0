@@ -17,7 +17,7 @@ class NotificationsController extends GetxController {
     super.onInit();
     //datos del ranking
     getTopUsers();
-    //datos de los usuarios para
+    //datos de los usuarios
     getUsers();
   }
 
@@ -46,15 +46,20 @@ class NotificationsController extends GetxController {
   Future<void> getUsers() async {
     try {
       final userIds = topUsers.map((user) => user.authId).toList();
-      final snapshot = await FirebaseFirestore.instance
-          .collection('users')
-          .where(FieldPath.documentId, whereIn: userIds)
-          .get();
-      if (snapshot.docs.isNotEmpty) {
-        users.value = snapshot.docs
-            .map((doc) =>
-                UserModel.fromFirebase(doc, doc.id as SnapshotOptions?))
-            .toList();
+
+      // Verificar que userIds no esté vacío antes de ejecutar la consulta
+      if (userIds.isNotEmpty) {
+        final snapshot = await FirebaseFirestore.instance
+            .collection('users')
+            .where(FieldPath.documentId, whereIn: userIds)
+            .get();
+
+        if (snapshot.docs.isNotEmpty) {
+          users.value = snapshot.docs
+              .map((doc) =>
+                  UserModel.fromFirebase(doc, doc.id as SnapshotOptions?))
+              .toList();
+        }
       }
     } catch (e) {
       // Manejar el error
@@ -64,12 +69,24 @@ class NotificationsController extends GetxController {
   }
 
   // Función para obtener el nombre del usuario por authId
-  // Función para obtener el nombre del usuario por authId
-  String? getUserName(String authId) {
-    final user = users.firstWhere((user) => user.authId == authId,
-        orElse: () => UserModel(
-            name:
-                "")); // Devuelve un UserModel vacío si no se encuentra el usuario
-    return user.name;
+  Future<String?> getUserById(String authId) async {
+    try {
+      final userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('auth_id', isEqualTo: authId)
+          .limit(
+              1) // Limitar a 1 documento, ya que debería haber solo un usuario con el mismo authId
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        // Obtener el nombre del usuario del primer documento encontrado
+        return userSnapshot.docs.first.data()['name'];
+      }
+    } catch (e) {
+      // Manejar el error
+      // ignore: avoid_print
+      print('Error fetching user by id: $e');
+    }
+    return null; // Retorna null si no se encuentra el usuario
   }
 }
