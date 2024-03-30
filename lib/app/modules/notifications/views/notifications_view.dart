@@ -48,17 +48,13 @@ class NotificationsView extends GetView<NotificationsController> {
                         future: controller.getUserById(
                             controller.topUsers[i].authId.toString()),
                         builder: (context, snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.done) {
+                         
                             return buildUserRankingItem(
                               i + 1,
                               controller.topUsers[i],
                               snapshot.data
                                   .toString(), // Pasa el nombre del usuario como parámetro
                             );
-                          } else {
-                            return const CircularProgressIndicator();
-                          }
                         },
                       ),
                     // Aquí puedes mostrar la lista completa de usuarios si es necesario
