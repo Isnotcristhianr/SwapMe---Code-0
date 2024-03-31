@@ -35,6 +35,8 @@ dependencies:
   url_launcher: ^6.1.14
   firebase_storage: ^11.2.8
   video_player: ^2.2.5
+  #animaciones
+  flutter_staggered_animations: ^1.0.0
 
 dev_dependencies:
   mockito:
