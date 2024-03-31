@@ -59,6 +59,9 @@ class NotificationsController extends GetxController {
               .map((doc) =>
                   UserModel.fromFirebase(doc, doc.id as SnapshotOptions?))
               .toList();
+
+          //obtener foto del perfil del usuario
+          await getUsersProfilePhotos(userIds);
         }
       }
     } catch (e) {
@@ -88,5 +91,30 @@ class NotificationsController extends GetxController {
       print('Error fetching user by id: $e');
     }
     return null; // Retorna null si no se encuentra el usuario
+  }
+
+  // Método para obtener las fotos de perfil de los usuarios
+  Future<void> getUsersProfilePhotos(List<String?> userIds) async {
+    try {
+      final snapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where(FieldPath.documentId,
+              whereIn: userIds.whereType<
+                  String>()) // Filtrar valores nulos de la lista userIds
+          .get();
+
+      if (snapshot.docs.isNotEmpty) {
+        for (final doc in snapshot.docs) {
+          final user = UserModel.fromFirebase(doc, doc.id as SnapshotOptions?);
+          // Obtener la foto de perfil del usuario y almacenarla en el modelo UserModel
+          user.photo = doc.data()[
+              'profile_photo_url']; // Asegúrate de tener este campo en tu modelo UserModel
+          users[users.indexWhere((element) => element.id == user.id)] = user;
+        }
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error fetching user profile photos: $e');
+    }
   }
 }
