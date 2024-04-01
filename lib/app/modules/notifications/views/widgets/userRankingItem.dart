@@ -22,11 +22,12 @@ class UserRankingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     Color color;
     if (position == 1) {
-      color = const Color(0xFFFFD700); // Color para el primer lugar
+      //diamante primer lugar
+      color = const Color(0xFFD4AF37);
     } else if (position == 2) {
-      color = const Color(0xFFCDCDCD); // Color para el segundo lugar
+      color = const Color.fromARGB(255, 178, 178, 178); // Color para el segundo lugar
     } else if (position == 3) {
-      color = const Color(0xFFCD7F32); // Color para el tercer lugar
+      color = Color.fromARGB(255, 189, 118, 47); // Color para el tercer lugar
     } else {
       color = Colors.cyan; // Color para otros lugares
     }

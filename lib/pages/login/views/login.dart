@@ -104,24 +104,12 @@ class LoginPage extends GetView<LoginController> {
                                             CrossAxisAlignment.start,
                                         // ignore: prefer_const_literals_to_create_immutables
                                         children: [
-                                          Text(
-                                            welcomeController.email,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 0.035 *
-                                                  MediaQuery.of(context)
-                                                      .size
-                                                      .width,
-                                              fontWeight: FontWeight.bold,
-                                              overflow: TextOverflow.clip,
-                                            ),
-                                          ),
                                           const SizedBox(height: 5),
                                           Text(
-                                            welcomeController.email,
+                                            "Bienvenido: \n${welcomeController.email}",
                                             style: TextStyle(
                                               color: Colors.white,
-                                              fontSize: 0.03 *
+                                              fontSize: 0.033 *
                                                   MediaQuery.of(context)
                                                       .size
                                                       .width,
