@@ -7,14 +7,10 @@ import 'package:get/get.dart';
 
 import '../../../components/screen_title.dart';
 import '../controllers/notifications_controller.dart';
-// ignore: unused_import
-import 'widgets/notification_item.dart';
 
-//animaciones
-import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'widgets/userRankingItem.dart';
 
-//ranking mddel
-import 'package:swapme/app/data/models/ranking_model.dart';
+//widget user ranking
 
 class NotificationsView extends GetView<NotificationsController> {
   const NotificationsView({super.key});
@@ -35,98 +31,45 @@ class NotificationsView extends GetView<NotificationsController> {
               subtitle: 'Top Usuarios',
               dividerEndIndent: 150,
             ),
-            10.verticalSpace,
-
-            //prximamente se implementara el ranking
-
+            //top users
             Obx(() {
               if (controller.topUsers.isEmpty) {
-                return const CircularProgressIndicator(); // Muestra un indicador de carga mientras se obtienen los datos
+                return const CircularProgressIndicator();
               } else {
                 return Column(
                   children: [
-                    // Mostrar los tres mejores usuarios
                     for (int i = 0; i < controller.topUsers.length; i++)
                       FutureBuilder(
-                        future: controller.getUserById(
-                            controller.topUsers[i].authId.toString()),
-                        builder: (context, snapshot) {
-                          return buildUserRankingItem(
-                            i + 1,
-                            controller.topUsers[i],
-                            snapshot.data
-                                .toString(), // Pasa el nombre del usuario como parámetro
-                          );
+                        future: Future.wait([
+                          controller.getUserById(
+                              controller.topUsers[i].authId.toString()),
+                          controller.getUsersProfilePhotos(
+                              controller.topUsers[i].authId.toString()),
+                        ]),
+                        builder:
+                            (context, AsyncSnapshot<List<dynamic>> snapshot) {
+                          if (snapshot.hasData && snapshot.data != null) {
+                            return UserRankingItem(
+                              position: i + 1,
+                              rank: controller.topUsers[i],
+                              userName: snapshot.data![0].toString(),
+                              profilePhoto: snapshot.data![1].toString(),
+                            );
+                          } else {
+                            return const Text('No data available');
+                          }
                         },
                       ),
-                    // Aquí puedes mostrar la lista completa de usuarios si es necesario
                   ],
                 );
               }
             }),
-
-            40.verticalSpace,
+            //linea divisioria
+            const Divider(
+              color: Colors.greenAccent,
+              thickness: 5,
+            ),
           ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildUserRankingItem(
-    int position,
-    RankingModel rank,
-    String userName,
-  ) {
-    Color color;
-    if (position == 1) {
-      //color primer lugar oro
-      color = Colors.amber;
-    } else if (position == 2) {
-      color = Colors.grey; // Color para el segundo usuario
-    } else if (position == 3) {
-      color = Colors.brown; // Color para el tercer usuario
-    } else {
-      color = Colors.white; // Color para los demás usuarios
-    }
-
-    return AnimationConfiguration.staggeredList(
-      position: position,
-      duration: const Duration(milliseconds: 500),
-      child: SlideAnimation(
-        verticalOffset: 50.0,
-        child: FadeInAnimation(
-          child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 8.0),
-            padding: const EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(8.0),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 2,
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: ListTile(
-              leading: 
-              //trofeo para cada lugar
-              position == 1
-                  ? const Icon(Icons.emoji_events, size: 40)
-                  : position == 2
-                      ? const Icon(Icons.emoji_events, size: 40)
-                      : position == 3
-                          ? const Icon(Icons.emoji_events, size: 40)
-                          : const Icon(Icons.emoji_events, size: 40),
-                          
-              title:
-                  Text("Usuario: $userName "), // Mostrar el nombre del usuario
-              subtitle: Text(
-                  'Intercambios: ${rank.totalSwaps}, Puntuación: ${rank.punt}'), // Muestra más detalles del usuario
-            ),
-          ),
         ),
       ),
     );

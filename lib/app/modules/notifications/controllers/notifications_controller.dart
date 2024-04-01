@@ -59,6 +59,9 @@ class NotificationsController extends GetxController {
               .map((doc) =>
                   UserModel.fromFirebase(doc, doc.id as SnapshotOptions?))
               .toList();
+
+          //obtener foto del perfil del usuario
+          await getUsersProfilePhotos(userIds.join(', '));
         }
       }
     } catch (e) {
@@ -88,5 +91,29 @@ class NotificationsController extends GetxController {
       print('Error fetching user by id: $e');
     }
     return null; // Retorna null si no se encuentra el usuario
+  }
+
+  // Método para obtener la foto de perfil de un usuario por el id
+  Future<String?> getUsersProfilePhotos(String authId) async {
+    try {
+      final userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('auth_id', isEqualTo: authId)
+          .limit(
+              1) // Limitar a 1 documento, ya que debería haber solo un usuario con el mismo authId
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        // Obtener el nombre del usuario del primer documento encontrado
+        return userSnapshot.docs.first.data()['photo'];
+      }
+      
+    } catch (e) {
+      // Manejar el error
+      // ignore: avoid_print
+      print('Error fetching user by id: $e');
+    }
+   //foto generica
+      return 'https://via.placeholder.com/150';
   }
 }

@@ -23,7 +23,7 @@ class SettingsView extends GetView<SettingsController> {
     // Get controller settings
     final theme = context.theme;
 
-    //get put 
+    //get put
     final controller = Get.put(SettingsController());
     return Scaffold(
       body: Padding(
@@ -88,6 +88,11 @@ class SettingsView extends GetView<SettingsController> {
                                   ? double.parse(
                                       controller.ranking.value.punt.toString())
                                   : 0.0,
+                              //cantidad de intercambios realizados
+                              exchanges: controller.ranking.value.totalSwaps !=
+                                      null
+                                  ? "Intercambios: ${controller.ranking.value.totalSwaps}"
+                                  : "Sin Intercambios",
                               backgroundImage: (getImage(
                                       controller.user.value.photo,
                                       onlyImage: false) as Image)
