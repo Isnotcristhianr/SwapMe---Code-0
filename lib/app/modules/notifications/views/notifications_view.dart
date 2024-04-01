@@ -7,11 +7,10 @@ import 'package:get/get.dart';
 
 import '../../../components/screen_title.dart';
 import '../controllers/notifications_controller.dart';
-// ignore: unused_import
-import 'widgets/notification_item.dart';
+
+import 'widgets/userRankingItem.dart';
 
 //widget user ranking
-import 'widgets/userRankingItem.dart';
 
 class NotificationsView extends GetView<NotificationsController> {
   const NotificationsView({super.key});
@@ -41,12 +40,15 @@ class NotificationsView extends GetView<NotificationsController> {
                   children: [
                     for (int i = 0; i < controller.topUsers.length; i++)
                       FutureBuilder(
-                        future: controller.getUserById(controller.topUsers[i].authId.toString()),
+                        future: controller.getUserById(
+                            controller.topUsers[i].authId.toString()),
                         builder: (context, snapshot) {
                           return UserRankingItem(
                             position: i + 1,
                             rank: controller.topUsers[i],
                             userName: snapshot.data.toString(),
+                            profilePhoto: //foto generica
+                                'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
                           );
                         },
                       ),
@@ -64,6 +66,4 @@ class NotificationsView extends GetView<NotificationsController> {
       ),
     );
   }
-
-  
 }

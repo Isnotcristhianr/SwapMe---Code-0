@@ -8,26 +8,27 @@ class UserRankingItem extends StatelessWidget {
   final int position;
   final RankingModel rank;
   final String userName;
+  final String profilePhoto;
 
   const UserRankingItem({
-    super.key,
+    Key? key,
     required this.position,
     required this.rank,
     required this.userName,
-  });
+    required this.profilePhoto,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     Color color;
     if (position == 1) {
-      // Color para el primer lugar
-      color = const Color(0xFFFFD700);
+      color = const Color(0xFFFFD700); // Color para el primer lugar
     } else if (position == 2) {
       color = const Color(0xFFCDCDCD); // Color para el segundo lugar
     } else if (position == 3) {
       color = const Color(0xFFCD7F32); // Color para el tercer lugar
     } else {
-      color = Colors.white; // Color para otros lugares
+      color = Colors.cyan; // Color para otros lugares
     }
 
     return Container(
@@ -46,24 +47,34 @@ class UserRankingItem extends StatelessWidget {
         ],
       ),
       child: ListTile(
-        leading: Column(
+        leading: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            position == 1
-                ? const Icon(
-                    Icons.emoji_events,
-                    size: 35,
-                  )
-                : position == 2
-                    ? const Icon(Icons.emoji_events, size: 35)
-                    : position == 3
+            Column(
+              children: [
+                position == 1
+                    ? const Icon(
+                        Icons.emoji_events,
+                        size: 35,
+                      )
+                    : position == 2
                         ? const Icon(Icons.emoji_events, size: 35)
-                        : const Icon(Icons.emoji_events, size: 35),
-            Text(
-              position.toString(),
-              style: const TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-              ),
+                        : position == 3
+                            ? const Icon(Icons.emoji_events, size: 35)
+                            : const Icon(Icons.emoji_events, size: 35),
+                Text(
+                  position.toString(),
+                  style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(width: 8), // Espacio entre los trofeos y la foto de perfil
+            CircleAvatar(
+              backgroundImage: NetworkImage(profilePhoto),
+              radius: 20, // Tamaño del CircleAvatar
             ),
           ],
         ),

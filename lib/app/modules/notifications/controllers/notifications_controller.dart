@@ -12,6 +12,7 @@ class NotificationsController extends GetxController {
 
   Rx<UserModel> usersName = Rx<UserModel>(UserModel(name: ""));
 
+
   @override
   void onInit() {
     super.onInit();
@@ -61,7 +62,7 @@ class NotificationsController extends GetxController {
               .toList();
 
           //obtener foto del perfil del usuario
-          await getUsersProfilePhotos(userIds);
+          await getUsersProfilePhotos(userIds.join(', '));
         }
       }
     } catch (e) {
@@ -93,28 +94,27 @@ class NotificationsController extends GetxController {
     return null; // Retorna null si no se encuentra el usuario
   }
 
-  // Método para obtener las fotos de perfil de los usuarios
-  Future<void> getUsersProfilePhotos(List<String?> userIds) async {
+  // Método para obtener la foto de perfil de un usuario por el id
+  Future<String?> getUsersProfilePhotos(String authId) async {
     try {
-      final snapshot = await FirebaseFirestore.instance
+      final userSnapshot = await FirebaseFirestore.instance
           .collection('users')
-          .where(FieldPath.documentId,
-              whereIn: userIds.whereType<
-                  String>()) // Filtrar valores nulos de la lista userIds
+          .where('auth_id', isEqualTo: authId)
+          .limit(
+              1) // Limitar a 1 documento, ya que debería haber solo un usuario con el mismo authId
           .get();
 
-      if (snapshot.docs.isNotEmpty) {
-        for (final doc in snapshot.docs) {
-          final user = UserModel.fromFirebase(doc, doc.id as SnapshotOptions?);
-          // Obtener la foto de perfil del usuario y almacenarla en el modelo UserModel
-          user.photo = doc.data()[
-              'profile_photo_url']; // Asegúrate de tener este campo en tu modelo UserModel
-          users[users.indexWhere((element) => element.id == user.id)] = user;
-        }
+      if (userSnapshot.docs.isNotEmpty) {
+        // Obtener el nombre del usuario del primer documento encontrado
+        return userSnapshot.docs.first.data()['photo'];
       }
+      //foto generica
+      return 'https://via.placeholder.com/150';
     } catch (e) {
+      // Manejar el error
       // ignore: avoid_print
-      print('Error fetching user profile photos: $e');
+      print('Error fetching user by id: $e');
     }
+    return null; // Retorna null si no se encuentra el usuario
   }
 }
