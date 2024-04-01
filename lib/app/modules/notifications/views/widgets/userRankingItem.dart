@@ -11,12 +11,12 @@ class UserRankingItem extends StatelessWidget {
   final String profilePhoto;
 
   const UserRankingItem({
-    Key? key,
+    super.key,
     required this.position,
     required this.rank,
     required this.userName,
     required this.profilePhoto,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,8 @@ class UserRankingItem extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(width: 8), // Espacio entre los trofeos y la foto de perfil
+            const SizedBox(
+                width: 8), // Espacio entre los trofeos y la foto de perfil
             CircleAvatar(
               backgroundImage: NetworkImage(profilePhoto),
               radius: 20, // Tamaño del CircleAvatar
@@ -82,7 +83,8 @@ class UserRankingItem extends StatelessWidget {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Intercambios: ${rank.totalSwaps}'), // Mostrar detalles del usuario
+            Text(
+                'Intercambios: ${rank.totalSwaps}'), // Mostrar detalles del usuario
             RatingBarIndicator(
               rating: double.parse(rank.punt.toString()),
               itemBuilder: (context, index) => const Icon(

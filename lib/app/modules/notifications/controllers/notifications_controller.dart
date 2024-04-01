@@ -12,7 +12,6 @@ class NotificationsController extends GetxController {
 
   Rx<UserModel> usersName = Rx<UserModel>(UserModel(name: ""));
 
-
   @override
   void onInit() {
     super.onInit();
