@@ -16,6 +16,7 @@ class SettingsItem extends StatelessWidget {
   final String numberPhone;
   final double rank;
   final ImageProvider<Object>? backgroundImage;
+  final String exchanges;
   
 
   const SettingsItem({
@@ -28,6 +29,7 @@ class SettingsItem extends StatelessWidget {
     //puntos del usuario
     this.rank = 0,
     this.backgroundImage,
+    this.exchanges = '0',
   });
 
   @override
@@ -62,6 +64,11 @@ class SettingsItem extends StatelessWidget {
               onRatingUpdate: (rating) {
               },
               ignoreGestures: true, // Add this line
+            ),
+            //cantidad de intercambios realizados
+            Text(
+              exchanges,
+              style: theme.textTheme.displaySmall,
             ),
           ],
         ),
