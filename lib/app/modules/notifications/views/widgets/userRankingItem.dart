@@ -27,7 +27,7 @@ class UserRankingItem extends StatelessWidget {
     } else if (position == 2) {
       color = const Color.fromARGB(255, 178, 178, 178); // Color para el segundo lugar
     } else if (position == 3) {
-      color = Color.fromARGB(255, 189, 118, 47); // Color para el tercer lugar
+      color = const Color.fromARGB(255, 189, 118, 47); // Color para el tercer lugar
     } else {
       color = Colors.cyan; // Color para otros lugares
     }
