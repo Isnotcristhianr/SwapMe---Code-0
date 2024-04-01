@@ -40,16 +40,24 @@ class NotificationsView extends GetView<NotificationsController> {
                   children: [
                     for (int i = 0; i < controller.topUsers.length; i++)
                       FutureBuilder(
-                        future: controller.getUserById(
-                            controller.topUsers[i].authId.toString()),
-                        builder: (context, snapshot) {
-                          return UserRankingItem(
-                            position: i + 1,
-                            rank: controller.topUsers[i],
-                            userName: snapshot.data.toString(),
-                            profilePhoto: //foto generica
-                                'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
-                          );
+                        future: Future.wait([
+                          controller.getUserById(
+                              controller.topUsers[i].authId.toString()),
+                          controller.getUsersProfilePhotos(
+                              controller.topUsers[i].authId.toString()),
+                        ]),
+                        builder:
+                            (context, AsyncSnapshot<List<dynamic>> snapshot) {
+                          if (snapshot.hasData && snapshot.data != null) {
+                            return UserRankingItem(
+                              position: i + 1,
+                              rank: controller.topUsers[i],
+                              userName: snapshot.data![0].toString(),
+                              profilePhoto: snapshot.data![1].toString(),
+                            );
+                          } else {
+                            return const Text('No data available');
+                          }
                         },
                       ),
                   ],

@@ -58,7 +58,7 @@ class UserRankingItem extends StatelessWidget {
                         size: 35,
                       )
                     : position == 2
-                        ? const Icon(Icons.emoji_events, size: 35)
+                        ? const Icon(Icons.emoji_events, size: 35,)
                         : position == 3
                             ? const Icon(Icons.emoji_events, size: 35)
                             : const Icon(Icons.emoji_events, size: 35),

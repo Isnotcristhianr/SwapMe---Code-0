@@ -107,13 +107,13 @@ class NotificationsController extends GetxController {
         // Obtener el nombre del usuario del primer documento encontrado
         return userSnapshot.docs.first.data()['photo'];
       }
-      //foto generica
-      return 'https://via.placeholder.com/150';
+      
     } catch (e) {
       // Manejar el error
       // ignore: avoid_print
       print('Error fetching user by id: $e');
     }
-    return null; // Retorna null si no se encuentra el usuario
+   //foto generica
+      return 'https://via.placeholder.com/150';
   }
 }
