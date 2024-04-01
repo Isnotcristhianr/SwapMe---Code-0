@@ -29,7 +29,7 @@ class UserItem extends StatelessWidget {
     var theme = context.theme;
 
     return Container(
-      height: 130.h,
+      height: 150.h,
       decoration: BoxDecoration(
         color: context.theme.colorScheme.background,
         borderRadius: BorderRadius.circular(10),
@@ -40,7 +40,7 @@ class UserItem extends StatelessWidget {
           CircleAvatar(
             backgroundImage:
                 (getImage(user.photo, onlyImage: false) as Image).image,
-            maxRadius: 70,
+            maxRadius: 50,
           ),
           10.horizontalSpace,
           Column(

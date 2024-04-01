@@ -60,14 +60,7 @@ class CartItem extends GetView<CartController> {
                 5.verticalSpace,
                 Text('Talla: ${product.size}',
                     style:
-                        theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp)),
-                5.verticalSpace,
-                Text(
-                  '\$${product.price}',
-                  style: theme.textTheme.displayMedium?.copyWith(
-                    fontSize: 18.sp,
-                  ),
-                ),
+                        theme.textTheme.bodyMedium?.copyWith(fontSize: 16.sp)),                
                 5.verticalSpace,
                 product.available
                     ? TextButton(
@@ -88,7 +81,7 @@ class CartItem extends GetView<CartController> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            'Confirmar - ${product.interested?.length}',
+                            'Confirmar → ${product.interested?.length}',
                             style: const TextStyle(
                               color: Colors
                                   .white, // Personaliza el color del texto del botón según tus necesidades
