@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:swapme/app/data/models/ranking_model.dart';
+import 'package:swapme/app/modules/details/views/userDetails_view.dart';
 
 class UserRankingItem extends StatelessWidget {
   final int position;
@@ -98,6 +100,18 @@ class UserRankingItem extends StatelessWidget {
             ),
           ],
         ),
+        //nueva columna ver mas btn ontap para ir a una vista
+        trailing: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.arrow_forward_ios),
+          ],
+        ),
+        onTap: () {
+          // Navegar a la vista de perfil del usuario
+          Get.to(() => UserDetailsView(user: rank));
+        },
+        
       ),
     );
   }
