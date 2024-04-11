@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:swapme/app/data/models/ranking_model.dart';
+import 'package:swapme/app/data/models/user_model.dart';
 
 class UserDetailsView extends StatelessWidget {
   final RankingModel user;
 
-  const UserDetailsView({Key? key, required this.user}) : super(key: key);
+  const UserDetailsView({Key? key, required this.user, required UserModel userModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
