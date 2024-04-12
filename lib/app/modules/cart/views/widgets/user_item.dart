@@ -109,7 +109,7 @@ class UserItem extends StatelessWidget {
                     onConfirm: () async {
                       // Lógica para confirmar el intercambio
                       await Get.find<SwapController>()
-                          .confirmSwap(owner_id: user.id!);
+                          .confirmSwap(owner_id: user.id.toString());
                       Get.find<CartController>().getCartProducts();
                       Get.find<CartController>().getProductsSwapped();
                       Get.find<FavoritesController>().getFavoriteProducts();
