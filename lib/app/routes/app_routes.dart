@@ -44,6 +44,8 @@ abstract class Routes {
   //details
   // ignore: constant_identifier_names
   static const USER_DETAILS = _Paths.USER_DETAILS;
+  // ignore: constant_identifier_names
+  static const PROD_USER_DETAILS = _Paths.PROD_USER_DETAILS;
 }
 
 abstract class _Paths {
@@ -89,4 +91,6 @@ abstract class _Paths {
   //details
   // ignore: constant_identifier_names
   static const USER_DETAILS = '/user-details';
+  // ignore: constant_identifier_names
+  static const PROD_USER_DETAILS = '/prod-user-details';
 }

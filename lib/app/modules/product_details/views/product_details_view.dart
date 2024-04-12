@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:swapme/app/data/local/my_shared_pref.dart';
-import 'package:swapme/app/modules/details/views/userDetails_view.dart';
+import 'package:swapme/app/modules/details/views/productUserDetailsView.dart';
 import 'package:swapme/app/modules/favorites/controllers/favorites_controller.dart';
 import 'package:swapme/utils/helpers.dart';
 
@@ -17,15 +17,11 @@ import '../controllers/product_details_controller.dart';
 import 'widgets/rounded_button.dart';
 //import 'widgets/size_item.dart';
 
-//ranking model
-import 'package:swapme/app/data/models/ranking_model.dart';
-
 class ProductDetailsView extends GetView<ProductDetailsController> {
   const ProductDetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    RankingModel rank = RankingModel();
     final theme = context.theme;
     bool userHasInNegotioation = controller.product.interested
             ?.contains(MySharedPref.getCurrentUserId()) ??
@@ -122,9 +118,9 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                         return GestureDetector(
                           onTap: () {
                             // Navegar a la vista de detalles del usuario con un objeto RankingModel
-                            Get.to(() => UserDetailsView(
-                                user: rank,
-                                userModel: controller.userOwner.value));
+                            Get.to(() => UserProductDetailsView(
+                                userModel: controller.userOwner.value)
+                            ) ;
                           },
                           child: Text(
                             // dueño del producto

@@ -1,11 +1,11 @@
+// ignore_for_file: file_names
 import 'package:flutter/material.dart';
 import 'package:swapme/app/data/models/ranking_model.dart';
-import 'package:swapme/app/data/models/user_model.dart';
 
 class UserDetailsView extends StatelessWidget {
   final RankingModel user;
 
-  const UserDetailsView({Key? key, required this.user, required UserModel userModel}) : super(key: key);
+  const UserDetailsView({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +24,17 @@ class UserDetailsView extends StatelessWidget {
           children: [
             Text(
               'Nombre: ${user.authId ?? ''}',
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 10),
             Text(
               'Puntaje: ${user.punt}',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
             const SizedBox(height: 10),
             Text(
               'Total de intercambios: ${user.totalSwaps}',
-              style: Theme.of(context).textTheme.subtitle1,
+              style: Theme.of(context).textTheme.titleMedium,
             ),
           ],
         ),

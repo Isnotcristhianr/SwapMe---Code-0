@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:swapme/app/data/models/ranking_model.dart';
 import 'package:swapme/app/modules/details/views/userDetails_view.dart';
 
-import 'package:swapme/app/data/models/user_model.dart';
 
 class UserRankingItem extends StatelessWidget {
   final int position;
@@ -24,8 +23,6 @@ class UserRankingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //get
-    UserModel userModel = UserModel();
 
     Color color;
     if (position == 1) {
@@ -119,7 +116,7 @@ class UserRankingItem extends StatelessWidget {
         ),
         onTap: () {
           // Navegar a la vista de perfil del usuario
-          Get.to(() => UserDetailsView(user: rank, userModel: userModel));
+          Get.to(() => UserDetailsView(user: rank));
         },
       ),
     );
