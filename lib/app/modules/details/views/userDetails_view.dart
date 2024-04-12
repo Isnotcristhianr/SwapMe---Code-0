@@ -1,4 +1,5 @@
 // ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:swapme/app/data/models/ranking_model.dart';
 
@@ -11,7 +12,7 @@ class UserDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         title: const Text('Detalles del usuario'),
+        title: const Text('Detalles del usuario'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
