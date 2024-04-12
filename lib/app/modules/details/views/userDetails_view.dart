@@ -1,15 +1,17 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:swapme/app/data/models/ranking_model.dart';
+import 'package:swapme/app/modules/details/controllers/userdetails_controller.dart';
 
 class UserDetailsView extends StatelessWidget {
   final RankingModel user;
 
-  const UserDetailsView({super.key, required this.user});
+  const UserDetailsView({Key? key, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final UserDetailsController controller = Get.put(UserDetailsController());
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Detalles del usuario'),
@@ -23,10 +25,14 @@ class UserDetailsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Nombre: ${user.authId ?? ''}',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
+            FutureBuilder<String?>(
+                future: controller.getUserById(user.authId.toString()),
+                builder: (context, snapshot) {
+                  return Text(
+                    'Nombre: ${snapshot.data}',
+                    style: Theme.of(context).textTheme.titleLarge,
+                  );
+                }),
             const SizedBox(height: 10),
             Text(
               'Puntaje: ${user.punt}',

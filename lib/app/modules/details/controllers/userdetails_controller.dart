@@ -13,29 +13,27 @@ class UserDetailsController extends GetxController {
     super.onInit();
   }
 
-  Future<void> fetchUserData(String authId) async {
-  isLoading.value = true; // Indicar que se está cargando
-  try {
-    final userSnapshot = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(authId)
-        .get();
+  
+  //obtener el nombre del usuario por el authId
+   // Función para obtener el nombre del usuario por authId
+  Future<String?> getUserById(String authId) async {
+    try {
+      final userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('auth_id', isEqualTo: authId)
+          .limit(
+              1) // Limitar a 1 documento, ya que debería haber solo un usuario con el mismo authId
+          .get();
 
-    if (userSnapshot.exists) {
-      final userData = userSnapshot.data();
-      userName.value = userData?['name'] ?? ''; // Usa el operador '?' para manejar nulos
-      userPhoto.value = userData?['photo'] ?? '';
-      isLoading.value = false; // Indicar que se ha cargado exitosamente
-    } else {
+      if (userSnapshot.docs.isNotEmpty) {
+        // Obtener el nombre del usuario del primer documento encontrado 
+        return userSnapshot.docs.first.data()['name'];
+      }
+    } catch (e) {
+      // Manejar el error
       // ignore: avoid_print
-      print('User document does not exist');
-      isLoading.value = false; // Indicar que se ha terminado la carga con error
+      print('Error fetching user by id: $e');
     }
-  } catch (e) {
-    // Handle error
-    // ignore: avoid_print
-    print('Error fetching user data: $e');
-    isLoading.value = false; // Indicar que se ha terminado la carga con error
+    return null; // Retorna null si no se encuentra el usuario
   }
-}
 }
