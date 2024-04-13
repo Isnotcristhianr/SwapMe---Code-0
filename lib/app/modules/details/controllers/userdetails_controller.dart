@@ -9,6 +9,7 @@ class UserDetailsController extends GetxController {
   RxBool isLoading = RxBool(true); // Para controlar el estado de carga
 
   @override
+  // ignore: unnecessary_overrides
   void onInit() {
     super.onInit();
   }

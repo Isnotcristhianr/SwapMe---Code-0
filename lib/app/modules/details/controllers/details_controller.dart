@@ -6,6 +6,7 @@ class UserDetailsController extends GetxController {
   RxString userPhoto = RxString('');
 
   @override
+  // ignore: unnecessary_overrides
   void onInit() {
     super.onInit();
   }

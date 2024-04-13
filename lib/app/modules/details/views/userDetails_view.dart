@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:swapme/app/data/models/ranking_model.dart';
@@ -6,7 +8,7 @@ import 'package:swapme/app/modules/details/controllers/userdetails_controller.da
 class UserDetailsView extends StatelessWidget {
   final RankingModel user;
 
-  const UserDetailsView({Key? key, required this.user}) : super(key: key);
+  const UserDetailsView({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +37,14 @@ class UserDetailsView extends StatelessWidget {
                   child: Row(
                     children: [
                       FutureBuilder<String?>(
-                          future: controller.getUserPhotoById(user.authId.toString()),
+                          future: controller
+                              .getUserPhotoById(user.authId.toString()),
                           builder: (context, snapshot) {
                             return CircleAvatar(
                               radius: 50,
-                              backgroundImage: NetworkImage(snapshot.data ?? ''),
+                              backgroundImage: NetworkImage(snapshot
+                                      .data ?? // Si no hay foto, muestra una imagen de relleno
+                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
                             );
                           }),
                       const SizedBox(width: 20),
@@ -49,22 +54,24 @@ class UserDetailsView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             FutureBuilder<String?>(
-                                future: controller.getUserById(user.authId.toString()),
+                                future: controller
+                                    .getUserById(user.authId.toString()),
                                 builder: (context, snapshot) {
                                   return Text(
-                                    'Nombre: ${snapshot.data}',
-                                    style: Theme.of(context).textTheme.headline6,
+                                    '${snapshot.data}',
+                                    style:
+                                        Theme.of(context).textTheme.titleLarge,
                                   );
                                 }),
                             const SizedBox(height: 20),
                             Text(
                               'Puntaje: ${user.punt}',
-                              style: Theme.of(context).textTheme.subtitle1,
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                             const SizedBox(height: 20),
                             Text(
                               'Total de intercambios: ${user.totalSwaps}',
-                              style: Theme.of(context).textTheme.subtitle1,
+                              style: Theme.of(context).textTheme.titleMedium,
                             ),
                           ],
                         ),
