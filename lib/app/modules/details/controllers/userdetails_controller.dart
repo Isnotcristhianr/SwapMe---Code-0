@@ -13,9 +13,8 @@ class UserDetailsController extends GetxController {
     super.onInit();
   }
 
-  
   //obtener el nombre del usuario por el authId
-   // Función para obtener el nombre del usuario por authId
+  // Función para obtener el nombre del usuario por authId
   Future<String?> getUserById(String authId) async {
     try {
       final userSnapshot = await FirebaseFirestore.instance
@@ -26,7 +25,7 @@ class UserDetailsController extends GetxController {
           .get();
 
       if (userSnapshot.docs.isNotEmpty) {
-        // Obtener el nombre del usuario del primer documento encontrado 
+        // Obtener el nombre del usuario del primer documento encontrado
         return userSnapshot.docs.first.data()['name'];
       }
     } catch (e) {
@@ -35,5 +34,28 @@ class UserDetailsController extends GetxController {
       print('Error fetching user by id: $e');
     }
     return null; // Retorna null si no se encuentra el usuario
+  }
+
+  //obtener foto del usuario por el authId
+  // Función para obtener la foto del usuario por authId
+  Future<String?> getUserPhotoById(String authId) async {
+    try {
+      final userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('auth_id', isEqualTo: authId)
+          .limit(
+              1) // Limitar a 1 documento, ya que debería haber solo un usuario con el mismo authId
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        // Obtener la foto del usuario del primer documento encontrado
+        return userSnapshot.docs.first.data()['photo'];
+      }
+    } catch (e) {
+      // Manejar el error
+      // ignore: avoid_print
+      print('Error fetching user photo by id: $e');
+    }
+    return null; // Retorna null si no se encuentra la foto del usuario
   }
 }

@@ -25,6 +25,18 @@ class UserDetailsView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //foto usuario
+            FutureBuilder<String?>(
+                future: controller.getUserPhotoById(user.authId.toString()),
+                builder: (context, snapshot) {
+                  return CircleAvatar(
+                    radius: 50,
+                    backgroundImage: NetworkImage(snapshot.data ?? ''),
+                  );
+                }),
+            const SizedBox(height: 10),
+
+            //nombre usuario
             FutureBuilder<String?>(
                 future: controller.getUserById(user.authId.toString()),
                 builder: (context, snapshot) {
