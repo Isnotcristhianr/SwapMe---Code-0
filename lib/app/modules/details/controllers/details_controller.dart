@@ -11,22 +11,43 @@ class UserDetailsController extends GetxController {
     super.onInit();
   }
 
-  Future<void> fetchUserData(String authId) async {
+//nombre del authid del usuario 
+  Future<String?> getUserById(String authId) async {
     try {
       final userSnapshot = await FirebaseFirestore.instance
           .collection('users')
-          .doc(authId)
+          .where('auth_id', isEqualTo: authId)
+          .limit(
+              1) 
           .get();
 
-      if (userSnapshot.exists) {
-        final userData = userSnapshot.data() as Map<String, dynamic>;
-        userName.value = userData['name'];
-        userPhoto.value = userData['photo'];
+      if (userSnapshot.docs.isNotEmpty) {
+        return userSnapshot.docs.first.data()['name'];
       }
     } catch (e) {
-      // Handle error
       // ignore: avoid_print
-      print('Error fetching user data: $e');
+      print('Error fetching user by id: $e');
     }
+    return null; 
+  }
+
+  //demas datos del usuario
+  Future<String?> getUserPhotoById(String authId) async {
+    try {
+      final userSnapshot = await FirebaseFirestore.instance
+          .collection('users')
+          .where('auth_id', isEqualTo: authId)
+          .limit(
+              1) 
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        return userSnapshot.docs.first.data()['photo'];
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error fetching user by id: $e');
+    }
+    return null; 
   }
 }

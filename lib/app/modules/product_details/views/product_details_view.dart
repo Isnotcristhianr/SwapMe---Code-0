@@ -119,8 +119,7 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                           onTap: () {
                             // Navegar a la vista de detalles del usuario con un objeto RankingModel
                             Get.to(() => UserProductDetailsView(
-                                userModel: controller.userOwner.value)
-                            ) ;
+                                product: controller.userOwner.value));
                           },
                           child: Text(
                             // dueño del producto
