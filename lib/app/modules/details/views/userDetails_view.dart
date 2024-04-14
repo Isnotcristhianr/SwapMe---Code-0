@@ -16,7 +16,7 @@ class UserDetailsView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detalles del usuario'),
+        title: const Text('Feedback del usuario'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -47,7 +47,7 @@ class UserDetailsView extends StatelessWidget {
                                   'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
                             );
                           }),
-                      const SizedBox(width: 20),
+                      const SizedBox(width: 15),
                       Expanded(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -63,14 +63,22 @@ class UserDetailsView extends StatelessWidget {
                                         Theme.of(context).textTheme.titleLarge,
                                   );
                                 }),
-                            const SizedBox(height: 20),
-                            Text(
-                              'Puntaje: ${user.punt}',
-                              style: Theme.of(context).textTheme.titleMedium,
+                            const SizedBox(height: 15),
+                            Row(
+                              children: List.generate(5, (index) {
+                              return Icon(
+                                index < user.punt!.toInt()
+                                  ? Icons.star 
+                                  : Icons.star_border,
+                                color: index < user.punt!.toInt()
+                                  ? Colors.yellow 
+                                  : Colors.grey,
+                              );
+                              }),
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 15),
                             Text(
-                              'Total de intercambios: ${user.totalSwaps}',
+                              'Swaps: ${user.totalSwaps}',
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                           ],

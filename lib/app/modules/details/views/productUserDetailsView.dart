@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:swapme/app/data/models/user_model.dart';
@@ -6,14 +8,13 @@ import 'package:swapme/app/modules/details/controllers/userdetails_controller.da
 class UserProductDetailsView extends StatelessWidget {
   final UserModel product;
 
-  const UserProductDetailsView({Key? key, required this.product})
-      : super(key: key);
+  const UserProductDetailsView({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detalles del usuario'),
+        title: const Text('Feedback del usuario'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -43,7 +44,7 @@ class UserProductDetailsView extends StatelessWidget {
                         );
                       },
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -67,6 +68,34 @@ class UserProductDetailsView extends StatelessWidget {
                             );
                           },
                         ),
+                        //puntuacion
+                        GetBuilder<UserDetailsController>(
+                          init: UserDetailsController(),
+                          builder: (controller) {
+                            return FutureBuilder<double>(
+                              future: controller
+                                  .getUserScore(product.authId.toString()),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Row(
+                                    children: List.generate(5, (index) {
+                                      return Icon(
+                                        index < snapshot.data!
+                                            ? Icons.star
+                                            : Icons.star_border,
+                                        color: index < snapshot.data!
+                                            ? Colors.yellow
+                                            : Colors.grey,
+                                      );
+                                    }),
+                                  );
+                                }
+                                return const Text(
+                                    'No se encontró la puntuación del usuario');
+                              },
+                            );
+                          },
+                        ),
                         // total de intercambios
                         GetBuilder<UserDetailsController>(
                           init: UserDetailsController(),
@@ -77,7 +106,7 @@ class UserProductDetailsView extends StatelessWidget {
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   return Text(
-                                    'Total Intercambios: ${snapshot.data}',
+                                    'Swaps: ${snapshot.data}',
                                     style: const TextStyle(fontSize: 20),
                                   );
                                 }

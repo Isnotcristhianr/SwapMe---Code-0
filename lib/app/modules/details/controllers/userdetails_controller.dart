@@ -71,7 +71,7 @@ class UserDetailsController extends GetxController {
           .get();
 
       if (userSnapshot.docs.isNotEmpty) {
-        final userScore = userSnapshot.docs.first.data()['score'] ?? 0.0;
+        final userScore = userSnapshot.docs.first.data()['punt'] ?? 0.0;
         return userScore;
       }
     } catch (e) {
