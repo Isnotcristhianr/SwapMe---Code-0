@@ -31,7 +31,7 @@ class UserModel {
   ) {
     final data = snapshot.data();
     return UserModel(
-      id:  data?['id'],
+      id: snapshot.id,
       name: data?['name'],
       lastName: data?['lastname'],
       email: data?['email'],
@@ -44,7 +44,6 @@ class UserModel {
   }
 
   Map<String, dynamic> toJSON() => {
-        'authId': id,
         'name': name,
         'lastname': lastName,
         'email': email,
