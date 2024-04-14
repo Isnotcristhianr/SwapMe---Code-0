@@ -59,4 +59,47 @@ class UserDetailsController extends GetxController {
     }
     return null; // Retorna null si no se encuentra la foto del usuario
   }
+
+  //puntaje
+  // Función para obtener el puntaje del usuario por authId desde el ranking
+  Future<double> getUserScore(String authId) async {
+    try {
+      final userSnapshot = await FirebaseFirestore.instance
+          .collection('ranking')
+          .where('authId', isEqualTo: authId)
+          .limit(1)
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        final userScore = userSnapshot.docs.first.data()['score'] ?? 0.0;
+        return userScore;
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener el puntaje del usuario: $e');
+    }
+    return 0.0;
+  }
+
+
+  //total intercambios
+  // Función para obtener el total de intercambios del usuario por authId desde el ranking
+  Future<int> getUserTotalSwaps(String authId) async {
+    try {
+      final userSnapshot = await FirebaseFirestore.instance
+          .collection('ranking')
+          .where('authId', isEqualTo: authId)
+          .limit(1)
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        final totalSwaps = userSnapshot.docs.first.data()['totalSwaps'] ?? 0;
+        return totalSwaps;
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener el total de intercambios del usuario: $e');
+    }
+    return 0;
+  }
 }
