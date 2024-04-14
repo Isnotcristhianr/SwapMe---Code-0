@@ -33,7 +33,6 @@ class SettingsController extends GetxController {
   }
 
   Future<bool> updateUser() async {
-    //
     bool result = false;
     isLoading.value = true;
     try {
@@ -49,6 +48,7 @@ class SettingsController extends GetxController {
         user.value.photo = await photoRef.getDownloadURL();
       }
 
+      // Actualiza el usuario usando el authId en lugar del id
       await FirebaseFirestore.instance
           .collection('users')
           .doc(user.value.id)
@@ -58,12 +58,15 @@ class SettingsController extends GetxController {
         'phone': user.value.phone,
         'photo': user.value.photo,
       }, SetOptions(merge: true));
+
       messageToDisplay = 'Información actualizada correctamente';
       result = true;
     } catch (e) {
       messageToDisplay = e.toString();
       result = false;
     }
+    isLoading.value =
+        false; // Mueve esto fuera del try-catch para asegurar que se actualice correctamente
     return result;
   }
 
@@ -87,24 +90,25 @@ class SettingsController extends GetxController {
   }
 
   // Obtener el rating del usuario
- void getRating() {
-  FirebaseFirestore.instance
-      .collection('ranking')
-      .where('authId', isEqualTo: user.value.authId) // Usa user.value.id en lugar de user.value.authId
-      .get()
-      .then((QuerySnapshot querySnapshot) {
-    if (querySnapshot.docs.isNotEmpty) {
-      var document = querySnapshot.docs.first;
-      ranking.value = RankingModel.fromFirebase(
-          document as DocumentSnapshot<Map<String, dynamic>>, null);
-    }else {
-      ranking.value = RankingModel();
-      // ignore: avoid_print
-      print( 'No se encontró el ranking del usuario: ${user.value.authId}');
-    }
-  });
-}
-
+  void getRating() {
+    FirebaseFirestore.instance
+        .collection('ranking')
+        .where('authId',
+            isEqualTo: user.value
+                .authId) // Usa user.value.id en lugar de user.value.authId
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      if (querySnapshot.docs.isNotEmpty) {
+        var document = querySnapshot.docs.first;
+        ranking.value = RankingModel.fromFirebase(
+            document as DocumentSnapshot<Map<String, dynamic>>, null);
+      } else {
+        ranking.value = RankingModel();
+        // ignore: avoid_print
+        print('No se encontró el ranking del usuario: ${user.value.authId}');
+      }
+    });
+  }
 
   // Escuchar los cambios en el usuario y obtener su rating
   void listenToUserChanges() {

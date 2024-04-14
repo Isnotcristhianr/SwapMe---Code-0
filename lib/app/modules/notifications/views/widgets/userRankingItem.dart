@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:swapme/app/data/models/ranking_model.dart';
+import 'package:swapme/app/modules/details/views/userDetails_view.dart';
+
 
 class UserRankingItem extends StatelessWidget {
   final int position;
@@ -20,14 +23,17 @@ class UserRankingItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     Color color;
     if (position == 1) {
       //diamante primer lugar
       color = const Color(0xFFD4AF37);
     } else if (position == 2) {
-      color = const Color.fromARGB(255, 178, 178, 178); // Color para el segundo lugar
+      color = const Color.fromARGB(
+          255, 178, 178, 178); // Color para el segundo lugar
     } else if (position == 3) {
-      color = const Color.fromARGB(255, 189, 118, 47); // Color para el tercer lugar
+      color =
+          const Color.fromARGB(255, 189, 118, 47); // Color para el tercer lugar
     } else {
       color = Colors.cyan; // Color para otros lugares
     }
@@ -59,7 +65,10 @@ class UserRankingItem extends StatelessWidget {
                         size: 35,
                       )
                     : position == 2
-                        ? const Icon(Icons.emoji_events, size: 35,)
+                        ? const Icon(
+                            Icons.emoji_events,
+                            size: 35,
+                          )
                         : position == 3
                             ? const Icon(Icons.emoji_events, size: 35)
                             : const Icon(Icons.emoji_events, size: 35),
@@ -98,6 +107,17 @@ class UserRankingItem extends StatelessWidget {
             ),
           ],
         ),
+        //nueva columna ver mas btn ontap para ir a una vista
+        trailing: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.arrow_forward_ios),
+          ],
+        ),
+        onTap: () {
+          // Navegar a la vista de perfil del usuario
+          Get.to(() => UserDetailsView(user: rank));
+        },
       ),
     );
   }

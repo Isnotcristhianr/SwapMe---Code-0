@@ -26,6 +26,10 @@ import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../../pages/terms/views/TermsView.dart';
 import '../../pages/terms/bindings/terms_binding.dart';
+//user details product
+//import '../modules/details/views/productUserDetailsView.dart';
+
+
 
 //login
 import '../../pages/login/views/login.dart';
@@ -125,6 +129,12 @@ class AppPages {
       name: _Paths.SWAP_PRODUCT,
       page: () => const SwapConfirmScreen(),
       binding: SwapBinding(),
+    ),
+    //details
+    GetPage(
+      name: _Paths.PRODUCT_DETAILS,
+      page: () => const ProductDetailsView(),
+      binding: ProductDetailsBinding(),
     ),
   ];
 }
