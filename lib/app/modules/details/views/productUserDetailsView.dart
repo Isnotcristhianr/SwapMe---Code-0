@@ -6,8 +6,6 @@ import 'package:swapme/app/data/models/user_model.dart';
 import 'package:swapme/app/modules/details/controllers/userdetails_controller.dart';
 import 'package:intl/intl.dart';
 
-
-
 class UserProductDetailsView extends StatelessWidget {
   final UserModel product;
 
@@ -131,54 +129,61 @@ class UserProductDetailsView extends StatelessWidget {
               'Comentarios de usuarios',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+            //nota
+            const Text(
+              'Los comentarios son anónimos por privacidad.',
+              style: TextStyle(fontSize: 15, color: Colors.green),
+            ),
             const SizedBox(height: 20),
             GetBuilder<UserDetailsController>(
-  init: UserDetailsController(),
-  builder: (controller) {
-    return FutureBuilder<List<Map<String, dynamic>>>(
-      future: controller.getUserComments(product.authId.toString()),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Column(
-            children: List.generate(snapshot.data!.length, (index) {
-              return Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        snapshot.data![index]['comment'],
-                        style: const TextStyle(fontSize: 20),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            DateFormat('dd/MM/yyyy').format(
-                              snapshot.data![index]['date'].toDate(),
+              init: UserDetailsController(),
+              builder: (controller) {
+                return FutureBuilder<List<Map<String, dynamic>>>(
+                  future: controller.getUserComments(product.authId.toString()),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                        children: snapshot.data!.map((commentData) {
+                          if (commentData['comment'].trim().isEmpty) {
+                            return Container(); // Don't display empty comments
+                          }
+                          return Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      DateFormat('dd/MM/yyyy').format(
+                                        commentData['date'].toDate(),
+                                      ),
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  SizedBox(
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width, // Set the width to the screen width
+                                    child: Text(
+                                      commentData['comment'],
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }),
-          );
-        }
-        return const Text('No se encontraron comentarios');
-      },
-    );
-  },
-),
-            
-                
-              
-            
+                          );
+                        }).toList(),
+                      );
+                    }
+                    return const Text('No se encontraron comentarios');
+                  },
+                );
+              },
+            )
           ],
         ),
       ),

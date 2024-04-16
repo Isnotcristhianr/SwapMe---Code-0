@@ -124,6 +124,7 @@ class UserDetailsController extends GetxController {
       }
     } catch (e) {
       // Manejar el error
+      // ignore: avoid_print
       print('Error fetching user comments: $e');
     }
     return []; // Retornar una lista vacía si no hay comentarios
