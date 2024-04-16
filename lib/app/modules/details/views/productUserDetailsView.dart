@@ -28,7 +28,7 @@ class UserProductDetailsView extends StatelessWidget {
           children: [
             Card(
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Row(
                   children: [
                     // imagen del usuario

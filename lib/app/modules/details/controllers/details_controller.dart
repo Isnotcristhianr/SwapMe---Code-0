@@ -50,4 +50,28 @@ class UserDetailsController extends GetxController {
     }
     return null; 
   }
+
+  //obtener comentarios y fecha por el auth id
+  Future<List<Map<String, dynamic>>> getFeedbackByAuthId(String authId) async {
+    try {
+      final feedbackSnapshot = await FirebaseFirestore.instance
+          .collection('comments')
+          .where('auth_id', isEqualTo: authId)
+          .get();
+
+      if (feedbackSnapshot.docs.isNotEmpty) {
+        return feedbackSnapshot.docs.map((doc) {
+          return {
+            'comment': doc.data()['comment'],
+            'date': doc.data()['date'],
+          };
+        }).toList();
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error fetching feedback by authId: $e');
+    }
+    return []; 
+  }
+  
 }
