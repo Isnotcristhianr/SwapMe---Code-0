@@ -1,19 +1,21 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:swapme/app/data/models/user_model.dart';
 import 'package:swapme/app/modules/details/controllers/userdetails_controller.dart';
+import 'package:intl/intl.dart';
 
 class UserProductDetailsView extends StatelessWidget {
   final UserModel product;
 
-  const UserProductDetailsView({Key? key, required this.product})
-      : super(key: key);
+  const UserProductDetailsView({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Detalles del usuario'),
+        title: const Text('Feedback del usuario'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
@@ -26,7 +28,7 @@ class UserProductDetailsView extends StatelessWidget {
           children: [
             Card(
               child: Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Row(
                   children: [
                     // imagen del usuario
@@ -43,7 +45,7 @@ class UserProductDetailsView extends StatelessWidget {
                         );
                       },
                     ),
-                    SizedBox(width: 20),
+                    const SizedBox(width: 20),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -67,6 +69,34 @@ class UserProductDetailsView extends StatelessWidget {
                             );
                           },
                         ),
+                        //puntuacion
+                        GetBuilder<UserDetailsController>(
+                          init: UserDetailsController(),
+                          builder: (controller) {
+                            return FutureBuilder<double>(
+                              future: controller
+                                  .getUserScore(product.authId.toString()),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Row(
+                                    children: List.generate(5, (index) {
+                                      return Icon(
+                                        index < snapshot.data!
+                                            ? Icons.star
+                                            : Icons.star_border,
+                                        color: index < snapshot.data!
+                                            ? Colors.yellow
+                                            : Colors.grey,
+                                      );
+                                    }),
+                                  );
+                                }
+                                return const Text(
+                                    'No se encontró la puntuación del usuario');
+                              },
+                            );
+                          },
+                        ),
                         // total de intercambios
                         GetBuilder<UserDetailsController>(
                           init: UserDetailsController(),
@@ -77,7 +107,7 @@ class UserProductDetailsView extends StatelessWidget {
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   return Text(
-                                    'Total Intercambios: ${snapshot.data}',
+                                    'Swaps: ${snapshot.data}',
                                     style: const TextStyle(fontSize: 20),
                                   );
                                 }
@@ -95,16 +125,65 @@ class UserProductDetailsView extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             // Espacio para comentarios de usuarios
-            Container(
-              height: 200, // Ajusta esto según tus necesidades
-              color: Colors.grey[200],
-              child: Center(
-                child: Text(
-                  'Comentarios de usuarios irán aquí',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
-              ),
+            const Text(
+              'Comentarios de usuarios',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+            //nota
+            const Text(
+              'Los comentarios son anónimos por privacidad.',
+              style: TextStyle(fontSize: 15, color: Colors.green),
+            ),
+            const SizedBox(height: 20),
+            GetBuilder<UserDetailsController>(
+              init: UserDetailsController(),
+              builder: (controller) {
+                return FutureBuilder<List<Map<String, dynamic>>>(
+                  future: controller.getUserComments(product.authId.toString()),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Column(
+                        children: snapshot.data!.map((commentData) {
+                          if (commentData['comment'].trim().isEmpty) {
+                            return Container(); // Don't display empty comments
+                          }
+                          return Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: Text(
+                                      DateFormat('dd/MM/yyyy').format(
+                                        commentData['date'].toDate(),
+                                      ),
+                                      style: const TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  SizedBox(
+                                    width: MediaQuery.of(context)
+                                        .size
+                                        .width, // Set the width to the screen width
+                                    child: Text(
+                                      commentData['comment'],
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      );
+                    }
+                    return const Text('No se encontraron comentarios');
+                  },
+                );
+              },
+            )
           ],
         ),
       ),

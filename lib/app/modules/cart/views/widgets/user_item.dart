@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:swapme/app/data/models/user_model.dart';
 import 'package:swapme/app/modules/cart/controllers/cart_controller.dart';
+import 'package:swapme/app/modules/cart/controllers/comment_controller.dart';
 import 'package:swapme/app/modules/cart/controllers/swap_controller.dart';
 import 'package:swapme/app/modules/favorites/controllers/favorites_controller.dart';
 import 'package:swapme/app/routes/app_pages.dart';
@@ -16,8 +17,10 @@ import 'package:swapme/app/modules/cart/controllers/ranking_controller.dart';
 // ignore: must_be_immutable
 class UserItem extends StatelessWidget {
   final UserModel user;
+//controlador de comentarios
+  final commentController = TextEditingController();
   // ignore: use_key_in_widget_constructors
-  const UserItem({super.key, required this.user});
+  UserItem({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +28,8 @@ class UserItem extends StatelessWidget {
     double rating = 0;
     // Inicializa RankingController utilizando Get.put()
     final rankingController = Get.put(RankingController());
+    //comments getput
+    Get.put(CommentController());
 
     var theme = context.theme;
 
@@ -104,6 +109,23 @@ class UserItem extends StatelessWidget {
                             rating = value;
                           },
                         ),
+                        SizedBox(height: 10.h),
+                        //comentarios
+                        Text(
+                          'Comentarios:',
+                          style: theme.textTheme.bodyMedium,
+                        ),
+                        SizedBox(height: 10.h),
+                        TextField(
+                          controller: commentController,
+                          decoration: InputDecoration(
+                            hintText: 'Escribe un comentario',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          maxLines: 3,
+                        ),
                       ],
                     ),
                     onConfirm: () async {
@@ -134,24 +156,60 @@ class UserItem extends StatelessWidget {
                         );
                         int updatedTotalSwaps = totalSwaps + 1;
 
+                        //comentarios
+                        // Agregar el comentario a Firestore
+                        var commentId =
+                            await Get.find<CommentController>().addComment(
+                          authId: user.authId.toString(),
+                          text: commentController
+                              .text, // Obtén el texto del comentario
+                        );
+
+                        // Agregar el ID del comentario al documento de ranking del usuario
+                        await Get.find<RankingController>()
+                            .addCommentIdToRanking(
+                          user.authId.toString(),
+                          commentId.id, // Obtén el ID del comentario agregado
+                        );
+
                         await FirebaseFirestore.instance
                             .collection('ranking')
                             .doc(user.authId)
                             .update({
                           'punt': newRating,
                           'totalSwaps': updatedTotalSwaps,
+                          'comments': FieldValue.arrayUnion([commentId.id])
+
                         });
                       } else {
+                        // Si el usuario no tiene un documento de ranking, crea uno nuevo
                         await FirebaseFirestore.instance
                             .collection('ranking')
                             .doc(user.authId)
                             .set({
-                          'authId': user.authId,
-                          'date': DateTime.now(),
-                          'punt': rating.toDouble(), // Convertir a double
+                          'punt': rating,
                           'totalSwaps': 1,
+                          'comments': [],
                         });
+
+                        //comentarios
+                        // Agregar el comentario a Firestore
+                        var commentId =
+                            await Get.find<CommentController>().addComment(
+                          authId: user.authId.toString(),
+                          text: commentController
+                              .text, // Obtén el texto del comentario
+                        );
+
+                        // Agregar el ID del comentario al documento de ranking del usuario
+                        await Get.find<RankingController>()
+                            .addCommentIdToRanking(
+                          user.authId.toString(),
+                          commentId.id, // Obtén el ID del comentario agregado
+                        );
                       }
+
+                      //guardar comentario
 
                       // Volver a la pantalla base
                       Get.offAndToNamed(Routes.BASE);
