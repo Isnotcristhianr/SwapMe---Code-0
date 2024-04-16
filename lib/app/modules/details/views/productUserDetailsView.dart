@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:swapme/app/data/models/user_model.dart';
 import 'package:swapme/app/modules/details/controllers/userdetails_controller.dart';
+import 'package:intl/intl.dart';
+
+
 
 class UserProductDetailsView extends StatelessWidget {
   final UserModel product;
@@ -124,16 +127,58 @@ class UserProductDetailsView extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             // Espacio para comentarios de usuarios
-            Container(
-              height: 200, // Ajusta esto según tus necesidades
-              color: Colors.grey[200],
-              child: Center(
-                child: Text(
-                  'Comentarios de usuarios irán aquí',
-                  style: TextStyle(color: Colors.grey[600]),
-                ),
-              ),
+            const Text(
+              'Comentarios de usuarios',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
+            const SizedBox(height: 20),
+            GetBuilder<UserDetailsController>(
+  init: UserDetailsController(),
+  builder: (controller) {
+    return FutureBuilder<List<Map<String, dynamic>>>(
+      future: controller.getUserComments(product.authId.toString()),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Column(
+            children: List.generate(snapshot.data!.length, (index) {
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        snapshot.data![index]['comment'],
+                        style: const TextStyle(fontSize: 20),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            DateFormat('dd/MM/yyyy').format(
+                              snapshot.data![index]['date'].toDate(),
+                            ),
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          );
+        }
+        return const Text('No se encontraron comentarios');
+      },
+    );
+  },
+),
+            
+                
+              
+            
           ],
         ),
       ),

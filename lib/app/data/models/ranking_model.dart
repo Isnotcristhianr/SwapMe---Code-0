@@ -7,6 +7,8 @@ class RankingModel {
   double? punt;
   double? totalRating;
   int? totalSwaps;
+  //comentarios
+  List<String>? comments;
 
   RankingModel({
     this.id,
@@ -14,6 +16,8 @@ class RankingModel {
     this.date,
     this.punt,
     this.totalSwaps,
+    //comentarios
+    this.comments,
   });
 
   factory RankingModel.fromMap(Map<String, dynamic> map) {
@@ -23,6 +27,9 @@ class RankingModel {
       date: map['date'],
       punt: map['punt'],
       totalSwaps: map['totalSwaps'], // No necesita conversión
+      //comentarios
+      comments: List<String>.from(
+          map['comments']), // Convierte la lista de comentarios
     );
   }
 
@@ -33,7 +40,11 @@ class RankingModel {
       authId: snapshot.data()?['authId'],
       date: snapshot.data()?['date'],
       punt: (snapshot.data()?['punt'] ?? 0).toDouble(), // Convertir a double
-      totalSwaps: (snapshot.data()?['totalSwaps'] ?? 0).toInt(), // Convert to int
+      totalSwaps:
+          (snapshot.data()?['totalSwaps'] ?? 0).toInt(), // Convert to int
+      //comentarios
+      comments: List<String>.from(
+          snapshot.data()?['comments']), // Convierte la lista de comentarios
     );
   }
 
@@ -57,5 +68,4 @@ class RankingModel {
     }
     return 0;
   }
-  
 }

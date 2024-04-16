@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+//intl
 
 class UserDetailsController extends GetxController {
   RxString userName = RxString('');
@@ -81,7 +82,6 @@ class UserDetailsController extends GetxController {
     return 0.0;
   }
 
-
   //total intercambios
   // Función para obtener el total de intercambios del usuario por authId desde el ranking
   Future<int> getUserTotalSwaps(String authId) async {
@@ -101,5 +101,31 @@ class UserDetailsController extends GetxController {
       print('Error al obtener el total de intercambios del usuario: $e');
     }
     return 0;
+  }
+
+// Función para obtener los comentarios del usuario por authId
+  Future<List<Map<String, dynamic>>> getUserComments(String authId) async {
+    try {
+      final commentSnapshot = await FirebaseFirestore.instance
+          .collection('comments')
+          .where('authId', isEqualTo: authId)
+          .orderBy('date', descending: true)
+          .get();
+
+      if (commentSnapshot.docs.isNotEmpty) {
+        List<Map<String, dynamic>> comments = commentSnapshot.docs.map((doc) {
+
+          return {
+            'comment': doc.data()['text'] as String,
+            'date': doc.data()['date'] as Timestamp,
+          };
+        }).toList();
+        return comments;
+      }
+    } catch (e) {
+      // Manejar el error
+      print('Error fetching user comments: $e');
+    }
+    return []; // Retornar una lista vacía si no hay comentarios
   }
 }
