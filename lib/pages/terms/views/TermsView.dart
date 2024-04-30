@@ -9,9 +9,16 @@ import '../controllers/terms_controller.dart';
 class TermsView extends GetView<TermsController> {
   const TermsView({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     Get.put(TermsController());
+
+
+
+    final contentStyle = TextStyle(
+      fontSize: 14.sp,
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -31,169 +38,147 @@ class TermsView extends GetView<TermsController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 'Política de Privacidad de SwapMe:',
-                style: TextStyle(
-                  fontSize: 20.sp,
+                style: 
+                TextStyle(
+                  fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
-                height: 16.h,
-              ),
-              Text(
+              SizedBox(height: 16.h),
+              const Text(
                 'Introducción:',
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: 
+                TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 '- SwapMe es una plataforma que permite a los usuarios intercambiar prendas de vestir entre sí.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
-               SizedBox(
-                height: 8.h,
-              ),
-             
-              Text(
+              SizedBox(height: 8.h),
+              const Text(
                 'Información Recopilada:',
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: 
+                TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
                 '- SwapMe recopila información como nombre de usuario, dirección de correo electrónico y número de teléfono para facilitar la comunicación entre usuarios.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
               //actualizacion de datos
-              Text(
+              const Text(
                 'Actualización de Datos',
-                style: TextStyle(
-                  fontSize: 16.sp,
-                ),
+                style: 
+                TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                )
               ),
               Text(
                 '- Los usuarios pueden actualizar sus datos personales en cualquier momento a través de la plataforma.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
-               Text(
+              Text(
                 '- Los unicos datos actualizables son la foto de perfil, nombre de usuario, apellido de usuario; ya que los demas datos son usados en otras funciones internas que garantizan el funcionamiento de la plataforma.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
               Text(
                 '- También se pueden recopilar datos sobre las prendas, preferencias de moda y otra información relacionada con la plataforma.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
-              Text(
+              const Text(
                 'Uso de la Información:',
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: 
+                TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
-                ),
+                )
               ),
               Text(
                 '- La información recopilada se utiliza para permitir la comunicación entre usuarios con fines de intercambio de prendas.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
               Text(
                 '- Podemos utilizar la información para mejorar la experiencia del usuario y personalizar recomendaciones.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
               Text(
                 '- La información recopilada puede ser utilizada para mejorar la plataforma y sus servicios.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
-              Text(
+              const Text(
                 'Compartir Información:',
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: 
+                TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
-                ),
+                )
               ),
               Text(
                 '- La información recopilada no será compartida con terceros.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
-              Text(
+              const Text(
                 'Seguridad:',
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: 
+                TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
-                ),
+                )
               ),
               Text(
                 '- La información recopilada se almacena en servidores seguros.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
-              Text(
+              const Text(
                 'Cambios en la Política de Privacidad:',
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: 
+                TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
-                ),
+                )
               ),
               Text(
                 '- SwapMe se reserva el derecho de modificar esta política de privacidad en cualquier momento.',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
-              Text(
+              const Text(
                 'Contacto:',
-                style: TextStyle(
-                  fontSize: 16.sp,
+                style: 
+                TextStyle(
+                  fontSize: 16,
                   fontWeight: FontWeight.bold,
-                ),
+                )
               ),
               Text(
                 '- Para cualquier duda o consulta, puede contactarnos a través de la siguiente dirección de correo electrónico: swapme.ec@gmail.com ',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
-               SizedBox(
-                height: 16.h,
-              ),
+              SizedBox(height: 16.h),
               Text(
                 'SwapMe 2023 - Todos los derechos reservados',
-                style: TextStyle(
-                  fontSize: 14.sp,
-                ),
+                style: contentStyle,
               ),
               const SizedBox(height: 20),
-              //ir html
-              ElevatedButton(
-                onPressed: () => Get.toNamed('/terms'),
-                child: Text(
+                Center(
+                child: ElevatedButton(
+                  onPressed: () => Get.toNamed('/terms'),
+                  child: Text(
                   'Ir a la página web',
                   style: TextStyle(
                     fontSize: 14.sp,
                     fontWeight: FontWeight.bold,
                   ),
+                  ),
                 ),
-              )  
+                ),
             ],
           ),
         ),
