@@ -11,7 +11,6 @@ import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
 //animacion
 import 'package:animated_button/animated_button.dart';
-import 'package:animated_size_and_fade/animated_size_and_fade.dart';
 
 
 class HomeView extends GetView<HomeController> {
