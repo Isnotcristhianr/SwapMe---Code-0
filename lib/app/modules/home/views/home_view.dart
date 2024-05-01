@@ -1,4 +1,4 @@
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names, deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,14 +13,11 @@ import '../controllers/home_controller.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
-
-
   @override
   Widget build(BuildContext context) {
-    
     //home controller
     Get.put(HomeController());
-    
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: FloatingActionButton(
@@ -33,8 +30,7 @@ class HomeView extends GetView<HomeController> {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
           children: [
-            
-           const SizedBox(height: 30),
+            const SizedBox(height: 30),
             0.verticalSpace,
             // Contenedor que contiene el carrusel
             SizedBox(
@@ -104,7 +100,7 @@ class HomeView extends GetView<HomeController> {
             // Cuadrícula de productos
             10.verticalSpace,
             //encuesta gesture detector
-           ElevatedButton(
+            ElevatedButton(
               onPressed: () async {
                 const url = 'https://forms.gle/811111';
                 if (await canLaunch(url)) {
@@ -114,7 +110,8 @@ class HomeView extends GetView<HomeController> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white, backgroundColor: Colors.green, // Color del texto
+                foregroundColor: Colors.white,
+                backgroundColor: Colors.green, // Color del texto
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10.0),
                 ),
