@@ -9,6 +9,10 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../components/product_item.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
+//animacion
+import 'package:animated_button/animated_button.dart';
+import 'package:animated_size_and_fade/animated_size_and_fade.dart';
+
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -100,29 +104,30 @@ class HomeView extends GetView<HomeController> {
             // Cuadrícula de productos
             10.verticalSpace,
             //encuesta gesture detector
-            ElevatedButton(
+            Center(
+              child: AnimatedButton(
               onPressed: () async {
                 const url = 'https://forms.gle/811111';
                 if (await canLaunch(url)) {
-                  await launch(url);
+                await launch(url);
                 } else {
-                  throw 'Could not launch $url';
+                throw 'Could not launch $url';
                 }
               },
-              style: ElevatedButton.styleFrom(
-                foregroundColor: Colors.white,
-                backgroundColor: Colors.green, // Color del texto
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 16.0,
-                  horizontal: 20.0,
-                ),
-              ),
+              height: 50,
+              width: 350,
+              color: Colors.green,
+              shadowDegree: ShadowDegree.dark,
+              enabled: true,
+              duration: 100,
               child: const Text(
-                'Encuesta',
-                style: TextStyle(fontSize: 18.0),
+                'Ayúdanos a mejorar la app',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,)
+                ,
+              ),
               ),
             ),
             5.verticalSpace,
@@ -223,4 +228,5 @@ class CustomSlider extends StatelessWidget {
       ),
     );
   }
+  
 }
