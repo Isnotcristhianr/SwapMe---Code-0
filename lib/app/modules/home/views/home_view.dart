@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart'; // Importa el paquete carousel_slider
 import 'package:swapme/app/components/no_data.dart';
 import 'package:swapme/app/routes/app_pages.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../components/product_item.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
@@ -102,6 +103,32 @@ class HomeView extends GetView<HomeController> {
             const SizedBox(height: 20),
             // Cuadrícula de productos
             10.verticalSpace,
+            //encuesta gesture detector
+           ElevatedButton(
+              onPressed: () async {
+                const url = 'https://forms.gle/811111';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white, backgroundColor: Colors.green, // Color del texto
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 16.0,
+                  horizontal: 20.0,
+                ),
+              ),
+              child: const Text(
+                'Encuesta',
+                style: TextStyle(fontSize: 18.0),
+              ),
+            ),
+            5.verticalSpace,
             // Título de la sección
             const ScreenTitle(
               title: 'SwapMe',
