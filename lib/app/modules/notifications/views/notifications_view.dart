@@ -53,7 +53,8 @@ class NotificationsView extends GetView<NotificationsController> {
                               position: i + 1,
                               rank: controller.topUsers[i],
                               userName: snapshot.data![0].toString(),
-                              profilePhoto: snapshot.data![1].toString(),
+                                profilePhoto: snapshot.data![1]?.toString() 
+                                ?? 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
                             );
                           } else {
                             return const Text('No data available');

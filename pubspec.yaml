@@ -39,6 +39,8 @@ dependencies:
   video_player: ^2.8.6
   #animaciones
   flutter_staggered_animations: ^1.0.0
+  #btn animado
+  animated_button: ^0.2.0
 
 dev_dependencies:
   mockito:
