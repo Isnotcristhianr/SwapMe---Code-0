@@ -106,7 +106,7 @@ class HomeView extends GetView<HomeController> {
             Center(
               child: AnimatedButton(
               onPressed: () async {
-                const url = 'https://forms.gle/811111';
+                const url = 'https://hayj3vusafd.typeform.com/to/qGuEWYkW';
                 if (await canLaunch(url)) {
                 await launch(url);
                 } else {
