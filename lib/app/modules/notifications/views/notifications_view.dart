@@ -18,7 +18,7 @@ class NotificationsView extends GetView<NotificationsController> {
   @override
   Widget build(BuildContext context) {
     //get put
-    Get.put(NotificationsController());
+    Get.lazyPut(() => NotificationsController());
 
     return Scaffold(
       body: Padding(
