@@ -10,6 +10,7 @@ import 'package:swapme/app/modules/favorites/controllers/favorites_controller.da
 import 'package:swapme/app/routes/app_pages.dart';
 import 'package:swapme/utils/helpers.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 //ranking controller
 import 'package:swapme/app/modules/cart/controllers/ranking_controller.dart';
@@ -82,8 +83,8 @@ class UserItem extends StatelessWidget {
                     middleTextStyle: context.textTheme.bodyMedium,
                     cancelTextColor: Colors.red,
                     onCancel: Get.back,
-                    textCancel: 'Cancel',
-                    textConfirm: 'Confirm',
+                    textCancel: 'Cancelar',
+                    textConfirm: 'Confirmar',
                     confirmTextColor: Colors.blue,
                     content: Column(
                       children: [
@@ -179,7 +180,6 @@ class UserItem extends StatelessWidget {
                           'punt': newRating,
                           'totalSwaps': updatedTotalSwaps,
                           'comments': FieldValue.arrayUnion([commentId.id])
-
                         });
                       } else {
                         // Si el usuario no tiene un documento de ranking, crea uno nuevo
@@ -209,7 +209,9 @@ class UserItem extends StatelessWidget {
                         );
                       }
 
-                      //guardar comentario
+                      //abrir encuesta en el navegador link
+                      // ignore: deprecated_member_use
+                      await launch('https://es.surveymonkey.com/r/K62QQMQ');
 
                       // Volver a la pantalla base
                       Get.offAndToNamed(Routes.BASE);
