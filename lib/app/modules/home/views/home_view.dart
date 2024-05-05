@@ -5,12 +5,9 @@ import 'package:get/get.dart';
 import 'package:carousel_slider/carousel_slider.dart'; // Importa el paquete carousel_slider
 import 'package:swapme/app/components/no_data.dart';
 import 'package:swapme/app/routes/app_pages.dart';
-import 'package:url_launcher/url_launcher.dart';
 import '../../../components/product_item.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
-//animacion
-import 'package:animated_button/animated_button.dart';
 
 
 class HomeView extends GetView<HomeController> {
@@ -102,34 +99,6 @@ class HomeView extends GetView<HomeController> {
             const SizedBox(height: 20),
             // Cuadrícula de productos
             10.verticalSpace,
-            //encuesta gesture detector
-            Center(
-              child: AnimatedButton(
-              onPressed: () async {
-                const url = 'https://hayj3vusafd.typeform.com/to/qGuEWYkW';
-                if (await canLaunch(url)) {
-                await launch(url);
-                } else {
-                throw 'Could not launch $url';
-                }
-              },
-              height: 50,
-              width: 350,
-              color: Colors.green,
-              shadowDegree: ShadowDegree.dark,
-              enabled: true,
-              duration: 100,
-              child: const Text(
-                'Ayúdanos a mejorar la app',
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,)
-                ,
-              ),
-              ),
-            ),
-            5.verticalSpace,
             // Título de la sección
             const ScreenTitle(
               title: 'SwapMe',
