@@ -41,6 +41,7 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   #btn animado
   animated_button: ^0.2.0
+  firebase_messaging: ^14.9.1
 
 dev_dependencies:
   mockito:
