@@ -8,7 +8,9 @@ import 'package:get/get.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/notifications_controller.dart';
 
+//widgets
 import 'widgets/userRankingItem.dart';
+import 'widgets/topthreeusers_item.dart';
 
 //widget user ranking
 
@@ -31,9 +33,48 @@ class NotificationsView extends GetView<NotificationsController> {
               subtitle: 'Top Usuarios',
               dividerEndIndent: 150,
             ),
+            //top 3
+            Obx(() {
+              if (controller.topUsers.take(3).isEmpty) {
+                return const CircularProgressIndicator();
+              } else {
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    for (int i = 0; i < 3; i++)
+                      FutureBuilder(
+                        future: Future.wait([
+                          controller.getUserById(
+                              controller.topUsers[i].authId.toString()),
+                          controller.getUsersProfilePhotos(
+                              controller.topUsers[i].authId.toString()),
+                        ]),
+                        builder:
+                            (context, AsyncSnapshot<List<dynamic>> snapshot) {
+                          if (snapshot.hasData && snapshot.data != null) {
+                            return TopThreeUsersItem(
+                              position: i + 1,
+                              rank: controller.topUsers[i],
+                              userName: snapshot.data![0].toString(),
+                              profilePhoto: snapshot.data![1]?.toString() ??
+                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+                            );
+                          } else {
+                            return const Text('No data available');
+                          }
+                        },
+                      ),
+                  ],
+                );
+              }
+            }),
+
+            const Divider(
+              thickness: 2,
+            ),
             //top users
             Obx(() {
-              if (controller.topUsers.isEmpty) {
+              if (controller.topUsers.skip(3).isEmpty) {
                 return const CircularProgressIndicator();
               } else {
                 return Column(
@@ -53,8 +94,8 @@ class NotificationsView extends GetView<NotificationsController> {
                               position: i + 1,
                               rank: controller.topUsers[i],
                               userName: snapshot.data![0].toString(),
-                                profilePhoto: snapshot.data![1]?.toString() 
-                                ?? 'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+                              profilePhoto: snapshot.data![1]?.toString() ??
+                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
                             );
                           } else {
                             return const Text('No data available');
