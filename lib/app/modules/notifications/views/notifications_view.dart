@@ -41,29 +41,83 @@ class NotificationsView extends GetView<NotificationsController> {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    for (int i = 0; i < 3; i++)
-                      FutureBuilder(
-                        future: Future.wait([
-                          controller.getUserById(
-                              controller.topUsers[i].authId.toString()),
-                          controller.getUsersProfilePhotos(
-                              controller.topUsers[i].authId.toString()),
-                        ]),
-                        builder:
-                            (context, AsyncSnapshot<List<dynamic>> snapshot) {
-                          if (snapshot.hasData && snapshot.data != null) {
-                            return TopThreeUsersItem(
-                              position: i + 1,
-                              rank: controller.topUsers[i],
+                    // Tercer lugar a la izquierda
+                    FutureBuilder(
+                      future: Future.wait([
+                        controller.getUserById(
+                            controller.topUsers[2].authId.toString()),
+                        controller.getUsersProfilePhotos(
+                            controller.topUsers[2].authId.toString()),
+                      ]),
+                      builder:
+                          (context, AsyncSnapshot<List<dynamic>> snapshot) {
+                        if (snapshot.hasData && snapshot.data != null) {
+                          return Expanded(
+                            child: TopThreeUsersItem(
+                              position: 3,
+                              rank: controller.topUsers[2],
                               userName: snapshot.data![0].toString(),
                               profilePhoto: snapshot.data![1]?.toString() ??
                                   'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
-                            );
-                          } else {
-                            return const Text('No data available');
-                          }
-                        },
-                      ),
+                            ),
+                          );
+                        } else {
+                          return const Text('No data available');
+                        }
+                      },
+                    ),
+                    const SizedBox(width: 20),
+                    // Primer lugar al centro
+                    FutureBuilder(
+                      future: Future.wait([
+                        controller.getUserById(
+                            controller.topUsers[0].authId.toString()),
+                        controller.getUsersProfilePhotos(
+                            controller.topUsers[0].authId.toString()),
+                      ]),
+                      builder:
+                          (context, AsyncSnapshot<List<dynamic>> snapshot) {
+                        if (snapshot.hasData && snapshot.data != null) {
+                          return Expanded(
+                            child: TopThreeUsersItem(
+                              position: 1,
+                              rank: controller.topUsers[0],
+                              userName: snapshot.data![0].toString(),
+                              profilePhoto: snapshot.data![1]?.toString() ??
+                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+                            ),
+                          );
+                        } else {
+                          return const Text('No data available');
+                        }
+                      },
+                    ),
+                    const SizedBox(width: 20),
+                    // Segundo lugar a la derecha
+                    FutureBuilder(
+                      future: Future.wait([
+                        controller.getUserById(
+                            controller.topUsers[1].authId.toString()),
+                        controller.getUsersProfilePhotos(
+                            controller.topUsers[1].authId.toString()),
+                      ]),
+                      builder:
+                          (context, AsyncSnapshot<List<dynamic>> snapshot) {
+                        if (snapshot.hasData && snapshot.data != null) {
+                          return Expanded(
+                            child: TopThreeUsersItem(
+                              position: 2,
+                              rank: controller.topUsers[1],
+                              userName: snapshot.data![0].toString(),
+                              profilePhoto: snapshot.data![1]?.toString() ??
+                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+                            ),
+                          );
+                        } else {
+                          return const Text('No data available');
+                        }
+                      },
+                    ),
                   ],
                 );
               }
