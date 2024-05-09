@@ -209,12 +209,13 @@ class UserItem extends StatelessWidget {
                         );
                       }
 
+                      // Volver a la pantalla base
+                      Get.offAndToNamed(Routes.BASE);
+                      
                       //abrir encuesta en el navegador link
                       // ignore: deprecated_member_use
                       await launch('https://es.surveymonkey.com/r/K62QQMQ');
 
-                      // Volver a la pantalla base
-                      Get.offAndToNamed(Routes.BASE);
                     },
                   );
                 },
