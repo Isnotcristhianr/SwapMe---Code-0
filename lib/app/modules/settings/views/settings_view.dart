@@ -198,6 +198,24 @@ class SettingsView extends GetView<SettingsController> {
             ),
             25.verticalSpace,
             GestureDetector(
+              onTap: () {
+                //url
+                const url = 'https://es.surveymonkey.com/r/K62QQMQ';
+
+                // ignore: unnecessary_null_comparison
+                if (canLaunch(url) != null) {
+                  launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: const SettingsItem(
+                title: 'Encuesta de Satisfacción',
+                icon: Constants.userIcon,
+              ),
+            ),
+            25.verticalSpace,
+            GestureDetector(
               onTap: () async {
                 Get.defaultDialog(
                   title: 'Confirmar cerrar sesión',
