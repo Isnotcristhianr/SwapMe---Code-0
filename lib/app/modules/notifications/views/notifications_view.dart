@@ -127,6 +127,16 @@ class NotificationsView extends GetView<NotificationsController> {
               thickness: 2,
             ),
             //top users
+            30.verticalSpace,
+            const Text(
+              'Top Usuarios',
+              style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            10.verticalSpace,
             Obx(() {
               if (controller.topUsers.isEmpty) {
                 return const CircularProgressIndicator();
