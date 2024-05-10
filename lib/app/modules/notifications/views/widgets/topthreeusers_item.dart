@@ -8,12 +8,12 @@ class TopThreeUsersItem extends StatelessWidget {
   final String profilePhoto;
 
   const TopThreeUsersItem({
-    Key? key,
+    super.key,
     required this.position,
     required this.rank,
     required this.userName,
     required this.profilePhoto,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

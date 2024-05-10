@@ -44,8 +44,9 @@ class UserItem extends StatelessWidget {
         children: [
           5.horizontalSpace,
           CircleAvatar(
-            backgroundImage:
-                (getImage(user.photo, onlyImage: false) as Image).image,
+            backgroundImage: (user.photo != null)
+                ? (getImage(user.photo, onlyImage: false) as Image).image
+                : const AssetImage('assets/images/default_avatar.png'),
             maxRadius: 50,
           ),
           10.horizontalSpace,
@@ -130,19 +131,19 @@ class UserItem extends StatelessWidget {
                       ],
                     ),
                     onConfirm: () async {
-                      // Lógica para confirmar el intercambio
+                       // Lógica para confirmar el intercambio
                       await Get.find<SwapController>()
-                          .confirmSwap(owner_id: user.id.toString());
+                          .confirmSwap(owner_id: user.id!);
                       Get.find<CartController>().getCartProducts();
                       Get.find<CartController>().getProductsSwapped();
                       Get.find<FavoritesController>().getFavoriteProducts();
                       Get.find<FavoritesController>()
                           .getProductsInNegotiation();
-
+                          
                       // Actualizar el rating del usuario en la base de datos
                       var rankingSnapshot = await FirebaseFirestore.instance
                           .collection('ranking')
-                          .doc(user.authId)
+                          .doc(user.authId.toString())
                           .get();
 
                       if (rankingSnapshot.exists) {
@@ -175,7 +176,7 @@ class UserItem extends StatelessWidget {
 
                         await FirebaseFirestore.instance
                             .collection('ranking')
-                            .doc(user.authId)
+                            .doc(user.authId.toString())
                             .update({
                           'punt': newRating,
                           'totalSwaps': updatedTotalSwaps,
@@ -183,14 +184,6 @@ class UserItem extends StatelessWidget {
                         });
                       } else {
                         // Si el usuario no tiene un documento de ranking, crea uno nuevo
-                        await FirebaseFirestore.instance
-                            .collection('ranking')
-                            .doc(user.authId)
-                            .set({
-                          'punt': rating,
-                          'totalSwaps': 1,
-                          'comments': [],
-                        });
 
                         //comentarios
                         // Agregar el comentario a Firestore
@@ -207,14 +200,24 @@ class UserItem extends StatelessWidget {
                           user.authId.toString(),
                           commentId.id, // Obtén el ID del comentario agregado
                         );
+
+                        await FirebaseFirestore.instance
+                            .collection('ranking')
+                            .doc(user.authId.toString())
+                            .set({
+                          'authId': user.authId.toString(),
+                          'punt': rating,
+                          'totalSwaps': 1,
+                          'comments': [commentId.id]
+                        });
                       }
+
+                      // Volver a la pantalla base
+                      Get.offAndToNamed(Routes.BASE);
 
                       //abrir encuesta en el navegador link
                       // ignore: deprecated_member_use
                       await launch('https://es.surveymonkey.com/r/K62QQMQ');
-
-                      // Volver a la pantalla base
-                      Get.offAndToNamed(Routes.BASE);
                     },
                   );
                 },

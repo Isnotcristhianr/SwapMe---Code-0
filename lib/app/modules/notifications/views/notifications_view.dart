@@ -127,8 +127,18 @@ class NotificationsView extends GetView<NotificationsController> {
               thickness: 2,
             ),
             //top users
+            30.verticalSpace,
+            const Text(
+              'Top Usuarios',
+              style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            10.verticalSpace,
             Obx(() {
-              if (controller.topUsers.skip(3).isEmpty) {
+              if (controller.topUsers.isEmpty) {
                 return const CircularProgressIndicator();
               } else {
                 return Column(
@@ -136,11 +146,11 @@ class NotificationsView extends GetView<NotificationsController> {
                     for (int i = 0; i < controller.topUsers.length; i++)
                       FutureBuilder(
                         future: Future.wait([
-                          controller.getUserById(
+                            controller.getUserById(
                               controller.topUsers[i].authId.toString()),
-                          controller.getUsersProfilePhotos(
+                            controller.getUsersProfilePhotos(
                               controller.topUsers[i].authId.toString()),
-                        ]),
+                        ] as Iterable<Future>),
                         builder:
                             (context, AsyncSnapshot<List<dynamic>> snapshot) {
                           if (snapshot.hasData && snapshot.data != null) {
