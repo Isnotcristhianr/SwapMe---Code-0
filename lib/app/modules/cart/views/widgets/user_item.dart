@@ -131,15 +131,15 @@ class UserItem extends StatelessWidget {
                       ],
                     ),
                     onConfirm: () async {
-                      // Lógica para confirmar el intercambio
+                       // Lógica para confirmar el intercambio
                       await Get.find<SwapController>()
-                          .confirmSwap(owner_id: user.id.toString());
+                          .confirmSwap(owner_id: user.id!);
                       Get.find<CartController>().getCartProducts();
                       Get.find<CartController>().getProductsSwapped();
                       Get.find<FavoritesController>().getFavoriteProducts();
                       Get.find<FavoritesController>()
                           .getProductsInNegotiation();
-
+                          
                       // Actualizar el rating del usuario en la base de datos
                       var rankingSnapshot = await FirebaseFirestore.instance
                           .collection('ranking')
