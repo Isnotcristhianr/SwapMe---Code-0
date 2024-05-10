@@ -184,7 +184,7 @@ class UserItem extends StatelessWidget {
                         });
                       } else {
                         // Si el usuario no tiene un documento de ranking, crea uno nuevo
-                        
+
                         //comentarios
                         // Agregar el comentario a Firestore
                         var commentId =
@@ -210,8 +210,6 @@ class UserItem extends StatelessWidget {
                           'totalSwaps': 1,
                           'comments': [commentId.id]
                         });
-
-
                       }
 
                       // Volver a la pantalla base
