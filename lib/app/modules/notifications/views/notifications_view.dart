@@ -30,7 +30,7 @@ class NotificationsView extends GetView<NotificationsController> {
             30.verticalSpace,
             const ScreenTitle(
               title: 'Ranking',
-              subtitle: 'Top Usuarios',
+              subtitle: '3 Top Usuarios',
               dividerEndIndent: 150,
             ),
             //top 3
@@ -127,11 +127,11 @@ class NotificationsView extends GetView<NotificationsController> {
               thickness: 2,
             ),
             //top users
-            30.verticalSpace,
+            15.verticalSpace,
             const Text(
-              'Top Usuarios',
+              'Usuarios',
               style: TextStyle(
-              fontSize: 20,
+              fontSize: 25,
               fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,

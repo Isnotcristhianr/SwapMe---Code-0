@@ -116,4 +116,26 @@ class NotificationsController extends GetxController {
    //foto generica
       return 'https://via.placeholder.com/150';
   }
+
+  //obtener punt by id
+  Future<double> getPuntById(String authId) async {
+    try {
+      final userSnapshot = await FirebaseFirestore.instance
+          .collection('ranking')
+          .where('authId', isEqualTo: authId)
+          .limit(
+              1) // Limitar a 1 documento, ya que debería haber solo un usuario con el mismo authId
+          .get();
+
+      if (userSnapshot.docs.isNotEmpty) {
+        // Obtener el nombre del usuario del primer documento encontrado
+        return userSnapshot.docs.first.data()['punt'];
+      }
+    } catch (e) {
+      // Manejar el error
+      // ignore: avoid_print
+      print('Error fetching user by id: $e');
+    }
+    return 0; // Retorna 0 si no se encuentra el usuario
+  }
 }

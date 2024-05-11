@@ -27,15 +27,13 @@ class UserRankingItem extends StatelessWidget {
     Color color;
     if (position == 1) {
       //diamante primer lugar
-      color = const Color(0xFFD4AF37);
+      color = Colors.greenAccent;
     } else if (position == 2) {
-      color = const Color.fromARGB(
-          255, 178, 178, 178); // Color para el segundo lugar
+      color = Colors.blue; //2do
     } else if (position == 3) {
-      color =
-          const Color.fromARGB(255, 189, 118, 47); // Color para el tercer lugar
+      color = Colors.grey; // Color de la barra para el tercer lugar
     } else {
-      color = Colors.cyan; // Color para otros lugares
+      color = Colors.transparent; // Color para otros lugares
     }
 
     return Container(
