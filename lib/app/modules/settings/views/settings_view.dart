@@ -215,6 +215,11 @@ class SettingsView extends GetView<SettingsController> {
               ),
             ),
             25.verticalSpace,
+            //divider
+            const Divider(
+              thickness: 5,
+            ),
+            15.verticalSpace,
             GestureDetector(
               onTap: () async {
                 Get.defaultDialog(
@@ -246,9 +251,27 @@ class SettingsView extends GetView<SettingsController> {
                   ),
                 );
               },
-              child: const SettingsItem(
-                title: 'Cerrar Sesion',
-                icon: Constants.logoutIcon,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(
+                      176, 76, 175, 79), // Replace with your desired color
+                  borderRadius: BorderRadius.circular(10),
+                  //pading
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 2,
+                      blurRadius: 4,
+                      offset: const Offset(0, 4),
+                    ),
+                  ],
+                ),
+                //padding
+                padding: EdgeInsets.symmetric(vertical: 15.w),
+                child: const SettingsItem(
+                  title: 'Cerrar Sesion',
+                  icon: Constants.logoutIcon,
+                ),
               ),
             ),
             20.verticalSpace,
