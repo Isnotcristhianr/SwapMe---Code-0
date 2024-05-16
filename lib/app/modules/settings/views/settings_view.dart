@@ -253,8 +253,7 @@ class SettingsView extends GetView<SettingsController> {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(
-                      176, 76, 175, 79), // Replace with your desired color
+                  color: const Color.fromARGB(96, 76, 175, 79), // Replace with your desired color
                   borderRadius: BorderRadius.circular(10),
                   //pading
                   boxShadow: [
