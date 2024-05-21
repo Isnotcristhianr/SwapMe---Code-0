@@ -233,6 +233,21 @@ class ProductDetailsView extends GetView<ProductDetailsController> {
                         ),
                       ],
                     ),
+                    5.verticalSpace,
+                    Row(
+                      children: [
+                        Text(
+                          'Valor Referencial: ',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                              fontSize: 15.sp, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '\$${controller.product.price}',
+                          style: theme.textTheme.bodyMedium
+                              ?.copyWith(fontSize: 15.sp),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
               ).animate().fade().slideX(
