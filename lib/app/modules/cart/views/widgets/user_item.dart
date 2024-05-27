@@ -37,7 +37,7 @@ class UserItem extends StatelessWidget {
     return Container(
       height: 150.h,
       decoration: BoxDecoration(
-        color: context.theme.colorScheme.background,
+        color: context.theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(

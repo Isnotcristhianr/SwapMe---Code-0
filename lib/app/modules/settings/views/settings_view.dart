@@ -39,7 +39,7 @@ class SettingsView extends GetView<SettingsController> {
             Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
-                color: theme.backgroundColor,
+                color: theme.colorScheme.background,
                 //sombra
                 boxShadow: [
                   BoxShadow(

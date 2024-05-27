@@ -22,7 +22,7 @@ class SizeItem extends StatelessWidget {
         width: 30.w,
         height: 30.h,
         decoration: BoxDecoration(
-          color: selected ? theme.primaryColor : theme.colorScheme.background,
+          color: selected ? theme.primaryColor : theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(12.r),
           boxShadow: !selected ? null : [
             BoxShadow(
