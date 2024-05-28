@@ -37,7 +37,7 @@ class ProductDetailsController extends GetxController {
     super.onReady();
   }
 
- Future<void> getOwnerRanking() async {
+  Future<void> getOwnerRanking() async {
     try {
       final ownerData = await FirebaseFirestore.instance
           .collection('users')
@@ -58,9 +58,8 @@ class ProductDetailsController extends GetxController {
           }
         }
       }
-    // ignore: empty_catches
-    } catch (e) {
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 
   Future<void> getOwnerData() async {
@@ -109,7 +108,8 @@ class ProductDetailsController extends GetxController {
       url = "https://wa.me/$phone/?text=${Uri.parse(message)}"; // new line
     } else {
       // add the [https]
-      url = "https://api.whatsapp.com/send?phone=$phone&text=${Uri.parse(message)}"; // new line
+      url =
+          "https://api.whatsapp.com/send?phone=$phone&text=${Uri.parse(message)}"; // new line
     }
     return Uri.parse(url);
   }
