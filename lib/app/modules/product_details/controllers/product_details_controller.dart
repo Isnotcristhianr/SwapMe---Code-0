@@ -109,7 +109,7 @@ class ProductDetailsController extends GetxController {
       url = "https://wa.me/$phone/?text=${Uri.parse(message)}"; // new line
     } else {
       // add the [https]
-      "https://api.whatsapp.com/send?phone=$phone=${Uri.parse(message)}"; // new line
+      url = "https://api.whatsapp.com/send?phone=$phone&text=${Uri.parse(message)}"; // new line
     }
     return Uri.parse(url);
   }
