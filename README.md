@@ -21,7 +21,8 @@ Una vez que la aplicación esté en funcionamiento, podrás registrarte como nue
 
 ## Demo
 <!-- img -->
-![image](https://play-lh.googleusercontent.com/IYANKvek_SalXTkOk62HH8SdEQ-InO9NUmUvgDhOkRW-sMneHIt7wSAwPkrzEYybp5c=w5120-h2880-rw =100)
+![image]()
+<img src="https://play-lh.googleusercontent.com/IYANKvek_SalXTkOk62HH8SdEQ-InO9NUmUvgDhOkRW-sMneHIt7wSAwPkrzEYybp5c=w5120-h2880-rw" width="100">
 ![image](https://play-lh.googleusercontent.com/OZnmzAf-Eb9x0XXsyU2A9OxrPUiwNuYPQ7hOOBDMv3Ttc2uf-keko_8RQchUIeTy9VyS=w5120-h2880-rw)
 ![image](https://play-lh.googleusercontent.com/QIkp72XWFKZOl_Km2EWjgzK5UmUC4QlM-kzVKdQMswG03S2XJ4bpzuH7SOyqYmyZy37V=w5120-h2880-rw)
 ![image](https://play-lh.googleusercontent.com/yqn8VZC8tFX3ZQLNNh6hcat58fbhHQF-epeovYnP95LySzO1iKexgSZamvrQ5l10AQtV=w5120-h2880-rw)
