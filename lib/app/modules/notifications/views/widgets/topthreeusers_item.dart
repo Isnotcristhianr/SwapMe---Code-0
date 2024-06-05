@@ -17,6 +17,11 @@ class TopThreeUsersItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const defaultProfilePhoto =
+        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fes%2Ffree-png-vieud&psig=AOvVaw3tW5UbVht3GVWl8elr04eV&ust=1717641859524000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJCw2tm4w4YDFQAAAAAdAAAAABAE';
+    final validProfilePhoto =
+        _isValidUrl(profilePhoto) ? profilePhoto : defaultProfilePhoto;
+
     return SizedBox(
       width: 100,
       height: 300, // Altura máxima para la barra y la imagen
@@ -26,7 +31,7 @@ class TopThreeUsersItem extends StatelessWidget {
           Positioned(
             top: 0,
             child: CircleAvatar(
-              backgroundImage: NetworkImage(profilePhoto),
+              backgroundImage: NetworkImage(validProfilePhoto),
               radius: 30, // Tamaño del CircleAvatar
               backgroundColor: Colors.white,
             ),
@@ -48,13 +53,15 @@ class TopThreeUsersItem extends StatelessWidget {
                   width: 60, // Ancho de la barra
                   decoration: BoxDecoration(
                     color: _getBarColor(position),
-                    borderRadius: BorderRadius.circular(15), // Forma redondeada para la barra
+                    borderRadius: BorderRadius.circular(
+                        15), // Forma redondeada para la barra
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.5),
                         spreadRadius: 2,
                         blurRadius: 5,
-                        offset: const Offset(0, 3), // Desplazamiento de la sombra
+                        offset:
+                            const Offset(0, 3), // Desplazamiento de la sombra
                       ),
                     ],
                   ),
@@ -106,5 +113,12 @@ class TopThreeUsersItem extends StatelessWidget {
       default:
         return Colors.transparent;
     }
+  }
+
+  bool _isValidUrl(String url) {
+    final uri = Uri.tryParse(url);
+    return uri != null &&
+        uri.isAbsolute &&
+        (uri.scheme == 'http' || uri.scheme == 'https');
   }
 }

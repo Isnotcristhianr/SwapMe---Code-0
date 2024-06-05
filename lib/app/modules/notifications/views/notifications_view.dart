@@ -58,7 +58,7 @@ class NotificationsView extends GetView<NotificationsController> {
                               rank: controller.topUsers[2],
                               userName: snapshot.data![0].toString(),
                               profilePhoto: snapshot.data![1]?.toString() ??
-                                  'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png',
+                                  'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fes%2Ffree-png-vieud&psig=AOvVaw3tW5UbVht3GVWl8elr04eV&ust=1717641859524000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCJCw2tm4w4YDFQAAAAAdAAAAABAE',
                             ),
                           );
                         } else {
