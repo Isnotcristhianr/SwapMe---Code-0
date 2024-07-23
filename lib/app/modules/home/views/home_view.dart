@@ -9,6 +9,7 @@ import '../../../components/product_item.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
 
+import '../../../components/drawer_widget.dart'; // Importación desde la carpeta components
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -26,6 +27,29 @@ class HomeView extends GetView<HomeController> {
         child: const Icon(Icons.add),
         onPressed: () => Get.toNamed(Routes.REGISTER_PRODUCT),
       ),
+
+      //app bar
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0FDA89),
+        title: const Text('SwapMe'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.notifications),
+              onPressed: () =>
+                  //mensaje proximanente
+                  Get.snackbar(
+                    'Próximamente',
+                    'Función en desarrollo',
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.grey[800],
+                    colorText: Colors.white,
+                  )),
+        ],
+      ),
+      //menu lateral
+      drawer: const DrawerWidget(),
+
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
@@ -196,5 +220,4 @@ class CustomSlider extends StatelessWidget {
       ),
     );
   }
-  
 }
