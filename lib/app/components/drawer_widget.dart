@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:swapme/app/modules/settings/controllers/settings_controller.dart';
 import 'package:swapme/app/routes/app_pages.dart';
-import 'package:swapme/utils/helpers.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
