@@ -26,7 +26,7 @@ class NotificationsController extends GetxController {
       final snapshot = await FirebaseFirestore.instance
           .collection('ranking')
           .orderBy('punt', descending: true)
-          .limit(5)
+          .limit(10)
           .get();
       if (snapshot.docs.isNotEmpty) {
         topUsers.value = snapshot.docs

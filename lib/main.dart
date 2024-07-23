@@ -7,7 +7,6 @@ import 'config/theme/my_theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 
 
 //permiso
@@ -21,14 +20,6 @@ void main() async {
 /*     name: 'SwapApp',
  */
     options: DefaultFirebaseOptions.currentPlatform,
-  );
-
-  //messaging
-  FirebaseMessaging.onBackgroundMessage(
-      (message) async {
-        // ignore: avoid_print
-        print("onBackgroundMessage: $message");
-      }
   );
 
   // Verificar la conectividad antes de iniciar la aplicación

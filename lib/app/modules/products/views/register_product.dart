@@ -40,10 +40,20 @@ class RegisterProductScreen extends GetView<ProductController> {
           physics: const ClampingScrollPhysics(),
           child: Column(
             children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: RoundedButton(
+                      onPressed: () => Get.back(),
+                      child: SvgPicture.asset(
+                        Constants.backArrowIcon,
+                        fit: BoxFit.none,
+                      ),
+                      ),
+                    ),
               const SizedBox(height: 15),
               const ScreenTitle(
                 title: 'Registrar Prenda',
-                subtitle: 'Registra una prenda para intercambiar',
+                subtitle: 'Registra para intercambiar',
                 dividerEndIndent: 1,
               ),
               Form(
@@ -54,25 +64,19 @@ class RegisterProductScreen extends GetView<ProductController> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    RoundedButton(
-                      onPressed: () => Get.back(),
-                      child: SvgPicture.asset(
-                        Constants.backArrowIcon,
-                        fit: BoxFit.none,
-                      ),
-                    ),
                     SizedBox(height: 15.h),
                     ImageSelector(controller: controllerImage),
                     SizedBox(height: 15.h),
-                    Text(
+                    const Text(
                       'Nombre de la prenda',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     MyTextField(
                       controller: controllerName,
-                      hintText: 'Nombre de la prenda',
+                      hintText: 'Registre un nombre de prenda',
                       TextStyle: TextStyle(
                         color: Colors.grey[500],
                       ),
@@ -85,36 +89,38 @@ class RegisterProductScreen extends GetView<ProductController> {
                       },
                     ),
                     SizedBox(height: 15.h),
-                    Text(
-                      'Review de la prenda',
+                    const Text(
+                      'Descripción de la prenda',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     MyTextField(
                       controller: controllerReview,
-                      hintText: 'Review de la prenda',
+                      hintText: 'Describa la prenda a intercambiar',
                       TextStyle: TextStyle(
                         color: Colors.grey[500],
                       ),
                       obscureText: false,
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return 'Ingrese un review de la prenda';
+                          return 'Ingrese una descripción de la prenda';
                         }
                         return null;
                       },
                     ),
                     SizedBox(height: 15.h),
-                    Text(
+                    const Text(
                       'Valor Referencial',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     MyTextField(
                       controller: controllerPrice,
-                      hintText: 'Valor Referencial de la prenda',
+                      hintText: 'Ingrese un valor referencial',
                       TextStyle: TextStyle(
                         color: Colors.grey[500],
                       ),
@@ -129,10 +135,11 @@ class RegisterProductScreen extends GetView<ProductController> {
                       },
                     ),
                     SizedBox(height: 15.h),
-                    Text(
+                    const Text(
                       'Cantidad de prendas',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     MyTextField(
@@ -140,22 +147,24 @@ class RegisterProductScreen extends GetView<ProductController> {
                       hintText: 'Cantidad de prendas',
                       TextStyle: TextStyle(
                         color: Colors.grey[500],
+                        fontWeight: FontWeight.bold,
                       ),
                       obscureText: false,
                       maxLength: 3,
                       validator: (p0) {
                         if (p0 == null || p0.isEmpty) {
-                          return 'Ingrese una cantidad de prendas';
+                          return 'Ingrese la cantidad de prendas en su intercambio';
                         }
                         if (!p0.isNumericOnly) return 'Ingrese solo numeros';
                         return null;
                       },
                     ),
                     SizedBox(height: 15.h),
-                    Text(
+                    const Text(
                       'Talla',
                       style: TextStyle(
-                        color: Colors.grey[500],
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                     DropdownButtonFormField<String>(
@@ -189,11 +198,30 @@ class RegisterProductScreen extends GetView<ProductController> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Condición de la prenda'),
+                        const Text(
+                          'Condición de la prenda',
+                          style: TextStyle(
+                            color: Colors.green,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                         Center(
                           child: DropdownButtonFormField<String>(
                             value: controllerState.text,
-                            decoration: const InputDecoration(),
+                            decoration: InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.grey.shade400),
+                              ),
+                              fillColor: Colors.grey.shade200,
+                              filled: true,
+                              hintStyle: TextStyle(
+                                color: Colors.grey[500],
+                              ),
+                            ),
                             items: [
                               'Malo',
                               'Regular',
