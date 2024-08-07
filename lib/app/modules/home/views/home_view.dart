@@ -59,9 +59,63 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 175.h, // Ajusta la altura según tus necesidades
               width: double.infinity,
-              
-                
-              
+              child: Obx(
+                () => controller.products.isEmpty
+                    ? const NoData(text: 'No hay registros de prendas')
+                    : PageView(
+                        controller: PageController(viewportFraction: 0.8),
+                        children: [
+                          // Diapositiva 1
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/1.jpg',
+                          ),
+                          // Diapositiva 2
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/2.jpg',
+                          ),
+                          // Diapositiva 3
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/3.jpg',
+                          ),
+                          // Diapositiva 4
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/4.jpg',
+                          ),
+                          // Diapositiva 5
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/5.jpg',
+                          ),
+                          // Diapositiva 6
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/6.jpg',
+                          ),
+                        ],
+                      ),
+              ),
             ),
             const SizedBox(height: 20),
             // Cuadrícula de productos
