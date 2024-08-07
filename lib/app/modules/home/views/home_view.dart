@@ -2,13 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:carousel_slider/carousel_slider.dart'; // Importa el paquete carousel_slider
 import 'package:swapme/app/components/no_data.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 import '../../../components/product_item.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
-
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -36,64 +34,62 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 175.h, // Ajusta la altura según tus necesidades
               width: double.infinity,
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  enableInfiniteScroll: true,
-                  autoPlay: true, // Reproducción automática
-                  autoPlayInterval: const Duration(
-                      seconds: 5), // Intervalo de cambio de diapositivas
-                  aspectRatio: 16 / 9,
-                  viewportFraction: 1.0, // Tamaño de la diapositiva
-                  onPageChanged: (index, reason) {
-                    // Manejar el cambio de diapositiva
-                  },
-                ),
-                items: [
-                  // Diapositiva 1
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
-                    thumbImage: 'assets/images/banner/1.jpg',
-                  ),
-                  // Diapositiva 2
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
-                    thumbImage: 'assets/images/banner/2.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
-                    thumbImage: 'assets/images/banner/3.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
-                    thumbImage: 'assets/images/banner/4.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
-                    thumbImage: 'assets/images/banner/5.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
-                    thumbImage: 'assets/images/banner/6.jpg',
-                  ),
-                ],
+              child: Obx(
+                () => controller.products.isEmpty
+                    ? const NoData(text: 'No hay registros de prendas')
+                    : PageView(
+                        controller: PageController(viewportFraction: 0.8),
+                        children: [
+                          // Diapositiva 1
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/1.jpg',
+                          ),
+                          // Diapositiva 2
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/2.jpg',
+                          ),
+                          // Diapositiva 3
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/3.jpg',
+                          ),
+                          // Diapositiva 4
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/4.jpg',
+                          ),
+                          // Diapositiva 5
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/5.jpg',
+                          ),
+                          // Diapositiva 6
+                          CustomSlider(
+                            value: 0.5,
+                            onChanged: (value) {
+                              // Manejar el cambio en el valor del carrusel
+                            },
+                            thumbImage: 'assets/images/banner/6.jpg',
+                          ),
+                        ],
+                      ),
               ),
             ),
             const SizedBox(height: 20),
@@ -196,5 +192,4 @@ class CustomSlider extends StatelessWidget {
       ),
     );
   }
-  
 }
