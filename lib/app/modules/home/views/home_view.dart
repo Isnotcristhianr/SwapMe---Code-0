@@ -2,7 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:carousel_slider/carousel_slider.dart'; // Importa el paquete carousel_slider
+//Importa el paquete carousel_slider
+import 'package:carousel_slider/carousel_slider.dart' as slider;
 import 'package:swapme/app/components/no_data.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 import '../../../components/product_item.dart';
@@ -13,6 +14,7 @@ import '../../../components/drawer_widget.dart'; // Importación desde la carpet
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,62 +62,35 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 175.h, // Ajusta la altura según tus necesidades
               width: double.infinity,
-              child: CarouselSlider(
-                options: CarouselOptions(
+              child: slider.CarouselSlider(
+                options: slider.CarouselOptions(
                   enableInfiniteScroll: true,
-                  autoPlay: true, // Reproducción automática
-                  autoPlayInterval: const Duration(
-                      seconds: 5), // Intervalo de cambio de diapositivas
+                  autoPlay: true,
+                  autoPlayInterval: const Duration(seconds: 5),
                   aspectRatio: 16 / 9,
-                  viewportFraction: 1.0, // Tamaño de la diapositiva
-                  onPageChanged: (index, reason) {
-                    // Manejar el cambio de diapositiva
-                  },
+                  viewportFraction: 1.0,
+                  onPageChanged: (index, reason) {},
                 ),
                 items: [
-                  // Diapositiva 1
                   CustomSlider(
                     value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
+                    onChanged: (value) {},
                     thumbImage: 'assets/images/banner/1.jpg',
                   ),
-                  // Diapositiva 2
                   CustomSlider(
                     value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
+                    onChanged: (value) {},
                     thumbImage: 'assets/images/banner/2.jpg',
                   ),
                   CustomSlider(
                     value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
+                    onChanged: (value) {},
                     thumbImage: 'assets/images/banner/3.jpg',
                   ),
                   CustomSlider(
                     value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
+                    onChanged: (value) {},
                     thumbImage: 'assets/images/banner/4.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
-                    thumbImage: 'assets/images/banner/5.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {
-                      // Manejar el cambio en el valor del carrusel
-                    },
-                    thumbImage: 'assets/images/banner/6.jpg',
                   ),
                 ],
               ),
