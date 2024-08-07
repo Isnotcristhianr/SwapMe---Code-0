@@ -16,7 +16,7 @@ dependencies:
   rename_app: # rename app
   flutter_svg: # for svg icons
   flutter_animate: # for animation
-  carousel_slider: ^4.0.0
+  carousel_slider: ^4.2.0
   #camera
   camera: ^0.10.0
   image_picker: ^1.1.0
