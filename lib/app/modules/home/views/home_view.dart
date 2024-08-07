@@ -8,6 +8,8 @@ import '../../../components/product_item.dart';
 import '../../../components/screen_title.dart';
 import '../controllers/home_controller.dart';
 
+import '../../../components/drawer_widget.dart'; // Importación desde la carpeta components
+
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
@@ -24,6 +26,29 @@ class HomeView extends GetView<HomeController> {
         child: const Icon(Icons.add),
         onPressed: () => Get.toNamed(Routes.REGISTER_PRODUCT),
       ),
+
+      //app bar
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF0FDA89),
+        title: const Text('SwapMe'),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.notifications),
+              onPressed: () =>
+                  //mensaje proximanente
+                  Get.snackbar(
+                    'Próximamente',
+                    'Función en desarrollo',
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.grey[800],
+                    colorText: Colors.white,
+                  )),
+        ],
+      ),
+      //menu lateral
+      drawer: const DrawerWidget(),
+
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
@@ -34,63 +59,9 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 175.h, // Ajusta la altura según tus necesidades
               width: double.infinity,
-              child: Obx(
-                () => controller.products.isEmpty
-                    ? const NoData(text: 'No hay registros de prendas')
-                    : PageView(
-                        controller: PageController(viewportFraction: 0.8),
-                        children: [
-                          // Diapositiva 1
-                          CustomSlider(
-                            value: 0.5,
-                            onChanged: (value) {
-                              // Manejar el cambio en el valor del carrusel
-                            },
-                            thumbImage: 'assets/images/banner/1.jpg',
-                          ),
-                          // Diapositiva 2
-                          CustomSlider(
-                            value: 0.5,
-                            onChanged: (value) {
-                              // Manejar el cambio en el valor del carrusel
-                            },
-                            thumbImage: 'assets/images/banner/2.jpg',
-                          ),
-                          // Diapositiva 3
-                          CustomSlider(
-                            value: 0.5,
-                            onChanged: (value) {
-                              // Manejar el cambio en el valor del carrusel
-                            },
-                            thumbImage: 'assets/images/banner/3.jpg',
-                          ),
-                          // Diapositiva 4
-                          CustomSlider(
-                            value: 0.5,
-                            onChanged: (value) {
-                              // Manejar el cambio en el valor del carrusel
-                            },
-                            thumbImage: 'assets/images/banner/4.jpg',
-                          ),
-                          // Diapositiva 5
-                          CustomSlider(
-                            value: 0.5,
-                            onChanged: (value) {
-                              // Manejar el cambio en el valor del carrusel
-                            },
-                            thumbImage: 'assets/images/banner/5.jpg',
-                          ),
-                          // Diapositiva 6
-                          CustomSlider(
-                            value: 0.5,
-                            onChanged: (value) {
-                              // Manejar el cambio en el valor del carrusel
-                            },
-                            thumbImage: 'assets/images/banner/6.jpg',
-                          ),
-                        ],
-                      ),
-              ),
+              
+                
+              
             ),
             const SizedBox(height: 20),
             // Cuadrícula de productos

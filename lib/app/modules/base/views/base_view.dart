@@ -75,7 +75,7 @@ class BaseView extends GetView<BaseController> {
                   icon: Constants.favoritesIcon,
                 ),
                 _mBottomNavItem(
-                  label: 'SwapMe',
+                  label: 'Swaps',
                   icon: Constants.cartIcon,
                 ),
                 _mBottomNavItem(

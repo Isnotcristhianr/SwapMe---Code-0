@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+//carrousel slider package
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:swapme/app/components/no_data.dart';
 import 'package:swapme/app/routes/app_pages.dart';
