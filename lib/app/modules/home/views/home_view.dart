@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-//Importa el paquete carousel_slider
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:swapme/app/components/no_data.dart';
 import 'package:swapme/app/routes/app_pages.dart';
 import '../../../components/product_item.dart';
@@ -61,48 +59,9 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 175.h, // Ajusta la altura según tus necesidades
               width: double.infinity,
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  enableInfiniteScroll: true,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 5),
-                  aspectRatio: 16 / 9,
-                  viewportFraction: 1.0,
-                  onPageChanged: (index, reason) {},
-                ),
-                items: [
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {},
-                    thumbImage: 'assets/images/banner/1.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {},
-                    thumbImage: 'assets/images/banner/2.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {},
-                    thumbImage: 'assets/images/banner/3.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {},
-                    thumbImage: 'assets/images/banner/4.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {},
-                    thumbImage: 'assets/images/banner/5.jpg',
-                  ),
-                  CustomSlider(
-                    value: 0.5,
-                    onChanged: (value) {},
-                    thumbImage: 'assets/images/banner/6.jpg',
-                  ),
-                ],
-              ),
+              
+                
+              
             ),
             const SizedBox(height: 20),
             // Cuadrícula de productos
