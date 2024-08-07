@@ -16,7 +16,7 @@ dependencies:
   rename_app: # rename app
   flutter_svg: # for svg icons
   flutter_animate: # for animation
-  carousel_slider: ^4.0.0
+  carousel_slider: ^4.2.1 # carousel slider
   #camera
   camera: ^0.10.0
   image_picker: ^1.1.0
@@ -53,6 +53,7 @@ dev_dependencies:
 
   flutter_test:
     sdk: flutter
+
 
 flutter_icons:
   android: "launcher_icon"
