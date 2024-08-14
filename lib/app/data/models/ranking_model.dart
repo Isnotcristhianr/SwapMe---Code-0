@@ -34,19 +34,23 @@ class RankingModel {
   }
 
   factory RankingModel.fromFirebase(
-      DocumentSnapshot<Map<String, dynamic>> snapshot, String? id) {
-    return RankingModel(
-      id: id,
-      authId: snapshot.data()?['authId'],
-      date: snapshot.data()?['date'],
-      punt: (snapshot.data()?['punt'] ?? 0).toDouble(), // Convertir a double
-      totalSwaps:
-          (snapshot.data()?['totalSwaps'] ?? 0).toInt(), // Convert to int
-      //comentarios
-      comments: List<String>.from(
-          snapshot.data()?['comments']), // Convierte la lista de comentarios
-    );
-  }
+    DocumentSnapshot<Map<String, dynamic>> snapshot, String? id) {
+  final data = snapshot.data();
+  final commentsData = data?['comments'];
+
+  return RankingModel(
+    id: id,
+    authId: data?['authId'],
+    date: data?['date'],
+    punt: (data?['punt'] ?? 0).toDouble(),
+    totalSwaps: (data?['totalSwaps'] ?? 0).toInt(),
+    comments: commentsData is Iterable<dynamic>
+        ? List<String>.from(commentsData)
+        : commentsData != null 
+            ? [commentsData.toString()] // If it's a string, create a list with it
+            : [], // If it's null, use an empty list
+  );
+}
 
   get name => null;
 
