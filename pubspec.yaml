@@ -10,7 +10,6 @@ dependencies:
   cupertino_icons: ^1.0.8
   get: # for state management and context less stuff
   flutter_screenutil: ^5.8.4 # make app responsive
-  shared_preferences: ^2.2.3 # shared preferences persistence key value store
   flutter_launcher_icons: # change app icon
   change_app_package_name: # change package name
   rename_app: # rename app
@@ -41,8 +40,8 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   #btn animado
   animated_button: ^0.2.0
-  firebase_messaging: ^14.9.1
   flutter_facebook_auth: ^6.2.0
+  shared_preferences: ^2.3.2
 
 dev_dependencies:
   mockito:
